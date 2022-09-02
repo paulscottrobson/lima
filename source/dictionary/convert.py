@@ -11,4 +11,4 @@
 
 b = [x for x in open("generated/dictionary.bin","rb").read(-1)]
 s = ",".join(["0x{0:02x}".format(c) for c in b])
-open("generated/dictionary.h","w").write(s+"\n")
+open("generated/rawdictionary.h","w").write("static BYTE8 rawDictionary[] = {\n"+s+"\n};\n")
