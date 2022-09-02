@@ -13,7 +13,7 @@ CDEL = del /Q
 CDELQ = >NUL
 APPSTEM = .exe
 S = \\
-CXXFLAGS = -I . -fno-stack-protector -w -Wl,-subsystem,windows 
+CXXFLAGS = -I . -fno-stack-protector -w -Wl,-subsystem,windows -Wno-write-strings
 LDFLAGS = -lmingw32 
 SDL_LDFLAGS =
 OSNAME = windows
@@ -25,7 +25,7 @@ CDELQ =
 CMAKE = make
 APPSTEM =
 S = /
-CXXFLAGS = -O2 -DLINUX  -fmax-errors=5 -I.  
+CXXFLAGS = -O2 -DLINUX  -fmax-errors=5 -I.  -Wno-write-strings
 LDFLAGS = 
 OSNAME = linux
 EXTRAFILES = 

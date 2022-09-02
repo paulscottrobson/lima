@@ -39,11 +39,13 @@ void DICTInitialise(void) {
 	defineCount = 0;
 	BYTE8 *p = rawDictionary; 															// Scan through raw dictionary.
 	while (*p != '\0') { 																// While more.
+		ASSERT(defineCount < MAXDEFINITIONS); 											// Too many check.
 		int addr = p-rawDictionary+0x1000;
 		definitions[defineCount].szName = p;											// Remember name
 		while (*p != '\0') p++;  														// Skip name
 		p++;
 		definitions[defineCount].iBytes = *p++;  										// Bytes to copy
+		ASSERT(definitions[defineCount].iBytes < 16);									// Sanity check
 		definitions[defineCount].pCode = p;	 											// Where the code is.
 		p += definitions[defineCount].iBytes; 											// Next record
 		defineCount++; 																	// Bump count.
@@ -57,7 +59,7 @@ void DICTInitialise(void) {
 // *******************************************************************************************************************************
 
 static int _DICTMatch(char *source,DEFINITION *def,char **parameter) {
-	static char szParamBuffer[128]; 													// Buffer for the parameter.
+	static char szParamBuffer[MAXIDENTLENGTH+1]; 										// Buffer for the parameter.
 	int paramPos = 0;
 	int v;
 	*parameter = szParamBuffer; 														// Return the parameter buffer, with initial NULL
@@ -68,8 +70,10 @@ static int _DICTMatch(char *source,DEFINITION *def,char **parameter) {
 			char type = *p++; 															// Get the type.
 			paramPos = 0; 																// Reset parameter fetch
 			while (*source != *p) { 													// Until found match with next character
+				ASSERT(paramPos < MAXIDENTLENGTH);
 				if (*source == '\0') return 0; 											// End of line, fail, doesn't match.
-				szParamBuffer[paramPos++] = *source++; 									// Otherwise keep copying into the buffer.	
+				szParamBuffer[paramPos++] = tolower(*source); 							// Otherwise keep copying into the buffer.	
+				source++;
 			}
 			szParamBuffer[paramPos++] = '\0';											// Fix parameter to ASCIIZ
 			return (EVALEvaluate(szParamBuffer,&v) == type); 							// Evaluate, Types match, okay, else fail.
@@ -81,6 +85,7 @@ static int _DICTMatch(char *source,DEFINITION *def,char **parameter) {
 	if (*p == '*') { 																	// Wildcard, grab the rest of the line.
 		paramPos = 0; 																	// For things like proc and byte
 		while (*source != '\0') { 														// Consume all the source.
+			ASSERT(paramPos < MAXIDENTLENGTH);
 			szParamBuffer[paramPos++] = *source++;
 		}
 		szParamBuffer[paramPos] = '\0'; 												// Make string ASCIIZ.
@@ -118,7 +123,7 @@ unsigned char EVALEvaluate(char *x,int *result) {
 		return (*result < 256) ? 'B':'W';
 	}
 	*result = atoi(x+1);
-	return x[0];
+	return toupper(x[0]);
 }
 //
 //		Process the command lines.

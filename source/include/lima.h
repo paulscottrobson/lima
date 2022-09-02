@@ -14,11 +14,17 @@
 #include <string.h>
 #include <ctype.h>
 
-typedef unsigned char BYTE8;
-
+//
+//		Setup limits - very lazy storage, only really for PC.
+//
 #define MAXDEFINITIONS 	 	(512)	 										// Max no. of definitions.
 #define MAXIDENTIFIERS  	(1024)											// Max no. of identifiers.
 #define MAXIDENTLENGTH  	(24) 											// Max length of an identifier.
+
+typedef unsigned char BYTE8;
+
+#define ERROR(x) 			exit(fprintf(stderr,"Error:%s\n",x))
+#define ASSERT(x)  			if (!(x)) exit(fprintf(stderr,"Assert:%s %d\n",__FILE__,__LINE__))
 
 //
 //		Structure holds a macro definition.
@@ -29,8 +35,16 @@ typedef struct _definition {
 	BYTE8 *pCode; 				// Pointer to code.
 } DEFINITION;
 
+//
+//		Dictionary methods
+//
 void DICTInitialise(void);
 DEFINITION *DICTFind(char *source,char **parameter);
-
+//
+//		Evaluate methods
+//
 void EVALInitialise(void);
+void EVALAddIdentifier(char *szName,char cType,int value);
+void EVALRemoveLocals(void);
 unsigned char EVALEvaluate(char *x,int *result);
+void EVALStrLower(char *s);
