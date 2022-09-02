@@ -15,9 +15,9 @@
 //
 // ******************************************************************************
 
-* 	byte 			
+* 	byte* 			
 		[exec:byteVar]
-* 	word 			
+* 	word*			
 		[exec:wordVar]		
 *	remove.locals
 		[exec:dictionarycrunch]		
@@ -37,11 +37,11 @@
 		[exec:else]			
 * 	endif
 		[exec:endif]			
-* 	proc 			
+* 	proc* 			
 		[exec:procedure_def]
 P	<proc>
 		[exec:call]
 *	endproc			
 		[exec:endproc]
 *	break
-		.byte 	$FF
+		.byte 	$DB
