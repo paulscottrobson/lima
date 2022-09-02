@@ -8,3 +8,4 @@ all:
 	python translate.py
 	64tass -Wall -a -q -b -c generated$(S)dictionary.asm --output=generated$(S)dictionary.bin --list=generated$(S)dictionary.lst
 	python convert.py
+	$(CCOPY) generated$(S)*.h ..$(S)include
