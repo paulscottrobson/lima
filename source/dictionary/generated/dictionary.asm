@@ -99,16 +99,16 @@ EndCode1010:
 	and  ($7363& $FF),y
 EndCode1011:
 
-; ***** a*I[y] *****
+; ***** a^I[y] *****
 
-	.byte	$61,$2a,$49,$5b,$79,$5d,0
+	.byte	$61,$5e,$49,$5b,$79,$5d,0
 	.byte	EndCode1012-*-1
 	eor  ($63 & $FF),y
 EndCode1012:
 
-; ***** a*L[y] *****
+; ***** a^L[y] *****
 
-	.byte	$61,$2a,$4c,$5b,$79,$5d,0
+	.byte	$61,$5e,$4c,$5b,$79,$5d,0
 	.byte	EndCode1013-*-1
 	eor  ($7363 & $FF),y
 EndCode1013:
@@ -248,9 +248,9 @@ EndCode1025:
 	pla
 EndCode1026:
 
-; ***** r*I[y] *****
+; ***** r^I[y] *****
 
-	.byte	$72,$2a,$49,$5b,$79,$5d,0
+	.byte	$72,$5e,$49,$5b,$79,$5d,0
 	.byte	EndCode1027-*-1
 	eor  ($63 & $FF),y
 	pha
@@ -262,9 +262,9 @@ EndCode1026:
 	pla
 EndCode1027:
 
-; ***** r*L[y] *****
+; ***** r^L[y] *****
 
-	.byte	$72,$2a,$4c,$5b,$79,$5d,0
+	.byte	$72,$5e,$4c,$5b,$79,$5d,0
 	.byte	EndCode1028-*-1
 	eor  ($7363 & $FF),y
 	pha
@@ -1662,69 +1662,69 @@ EndCode1181:
 	inx
 EndCode1182:
 
+; ***** P* *****
+
+	.byte	$50,$2a,0
+	.byte	EndCode1183-*-1
+	.byte	$a3,$0d
+EndCode1183:
+
 ; ***** ^a *****
 
 	.byte	$5e,$61,0
-	.byte	EndCode1183-*-1
+	.byte	EndCode1184-*-1
 	eor  #$FF
-EndCode1183:
+EndCode1184:
 
 ; ***** ^r *****
 
 	.byte	$5e,$72,0
-	.byte	EndCode1184-*-1
+	.byte	EndCode1185-*-1
 	pha
 	txa
 	eor  #$FF
 	tax
 	pla
 	eor  #$FF
-EndCode1184:
+EndCode1185:
 
 ; ***** if *****
 
 	.byte	$69,$66,0
-	.byte	EndCode1185-*-1
+	.byte	EndCode1186-*-1
 	.byte	$a3,$09
-EndCode1185:
+EndCode1186:
 
 ; ***** B *****
 
 	.byte	$42,0
-	.byte	EndCode1186-*-1
+	.byte	EndCode1187-*-1
 	lda  #$63
 	ldx  #$73
-EndCode1186:
+EndCode1187:
 
 ; ***** C *****
 
 	.byte	$43,0
-	.byte	EndCode1187-*-1
+	.byte	EndCode1188-*-1
 	lda  $7363
 	ldx  #0
-EndCode1187:
+EndCode1188:
 
 ; ***** I *****
 
 	.byte	$49,0
-	.byte	EndCode1188-*-1
+	.byte	EndCode1189-*-1
 	lda  $63
 	ldx  $83
-EndCode1188:
+EndCode1189:
 
 ; ***** L *****
 
 	.byte	$4c,0
-	.byte	EndCode1189-*-1
+	.byte	EndCode1190-*-1
 	lda  $7363
 	ldx  $7383
-EndCode1189:
-
-; ***** P *****
-
-	.byte	$50,0
-	.byte	EndCode1190-*-1
-	.byte	$a3,$0d
 EndCode1190:
 
 ; ***** S *****

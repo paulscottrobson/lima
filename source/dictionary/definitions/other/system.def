@@ -39,7 +39,7 @@
 		[exec:endif]			
 * 	proc* 			
 		[exec:procedure_def]
-P	<proc>
+P	<proc>*
 		[exec:call]
 *	endproc			
 		[exec:endproc]

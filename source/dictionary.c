@@ -56,8 +56,36 @@ void DICTInitialise(void) {
 //
 // *******************************************************************************************************************************
 
-static int _DICTMatch(char *source,DEFINITION *def,char *parameter) {
-	return  0;
+static int _DICTMatch(char *source,DEFINITION *def,char **parameter) {
+	static char szParamBuffer[128]; 													// Buffer for the parameter.
+	int paramPos = 0;
+	int v;
+	*parameter = szParamBuffer; 														// Return the parameter buffer, with initial NULL
+	szParamBuffer[0] = '\0';
+	unsigned char *p = def->szName; 													// Compare p against source.
+	while (*p != '\0' && *p != '*') { 													// While still matching against the type and not wildcard	
+		if (isupper(*p)) { 																// Wild card ?
+			char type = *p++; 															// Get the type.
+			paramPos = 0; 																// Reset parameter fetch
+			while (*source != *p) { 													// Until found match with next character
+				if (*source == '\0') return 0; 											// End of line, fail, doesn't match.
+				szParamBuffer[paramPos++] = *source++; 									// Otherwise keep copying into the buffer.	
+			}
+			szParamBuffer[paramPos++] = '\0';											// Fix parameter to ASCIIZ
+			return (EVALEvaluate(szParamBuffer,&v) == type); 							// Evaluate, Types match, okay, else fail.
+		} else { 																		// Any other character
+			if (*p != tolower(*source)) return 0; 										// Reject if different.
+			p++;source++; 																// Advance for next
+		}
+	}
+	if (*p == '*') { 																	// Wildcard, grab the rest of the line.
+		paramPos = 0; 																	// For things like proc and byte
+		while (*source != '\0') { 														// Consume all the source.
+			szParamBuffer[paramPos++] = *source++;
+		}
+		szParamBuffer[paramPos] = '\0'; 												// Make string ASCIIZ.
+	}
+	return (*source == '\0'); 															// True if grabbed everything.
 }
 
 // *******************************************************************************************************************************
@@ -66,13 +94,14 @@ static int _DICTMatch(char *source,DEFINITION *def,char *parameter) {
 //
 // *******************************************************************************************************************************
 
-DEFINITION *DICTFind(char *source,char *parameter) {
-	for (int i = 0;i < defineCount;i++) {
-		if (_DICTMatch(source,&definitions[i],parameter)) {
+DEFINITION *DICTFind(char *source,char **parameter) {
+	*parameter = NULL;																	// Erase parameter
+	for (int i = 0;i < defineCount;i++) { 												// Try each in order.
+		if (_DICTMatch(source,&definitions[i],parameter)) { 							// Return definition if matched.
 			return &definitions[i];
 		}
 	}
-	return NULL;
+	return NULL; 																		// Fail.
 }
 
 // *******************************************************************************************************************************
@@ -80,9 +109,36 @@ DEFINITION *DICTFind(char *source,char *parameter) {
 // *******************************************************************************************************************************
 
 #ifdef RUNALONE
+//
+//		A dummy evaluate replacement - int constants -> B,W . SILC are the type followed by integer address e.g. S42 is S @ $2A
+//
+unsigned char EVALEvaluate(char *x,int *result) {
+	if (isdigit(*x)) {
+		*result = atoi(x);
+		return (*result < 256) ? 'B':'W';
+	}
+	*result = atoi(x+1);
+	return x[0];
+}
+//
+//		Process the command lines.
+//
 int main(int argc,char *argv[]) {
 	DICTInitialise();
 	printf("Loaded %d definitions.\n",defineCount);
+	int todo = 1; 																		// Make high to time how long it runs
+	for (int c = 0;c < todo;c++) { 														// On this machine 100k takes about 1s.
+		for (int i = 1;i < argc;i++) {
+			char *param;
+			DEFINITION *d = DICTFind(argv[i],&param);		
+			if (todo == 1) {
+				if (d != NULL)
+					printf("%s\n\t%s %d {%s}\n",argv[i],d->szName,d->iBytes,(param == NULL) ? "[NULL]":param);
+				else
+					printf("%s failed.\n",argv[i]);
+			}
+		}		
+	}
 	return 0;
 }
 #endif
