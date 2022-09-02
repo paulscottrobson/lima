@@ -32,10 +32,42 @@ class Match(object):
 		if self.key.find("<proc>") >= 0: 							
 			assert self.mType == "P"
 			self.key = self.key.replace("<proc>",self.mType)
+		Match.labelCount = 1000
 	#
 	def getKey(self):
 		return self.key
-
+	#
+	def dump(self,h,executes):
+		h.write("\n; ***** {0} *****\n\n".format(self.key))
+		b = [ord(x) for x in self.key]
+		b = ",".join(["${0:02x}".format(x) for x in b])
+		h.write("\t.byte\t{0},0\n".format(b))
+		h.write("\t.byte\tEndCode{0}-*-1\n".format(Match.labelCount))
+		for c in [x.strip() for x in self.code.split(";") if x.strip() != ""]:
+			code = self.translate(c,executes)
+			code = code if code.endswith(":") else "\t"+code
+			h.write("{0}\n".format(code))
+		h.write("EndCode{0}:\n".format(Match.labelCount))
+		Match.labelCount += 1
+	#
+	def translate(self,s,executes):
+		isZeroAddr  = self.mType == "I" or self.mType == "S"
+		#
+		s = s.replace("<low>","${0:x}".format(Match.C_LOW))
+		s = s.replace("<high>","${0:x}".format(Match.C_HIGH))
+		#		
+		a1 = Match.C_LOW if isZeroAddr else (Match.C_HIGH << 8)|Match.C_LOW
+		s = s.replace("<addr>","${0:x}".format(a1))
+		#		
+		a1 = Match.C_LOWPLUS1 if isZeroAddr else (Match.C_HIGH << 8)|Match.C_LOWPLUS1
+		s = s.replace("<next>","${0:x}".format(a1))
+		#
+		s = s.replace("[data]",".byte ${0:x}".format(Match.C_SETDATA))
+		#
+		m = re.match("^\\[exec\\:(.*)\\]$",s)
+		if m is not None:
+			s = ".byte\t${0:x},${1:02x}".format(Match.C_EXEC,executes[m.group(1).lower()])
+		return s
 
 Match.C_ISZERO = 	0x53
 Match.C_LOW = 		0x63
@@ -78,8 +110,11 @@ class MatchBook(object):
 	#		Create one group match/
 	#
 	def create(self,group,match,code):
-		rec = Match(group,match,code)		
-		print(group,"("+match+")",rec.getKey(),code)
+		rec = Match(group,match,code)	
+		key = rec.getKey()
+		#print(key,"//",group,"//",match,"//",code)
+		assert key not in self.matches,"Duplicate "+key 
+		self.matches[key] = rec
 	#
 	#		Check for executes, replace with ID
 	#
@@ -94,6 +129,15 @@ class MatchBook(object):
 			s = s.replace(m.group(1),"[exec:"+str(self.executes[execName])+"]")
 		return s 
 	#
+	#		Dump all matches.
+	#
+	def dumpMatches(self,h):
+		keys = [x for x in self.matches.keys()]
+		keys.sort(key = lambda x:-len(x)*1000+ord(x[0]))
+		for k in keys:
+			self.matches[k].dump(h,self.executes)
+		h.write("\t.byte\t0\n")
+	#
 	#		Dump executes
 	#
 	def dumpExecutes(self,h):
@@ -101,11 +145,9 @@ class MatchBook(object):
 			h.write("#define EXEC_{0} ({1})\n".format(k.upper(),self.executes[k]))
 
 m = MatchBook()
-print("Processing definitions ...")
 for root,dirs,files in os.walk("definitions"):
 	for f in files:
 		if f.endswith(".def"):
-			print("\tProcessing {0}".format(root+os.sep+f))
 			m.load(root+os.sep+f)
 
 h = open("generated/codesub.h","w")
@@ -118,4 +160,10 @@ h.write("#define CODE_SETDATA (0x{0:02x})\n".format(Match.C_SETDATA))
 h.write("#define CODE_EXEC (0x{0:02x})\n".format(Match.C_EXEC))
 h.write("\n")
 m.dumpExecutes(h)
+h.close()
+
+h = open("generated/dictionary.asm","w")
+h.write(";\n;\tThis code is automatically generated.\n;\n")
+h.write("\t* = $1000\n")
+m.dumpMatches(h)
 h.close()
