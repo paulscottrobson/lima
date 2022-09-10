@@ -44,7 +44,7 @@ DEFINITION *DICTFind(char *source,char **parameter);
 //		Evaluate methods
 //
 void EVALInitialise(void);
-void EVALAddIdentifier(char *szName,char cType,int value);
+void EVALAddIdentifier(char *szName,char cType,int value,int isLocal);
 void EVALRemoveLocals(void);
 unsigned char EVALEvaluate(char *x,int *result);
 void EVALStrLower(char *s);

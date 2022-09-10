@@ -75,7 +75,7 @@ static int _DICTMatch(char *source,DEFINITION *def,char **parameter) {
 				szParamBuffer[paramPos++] = tolower(*source); 							// Otherwise keep copying into the buffer.	
 				source++;
 			}
-			szParamBuffer[paramPos++] = '\0';											// Fix parameter to ASCIIZ
+			szParamBuffer[paramPos] = '\0';
 			return (EVALEvaluate(szParamBuffer,&v) == type); 							// Evaluate, Types match, okay, else fail.
 		} else { 																		// Any other character
 			if (*p != tolower(*source)) return 0; 										// Reject if different.
@@ -110,10 +110,12 @@ DEFINITION *DICTFind(char *source,char **parameter) {
 }
 
 // *******************************************************************************************************************************
+//
 //												  Module Testing Code
+//
 // *******************************************************************************************************************************
 
-#ifdef RUNALONE
+#ifdef D_RUNALONE
 //
 //		A dummy evaluate replacement - int constants -> B,W . SILC are the type followed by integer address e.g. S42 is S @ $2A
 //
@@ -126,24 +128,25 @@ unsigned char EVALEvaluate(char *x,int *result) {
 	return toupper(x[0]);
 }
 //
+//		Try one
+//
+static void doOneMatch(char *text) {
+	char *param;
+	DEFINITION *d = DICTFind(text,&param);		
+	if (d != NULL)
+		printf("%s\n\t%s %d {%s}\n",text,d->szName,d->iBytes,(param == NULL) ? "[NULL]":param);
+	else
+		printf("%s failed.\n",text);
+}
+//
 //		Process the command lines.
 //
 int main(int argc,char *argv[]) {
 	DICTInitialise();
 	printf("Loaded %d definitions.\n",defineCount);
-	int todo = 1; 																		// Make high to time how long it runs
-	for (int c = 0;c < todo;c++) { 														// On this machine 100k takes about 1s.
-		for (int i = 1;i < argc;i++) {
-			char *param;
-			DEFINITION *d = DICTFind(argv[i],&param);		
-			if (todo == 1) {
-				if (d != NULL)
-					printf("%s\n\t%s %d {%s}\n",argv[i],d->szName,d->iBytes,(param == NULL) ? "[NULL]":param);
-				else
-					printf("%s failed.\n",argv[i]);
-			}
-		}		
-	}
+	for (int i = 1;i < argc;i++) {
+		doOneMatch(argv[i]);
+	}		
 	return 0;
 }
 #endif

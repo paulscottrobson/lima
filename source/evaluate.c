@@ -20,7 +20,8 @@
 static struct {
 	char szName[MAXIDENTLENGTH+1]; 														// ASCIIZ name lower case.
 	int  iValue; 																		// Value associated with it
-	unsigned char cType; 																// P S I L C B W (or '\0' if not in use)	
+	unsigned char cType; 																// P S I L C B W (or '\0' if not in use)
+	int  isLocal; 																		// True if scope is local.	
 } Identifiers[MAXIDENTIFIERS];
 
 // *******************************************************************************************************************************
@@ -43,7 +44,7 @@ void EVALInitialise(void) {
 
 void EVALRemoveLocals(void) {
 	for (int i = 0;i < MAXIDENTIFIERS;i++) {
-		if (Identifiers[i].cType != 0 && Identifiers[i].szName[0] == '.') {
+		if (Identifiers[i].cType != 0 && Identifiers[i].isLocal != 0) {
 			Identifiers[i].cType = 0;
 		}
 	}
@@ -74,8 +75,8 @@ static unsigned char _EVALFind(char *x,int *result) {
 //
 // *******************************************************************************************************************************
 
-void EVALAddIdentifier(char *szName,char cType,int value) {
-	char buffer[MAXIDENTLENGTH+16];
+void EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
+	char buffer[MAXIDENTLENGTH+32];
 	ASSERT(strlen(szName) <= MAXIDENTLENGTH);
 	ASSERT(value >= 0 && value <= 0xFFFF);
 	if (_EVALFind(szName,NULL)) { 															// Duplication.
@@ -87,6 +88,7 @@ void EVALAddIdentifier(char *szName,char cType,int value) {
 	if (i == MAXIDENTIFIERS) ERROR("Too many identifiers");
 	Identifiers[i].cType = cType; 															// Copy information in.
 	Identifiers[i].iValue = value;
+	Identifiers[i].isLocal = isLocal;
 	strcpy(Identifiers[i].szName,szName);
 	EVALStrLower(Identifiers[i].szName);
 }
@@ -142,17 +144,19 @@ unsigned char EVALEvaluate(char *x,int *result) {
 }
 
 // *******************************************************************************************************************************
+//
 //												  Module Testing Code
+//
 // *******************************************************************************************************************************
 
-#ifdef RUNALONE
+#ifdef E_RUNALONE
 //
 //		Process the command lines.
 //
 int main(int argc,char *argv[]) {
 	EVALInitialise();
-	EVALAddIdentifier("abc",'L',42);
-	EVALAddIdentifier("abc.2",'C',45);
+	EVALAddIdentifier("abc",'L',42,0);
+	EVALAddIdentifier("abc.2",'C',45,0);
 
 	char cType;
 	int n;
