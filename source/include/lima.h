@@ -48,3 +48,9 @@ void EVALAddIdentifier(char *szName,char cType,int value,int isLocal);
 void EVALRemoveLocals(void);
 unsigned char EVALEvaluate(char *x,int *result);
 void EVALStrLower(char *s);
+void EVALDump(FILE *f);
+//
+//		Code store methods
+//
+int CODEAppend(int byte);
+void CODEPatch(int addr,int byte);

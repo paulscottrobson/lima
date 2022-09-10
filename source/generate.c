@@ -19,6 +19,20 @@
 // *******************************************************************************************************************************
 
 #ifdef G_RUNALONE
+
+//
+//		Dummy code generators.
+//
+int address = 0x1000;
+
+int CODEAppend(int byte) {
+	printf("%04x : %02x %c\n",address,byte,(char)byte);
+	return address++;
+}
+
+void CODEPatch(int addr,int byte) {
+	printf("%04x : %02x %c [PATCH]\n",address,byte,(char)byte);
+}
 //
 //		Process the command lines.
 //
@@ -37,6 +51,8 @@ int main(int argc,char *argv[]) {
 	cType = EVALEvaluate("awv.l",&n);
 	if (cType != 0)
 		printf("%c %d\n",cType,n);
+	
+	EVALDump(stdout);
 	return 0;
 }
 #endif

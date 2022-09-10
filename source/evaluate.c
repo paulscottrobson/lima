@@ -95,6 +95,18 @@ void EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
 
 // *******************************************************************************************************************************
 //
+//											Dump definitions
+//
+// *******************************************************************************************************************************
+
+void EVALDump(FILE *f) {
+	for (int i = 0;i < MAXIDENTIFIERS && Identifiers[i].cType != 0;i++) { 
+		fprintf(f,"%-32s $%04x [%c]\n",Identifiers[i].szName,Identifiers[i].isLocal,Identifiers[i].cType);
+	} 
+}
+
+// *******************************************************************************************************************************
+//
 //									    Convert string to lower case
 //
 // *******************************************************************************************************************************
@@ -178,6 +190,8 @@ int main(int argc,char *argv[]) {
 	cType = EVALEvaluate("542",&n);
 	if (cType != 0)
 		printf("%c %d\n",cType,n);
+	EVALDump(stdout);		
 	return 0;
+
 }
 #endif

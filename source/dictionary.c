@@ -146,7 +146,7 @@ int main(int argc,char *argv[]) {
 	printf("Loaded %d definitions.\n",defineCount);
 	for (int i = 1;i < argc;i++) {
 		doOneMatch(argv[i]);
-	}		
+	}
 	return 0;
 }
 #endif
