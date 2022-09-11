@@ -1,3 +1,1 @@
-Can declare R and A as variables !
 A/R For
-If Else Endif

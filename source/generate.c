@@ -241,6 +241,24 @@ static int _GENForNextLoop(int code,char *param,char *cmd) {
 // *******************************************************************************************************************************
 
 static int _GENConditional(int code,char *param,char *cmd) {
+	int branch,target;
+	switch(code) {
+		case EXEC_IF:																	// If patches a skip branch and pushes IF
+			branch = _GENCompileBranch(1);												// Compare a reversed branch (e.g. on fail)
+			PUSH(branch);PUSH(EXEC_IF);													// Push If
+			break;
+		case EXEC_ELSE:
+			POPCHECK(EXEC_IF,ERR_IF);													// Patch forward branch and reset.			
+			macroDataLow = 0x80;														// Force out a BRA.
+			branch = _GENCompileBranch(0);			 									// Else exit.
+			_GENPatchBranch(POP(),CODEAppend(-1));
+			PUSH(branch);PUSH(EXEC_IF);													// Push the else branch.
+			break;
+		case EXEC_ENDIF:
+			POPCHECK(EXEC_IF,ERR_IF);													// Patch forward branch.
+			_GENPatchBranch(POP(),CODEAppend(-1));
+			break;
+		}
 	return 0;
 }
 
@@ -339,7 +357,8 @@ static char *code[] = {
 	"zbyte zb","zword zw","R=zw","A=zb",
 	"proc test.1()","word c","R+c","R=c","endproc",
 	"test.1()","test.1(5)","test.1(1023,xx)",
-	"repeat","--A","A=?","until",
+	"repeat","--A","A=4?","until",
+	"A=2?","if","A=5","else","++A","endif",
 	NULL
 };
 

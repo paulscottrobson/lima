@@ -108,6 +108,9 @@ int EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
 		char c = Identifiers[i].szName[j];
 		if (!isalnum(c) && c != '.') return ERR_IDENTIFIER;
 	}
+	if (strcmp(Identifiers[i].szName,"r") == 0) return ERR_IDENTIFIER;						// Cannot use R and A and Y
+	if (strcmp(Identifiers[i].szName,"a") == 0) return ERR_IDENTIFIER;			
+	if (strcmp(Identifiers[i].szName,"y") == 0) return ERR_IDENTIFIER;			
 	return 0;
 }
 
