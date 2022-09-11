@@ -118,8 +118,9 @@ int EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
 // *******************************************************************************************************************************
 
 void EVALDump(FILE *f) {
-	for (int i = 0;i < MAXIDENTIFIERS && Identifiers[i].cType != 0;i++) { 
-		fprintf(f,"%-32s $%04x [%c]\n",Identifiers[i].szName,Identifiers[i].iValue,Identifiers[i].cType);
+	for (int i = 0;i < MAXIDENTIFIERS;i++) { 
+		if (Identifiers[i].cType != 0)
+			fprintf(f,"%-32s $%04x [%c]\n",Identifiers[i].szName,Identifiers[i].iValue,Identifiers[i].cType);
 	} 
 }
 

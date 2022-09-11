@@ -237,12 +237,12 @@ static int _GENProcedure(int code,char *param,char *cmd) {
 				e = GENGenerateCode(paramBuffer);										// Generate code to load R/Y				
 				if (e) return e;
 			}
-
 			CODECall(a);																// Finally, call the routine.
 			break;
 
-		case EXEC_ENDPROC: 																// End a procedure
+		case EXEC_ENDPROC: 																// End a procedure			
 			if (inProcedure == 0) return ERR_PROC; 										// Not in procedure
+			if (gsp != 0) return ERR_STRUCT;											// Unclosed structure
 			inProcedure = 0;															// Not any more.
 			CODEReturn();																// Compile return code.
 			break;
@@ -290,7 +290,7 @@ static char *code[] = {
 	"myproc(3,2)",
 	"++awv.l","A&7",
 	"byte a,xx@$2A,yy","word w1,w2","R=xx","R=yy","R=w2",
-	"proc test.1()","A=0","R=0","endproc",
+	"proc test.1()","word c","R+c","R=c","endproc",
 	"test.1()","test.1(5)","test.1(1023,xx)",
 	NULL
 };
@@ -305,7 +305,7 @@ int main(int argc,char *argv[]) {
 	EVALAddIdentifier("abv.c",'C',45,0);
 	EVALAddIdentifier("zwv.l",'I',542,0);
 	EVALAddIdentifier("zbv.c",'S',45,0);
-	EVALAddIdentifier("myproc",'P',1224,0);
+	EVALAddIdentifier(".myproc",'P',1224,0);
 
 	int n = 0;
 	while (code[n] != 0) {

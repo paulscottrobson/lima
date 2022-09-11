@@ -44,6 +44,8 @@ typedef struct _definition {
 #define ERR_PROC (5) 			// Nested procedures.
 #define ERR_SYNTAX (6) 			// Syntax error
 #define ERR_NOPROC (7) 			// No procedure ?
+#define ERR_STRUCT (8) 			// Unclosed structure
+
 //
 //		Dictionary methods
 //
