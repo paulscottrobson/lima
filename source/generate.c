@@ -17,7 +17,7 @@ static int _GENRepeatUntil(int code,char *param,char *cmd);
 static int _GENForNextLoop(int code,char *param,char *cmd);
 static int _GENConditional(int code,char *param,char *cmd);
 static int _GENProcedure(int code,char *param,char *cmd);
-static int _GENCompileBranch(int reverse);
+static int _GENCompileBranch(int opcode,int reverse);
 static int _GENPatchBranch(int branchAddress,int targetAddress);
 
 static int macroDataLow,macroDataHigh; 													// Data extracted from CODE_SETDATA
@@ -199,7 +199,7 @@ static int _GENRepeatUntil(int code,char *param,char *cmd) {
 			break;
 		case EXEC_UNTIL:
 			POPCHECK(EXEC_REPEAT,ERR_REPEAT);											// Check nesting
-			target = _GENCompileBranch(-1); 											// Code to branch here.
+			target = _GENCompileBranch(macroDataLow,-1); 								// Code to branch here.
 			if (_GENPatchBranch(target,POP())) return ERR_GAP;							// And patch it
 			break;
 	}
@@ -208,29 +208,47 @@ static int _GENRepeatUntil(int code,char *param,char *cmd) {
 
 // *******************************************************************************************************************************
 //
-//										  	  Create & Patch branches
-//
-// *******************************************************************************************************************************
-
-static int _GENCompileBranch(int reverse) {
-	int branchAddress = CODEAppend(macroDataLow ^ (reverse ? 0x20 : 0x00));				// Output branch, inverting if required
-	CODEAppend(0); 																		// Dummy branch distance.
-	return branchAddress;
-}
-
-static int _GENPatchBranch(int branchAddress,int targetAddress) {
-	int offset = targetAddress - (branchAddress+2);										// Offset
-	if (offset < -128 || offset > 127) return -1;										// Out of range.
-	CODEPatch(branchAddress+1,offset & 0xFF);											// Patch the branch
-	return 0;
-}
-// *******************************************************************************************************************************
-//
 //										  	  Handle [AR]For Next
 //
 // *******************************************************************************************************************************
 
 static int _GENForNextLoop(int code,char *param,char *cmd) {
+	int branch,loop;
+	switch(code) {
+		case EXEC_AFOR:																	// If patches a skip branch and pushes IF
+			loop = CODEAppend(0x3A);													// DEC A
+			CODEAppend(0x48);															// PHA
+			PUSH(loop);PUSH(EXEC_AFOR);													// Set state.
+			break;
+		case EXEC_RFOR:
+			loop = CODEAppend(0xC9);CODEAppend(0x00);									// CMP #0
+			CODEAppend(0xD0);CODEAppend(0x01);											// BNE *+1
+			CODEAppend(0xCA);															// DEX
+			CODEAppend(0x3A);															// DEC A
+			CODEAppend(0xDA);															// PHX
+			CODEAppend(0x48);															// PHA
+			PUSH(loop);PUSH(EXEC_RFOR);													// Set state.
+			break;
+		case EXEC_NEXT:
+			switch(POP()) { 															// Which loop code ?
+				case EXEC_RFOR:
+					CODEAppend(0x68);													// PLA
+					CODEAppend(0xFA);													// PLX
+					loop = POP();
+					branch = _GENCompileBranch(0xD0,0);_GENPatchBranch(branch,loop); 	// BNE <back>
+					CODEAppend(0xC9);CODEAppend(0x00);									// CMP #0
+					branch = _GENCompileBranch(0xD0,0);_GENPatchBranch(branch,loop); 	// BNE <back>
+					break;
+				case EXEC_AFOR:
+					CODEAppend(0x68);													// PLA
+					branch = _GENCompileBranch(0xD0,0);_GENPatchBranch(branch,POP());	// BNE <loop>
+					break;
+				default:
+					return ERR_FOR;
+					break;
+			}
+			break;
+		}
 	return 0;
 }
 
@@ -244,13 +262,12 @@ static int _GENConditional(int code,char *param,char *cmd) {
 	int branch,target;
 	switch(code) {
 		case EXEC_IF:																	// If patches a skip branch and pushes IF
-			branch = _GENCompileBranch(1);												// Compare a reversed branch (e.g. on fail)
+			branch = _GENCompileBranch(macroDataLow,1);									// Compare a reversed branch (e.g. on fail)
 			PUSH(branch);PUSH(EXEC_IF);													// Push If
 			break;
 		case EXEC_ELSE:
 			POPCHECK(EXEC_IF,ERR_IF);													// Patch forward branch and reset.			
-			macroDataLow = 0x80;														// Force out a BRA.
-			branch = _GENCompileBranch(0);			 									// Else exit.
+			branch = _GENCompileBranch(0x80,0);		 									// Else exit [BRA]
 			_GENPatchBranch(POP(),CODEAppend(-1));
 			PUSH(branch);PUSH(EXEC_IF);													// Push the else branch.
 			break;
@@ -317,6 +334,25 @@ static int _GENProcedure(int code,char *param,char *cmd) {
 
 // *******************************************************************************************************************************
 //
+//										  	  Create & Patch branches
+//
+// *******************************************************************************************************************************
+
+static int _GENCompileBranch(int opcode,int reverse) {
+	int branchAddress = CODEAppend(opcode ^ (reverse ? 0x20 : 0x00));					// Output branch, inverting if required
+	CODEAppend(0); 																		// Dummy branch distance.
+	return branchAddress;
+}
+
+static int _GENPatchBranch(int branchAddress,int targetAddress) {
+	int offset = targetAddress - (branchAddress+2);										// Offset
+	if (offset < -128 || offset > 127) return -1;										// Out of range.
+	CODEPatch(branchAddress+1,offset & 0xFF);											// Patch the branch
+	return 0;
+}
+
+// *******************************************************************************************************************************
+//
 //												  Module Testing Code
 //
 // *******************************************************************************************************************************
@@ -359,6 +395,7 @@ static char *code[] = {
 	"test.1()","test.1(5)","test.1(1023,xx)",
 	"repeat","--A","A=4?","until",
 	"A=2?","if","A=5","else","++A","endif",
+	"R=5","r.FOR","NEXT",
 	NULL
 };
 
