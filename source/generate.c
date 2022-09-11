@@ -12,9 +12,18 @@
 #include "lima.h"
 
 static int _GENExecute(int code,char *param,char *cmd);
+static int _GENDefineVariable(int code,char *param,char *cmd);
+static int _GENRepeatUntil(int code,char *param,char *cmd);
+static int _GENForNextLoop(int code,char *param,char *cmd);
+static int _GENConditional(int code,char *param,char *cmd);
+static int _GENProcedure(int code,char *param,char *cmd);
 
 static int macroDataLow,macroDataHigh; 													// Data extracted from CODE_SETDATA
+
 static int inProcedure; 																// True when in PROC .. ENDPROC
+
+static int genStack[128];																// Stack for structures etc.
+static int gsp;
 
 // *******************************************************************************************************************************
 //
@@ -23,9 +32,11 @@ static int inProcedure; 																// True when in PROC .. ENDPROC
 // *******************************************************************************************************************************
 
 void GENInitialise(void) {
-	inProcedure = 0;
+	inProcedure = 0; 																	// Not in procedure
+	gsp = 0;genStack[gsp] = 0x12345678; 												// Clear stack and put impossible value on it
 	macroDataHigh = macroDataLow = 0; 													// Zero data
 }
+
 // *******************************************************************************************************************************
 //
 //										  Generate code for one instruction
@@ -66,7 +77,7 @@ int GENGenerateCode(char *code) {
 					if (e != 0) return e;
 					break;
 				default:
-					ERROR("Unknown code");
+					ERROR("Unknown substitute code");
 			}
 		} else {
 			CODEAppend(ocode);
@@ -83,6 +94,87 @@ int GENGenerateCode(char *code) {
 
 static int _GENExecute(int code,char *param,char *cmd) {
 	printf("%d %s %s\n",code,param,cmd);
+	int e = 0;
+	switch (code) {
+		case EXEC_BYTEVAR:
+		case EXEC_WORDVAR:
+			e = _GENDefineVariable(code,param,cmd);
+			break;
+		case EXEC_REPEAT:
+		case EXEC_UNTIL:
+			e = _GENRepeatUntil(code,param,cmd);
+			break;
+		case EXEC_AFOR:
+		case EXEC_RFOR:
+		case EXEC_NEXT:
+			e = _GENForNextLoop(code,param,cmd);
+			break;
+		case EXEC_IF:
+		case EXEC_ELSE:
+		case EXEC_ENDIF:
+			e = _GENConditional(code,param,cmd);
+			break;
+		case EXEC_PROCEDURE_DEF:
+		case EXEC_CALL:
+		case EXEC_ENDPROC:
+			e = _GENProcedure(code,param,cmd);
+			break;
+		case EXEC_DICTIONARYCRUNCH:
+			EVALCleanModule();
+			break;
+		default:
+			ERROR("Bad Execute Code");
+	}
+	return e;
+}
+
+// *******************************************************************************************************************************
+//
+//										  	  Handle
+//
+// *******************************************************************************************************************************
+
+static int _GENDefineVariable(int code,char *param,char *cmd) {
+	return 0;
+}
+
+// *******************************************************************************************************************************
+//
+//										  	  Handle
+//
+// *******************************************************************************************************************************
+
+static int _GENRepeatUntil(int code,char *param,char *cmd) {
+	return 0;
+}
+
+// *******************************************************************************************************************************
+//
+//										  	  Handle
+//
+// *******************************************************************************************************************************
+
+static int _GENForNextLoop(int code,char *param,char *cmd) {
+	return 0;
+}
+
+// *******************************************************************************************************************************
+//
+//										  	  Handle
+//
+// *******************************************************************************************************************************
+
+static int _GENConditional(int code,char *param,char *cmd) {
+	return 0;
+}
+
+// *******************************************************************************************************************************
+//
+//										  	  Handle
+//
+// *******************************************************************************************************************************
+
+static int _GENProcedure(int code,char *param,char *cmd) {
 	return 0;
 }
 
@@ -139,6 +231,8 @@ int main(int argc,char *argv[]) {
 		printf("\n");
 		n++;
 	}
+
+	EVALDump(stdout);
 	return 0;
 }
 #endif

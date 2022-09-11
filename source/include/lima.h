@@ -50,6 +50,7 @@ DEFINITION *DICTFind(char *source,char **parameter);
 //
 void EVALInitialise(void);
 void EVALAddIdentifier(char *szName,char cType,int value,int isLocal);
+void EVALCleanModule(void);
 void EVALRemoveLocals(void);
 unsigned char EVALEvaluate(char *x,int *result);
 void EVALStrLower(char *s);
