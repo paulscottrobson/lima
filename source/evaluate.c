@@ -89,13 +89,12 @@ static unsigned char _EVALFind(char *x,int *result) {
 //
 // *******************************************************************************************************************************
 
-void EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
+int EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
 	char buffer[MAXIDENTLENGTH+32];
 	ASSERT(strlen(szName) <= MAXIDENTLENGTH);
 	ASSERT(value >= 0 && value <= 0xFFFF);
 	if (_EVALFind(szName,NULL)) { 															// Duplication.
-		sprintf(buffer,"Duplicate identifier %s",szName);
-		ERROR(buffer);
+		return ERR_DUPLICATE;
 	}
 	int i;
 	for (i = 0;i < MAXIDENTIFIERS && Identifiers[i].cType != 0;i++) { } 					// Find unused
@@ -104,7 +103,12 @@ void EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
 	Identifiers[i].iValue = value;
 	Identifiers[i].isLocal = isLocal;
 	strcpy(Identifiers[i].szName,szName);
-	EVALStrLower(Identifiers[i].szName);
+	EVALStrLower(Identifiers[i].szName); 													// Force to lower case.
+	for (int j = 0;j < strlen(Identifiers[i].szName);j++) { 								// Check alnum or .
+		char c = Identifiers[i].szName[j];
+		if (!isalnum(c) && c != '.') return ERR_IDENTIFIER;
+	}
+	return 0;
 }
 
 // *******************************************************************************************************************************
@@ -115,7 +119,7 @@ void EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
 
 void EVALDump(FILE *f) {
 	for (int i = 0;i < MAXIDENTIFIERS && Identifiers[i].cType != 0;i++) { 
-		fprintf(f,"%-32s $%04x [%c]\n",Identifiers[i].szName,Identifiers[i].isLocal,Identifiers[i].cType);
+		fprintf(f,"%-32s $%04x [%c]\n",Identifiers[i].szName,Identifiers[i].iValue,Identifiers[i].cType);
 	} 
 }
 

@@ -39,7 +39,11 @@ typedef struct _definition {
 
 #define ERR_MATCH	(1) 		// Can't match code
 #define ERR_ALIGN  	(2) 		// Low byte crosses page boundary.
-
+#define ERR_DUPLICATE (3) 		// Redefined identifier.
+#define ERR_IDENTIFIER (4) 		// Bad identifier.
+#define ERR_PROC (5) 			// Nested procedures.
+#define ERR_SYNTAX (6) 			// Syntax error
+#define ERR_NOPROC (7) 			// No procedure ?
 //
 //		Dictionary methods
 //
@@ -49,7 +53,7 @@ DEFINITION *DICTFind(char *source,char **parameter);
 //		Evaluate methods
 //
 void EVALInitialise(void);
-void EVALAddIdentifier(char *szName,char cType,int value,int isLocal);
+int EVALAddIdentifier(char *szName,char cType,int value,int isLocal);
 void EVALCleanModule(void);
 void EVALRemoveLocals(void);
 unsigned char EVALEvaluate(char *x,int *result);
@@ -60,6 +64,8 @@ void EVALDump(FILE *f);
 //
 int CODEAppend(int byte);
 void CODEPatch(int addr,int byte);
+void CODECall(int addr);
+void CODEReturn(void);
 //
 //		Generation methods
 //
