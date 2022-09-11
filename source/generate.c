@@ -30,7 +30,6 @@ static int gsp;
 static int nextVarLocation;																// Address of next variable locations
 static int nextZeroLocation;
 
-
 #define PUSH(n) 		genStack[++gsp] = (n)
 #define POP() 			genStack[gsp--]
 #define POPCHECK(m,e)	if (POP() != (m)) return (e)
@@ -47,6 +46,17 @@ void GENInitialise(void) {
 	macroDataHigh = macroDataLow = 0; 													// Zero data
 	nextVarLocation = 0x600;															// Put variables here.
 	nextZeroLocation = 0x20;
+}
+
+// *******************************************************************************************************************************
+//
+//										       Set variable positions.
+//
+// *******************************************************************************************************************************
+
+void GENSetVariableUsage(int zpBase,int absBase) {
+	nextZeroLocation = zpBase;
+	nextVarLocation = absBase;
 }
 
 // *******************************************************************************************************************************

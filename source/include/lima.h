@@ -77,4 +77,5 @@ void CODEReturn(void);
 //		Generation methods
 //
 void GENInitialise(void);
+void GENSetVariableUsage(int zpBase,int absBase);
 int GENGenerateCode(char *code);
