@@ -3,9 +3,9 @@
 ;
 	* = $1000
 
-; ***** remove.locals *****
+; ***** clean.module *****
 
-	.byte	$72,$65,$6d,$6f,$76,$65,$2e,$6c,$6f,$63,$61,$6c,$73,0
+	.byte	$63,$6c,$65,$61,$6e,$2e,$6d,$6f,$64,$75,$6c,$65,0
 	.byte	EndCode1000-*-1
 	.byte	$a3,$03
 EndCode1000:
@@ -991,286 +991,293 @@ EndCode1105:
 	stx  $7383
 EndCode1106:
 
+; ***** P(* *****
+
+	.byte	$50,$28,$2a,0
+	.byte	EndCode1107-*-1
+	.byte	$a3,$0d
+EndCode1107:
+
 ; ***** S=r *****
 
 	.byte	$53,$3d,$72,0
-	.byte	EndCode1107-*-1
-	sta  $63
-EndCode1107:
-
-; ***** S=a *****
-
-	.byte	$53,$3d,$61,0
 	.byte	EndCode1108-*-1
 	sta  $63
 EndCode1108:
 
+; ***** S=a *****
+
+	.byte	$53,$3d,$61,0
+	.byte	EndCode1109-*-1
+	sta  $63
+EndCode1109:
+
 ; ***** S=y *****
 
 	.byte	$53,$3d,$79,0
-	.byte	EndCode1109-*-1
+	.byte	EndCode1110-*-1
 	sty  $63
-EndCode1109:
+EndCode1110:
 
 ; ***** a^B *****
 
 	.byte	$61,$5e,$42,0
-	.byte	EndCode1110-*-1
+	.byte	EndCode1111-*-1
 	eor  #$63
-EndCode1110:
+EndCode1111:
 
 ; ***** a^S *****
 
 	.byte	$61,$5e,$53,0
-	.byte	EndCode1111-*-1
+	.byte	EndCode1112-*-1
 	eor  $63
-EndCode1111:
+EndCode1112:
 
 ; ***** a^C *****
 
 	.byte	$61,$5e,$43,0
-	.byte	EndCode1112-*-1
+	.byte	EndCode1113-*-1
 	eor  $7363
-EndCode1112:
+EndCode1113:
 
 ; ***** a-B *****
 
 	.byte	$61,$2d,$42,0
-	.byte	EndCode1113-*-1
+	.byte	EndCode1114-*-1
 	sec
 	sbc  #$63
-EndCode1113:
+EndCode1114:
 
 ; ***** a-S *****
 
 	.byte	$61,$2d,$53,0
-	.byte	EndCode1114-*-1
+	.byte	EndCode1115-*-1
 	sec
 	sbc  $63
-EndCode1114:
+EndCode1115:
 
 ; ***** a-C *****
 
 	.byte	$61,$2d,$43,0
-	.byte	EndCode1115-*-1
+	.byte	EndCode1116-*-1
 	sec
 	sbc  $7363
-EndCode1115:
+EndCode1116:
 
 ; ***** a|B *****
 
 	.byte	$61,$7c,$42,0
-	.byte	EndCode1116-*-1
+	.byte	EndCode1117-*-1
 	ora  #$63
-EndCode1116:
+EndCode1117:
 
 ; ***** a|S *****
 
 	.byte	$61,$7c,$53,0
-	.byte	EndCode1117-*-1
+	.byte	EndCode1118-*-1
 	ora  $63
-EndCode1117:
+EndCode1118:
 
 ; ***** a|C *****
 
 	.byte	$61,$7c,$43,0
-	.byte	EndCode1118-*-1
+	.byte	EndCode1119-*-1
 	ora  $7363
-EndCode1118:
+EndCode1119:
 
 ; ***** a&B *****
 
 	.byte	$61,$26,$42,0
-	.byte	EndCode1119-*-1
+	.byte	EndCode1120-*-1
 	and  #$63
-EndCode1119:
+EndCode1120:
 
 ; ***** a&S *****
 
 	.byte	$61,$26,$53,0
-	.byte	EndCode1120-*-1
+	.byte	EndCode1121-*-1
 	and  $63
-EndCode1120:
+EndCode1121:
 
 ; ***** a&C *****
 
 	.byte	$61,$26,$43,0
-	.byte	EndCode1121-*-1
+	.byte	EndCode1122-*-1
 	and  $7363
-EndCode1121:
+EndCode1122:
 
 ; ***** a+B *****
 
 	.byte	$61,$2b,$42,0
-	.byte	EndCode1122-*-1
+	.byte	EndCode1123-*-1
 	clc
 	adc  #$63
-EndCode1122:
+EndCode1123:
 
 ; ***** a+S *****
 
 	.byte	$61,$2b,$53,0
-	.byte	EndCode1123-*-1
+	.byte	EndCode1124-*-1
 	clc
 	adc  $63
-EndCode1123:
+EndCode1124:
 
 ; ***** a+C *****
 
 	.byte	$61,$2b,$43,0
-	.byte	EndCode1124-*-1
+	.byte	EndCode1125-*-1
 	clc
 	adc  $7363
-EndCode1124:
+EndCode1125:
 
 ; ***** a=? *****
 
 	.byte	$61,$3d,$3f,0
-	.byte	EndCode1125-*-1
+	.byte	EndCode1126-*-1
 	cmp #0
 	.byte $93
 	beq *
-EndCode1125:
+EndCode1126:
 
 ; ***** a+? *****
 
 	.byte	$61,$2b,$3f,0
-	.byte	EndCode1126-*-1
+	.byte	EndCode1127-*-1
 	cmp #0
 	.byte $93
 	bpl *
-EndCode1126:
+EndCode1127:
 
 ; ***** a-? *****
 
 	.byte	$61,$2d,$3f,0
-	.byte	EndCode1127-*-1
+	.byte	EndCode1128-*-1
 	cmp #0
 	.byte $93
 	bmi *
-EndCode1127:
+EndCode1128:
 
 ; ***** a=y *****
 
 	.byte	$61,$3d,$79,0
-	.byte	EndCode1128-*-1
+	.byte	EndCode1129-*-1
 	tya
-EndCode1128:
+EndCode1129:
 
 ; ***** a=r *****
 
 	.byte	$61,$3d,$72,0
-	.byte	EndCode1129-*-1
-EndCode1129:
+	.byte	EndCode1130-*-1
+EndCode1130:
 
 ; ***** a=B *****
 
 	.byte	$61,$3d,$42,0
-	.byte	EndCode1130-*-1
+	.byte	EndCode1131-*-1
 	lda  #$63
-EndCode1130:
+EndCode1131:
 
 ; ***** a=S *****
 
 	.byte	$61,$3d,$53,0
-	.byte	EndCode1131-*-1
+	.byte	EndCode1132-*-1
 	lda  $63
-EndCode1131:
+EndCode1132:
 
 ; ***** a=C *****
 
 	.byte	$61,$3d,$43,0
-	.byte	EndCode1132-*-1
+	.byte	EndCode1133-*-1
 	lda  $7363
-EndCode1132:
+EndCode1133:
 
 ; ***** cs? *****
 
 	.byte	$63,$73,$3f,0
-	.byte	EndCode1133-*-1
+	.byte	EndCode1134-*-1
 	.byte $93
 	bcs  *
-EndCode1133:
+EndCode1134:
 
 ; ***** cc? *****
 
 	.byte	$63,$63,$3f,0
-	.byte	EndCode1134-*-1
+	.byte	EndCode1135-*-1
 	.byte $93
 	bcc  *
-EndCode1134:
+EndCode1135:
 
 ; ***** r^B *****
 
 	.byte	$72,$5e,$42,0
-	.byte	EndCode1135-*-1
+	.byte	EndCode1136-*-1
 	eor  #$63
-EndCode1135:
+EndCode1136:
 
 ; ***** r^W *****
 
 	.byte	$72,$5e,$57,0
-	.byte	EndCode1136-*-1
+	.byte	EndCode1137-*-1
 	eor  #$63
 	pha
 	txa
 	eor  #$73
 	tax
 	pla
-EndCode1136:
+EndCode1137:
 
 ; ***** r^I *****
 
 	.byte	$72,$5e,$49,0
-	.byte	EndCode1137-*-1
+	.byte	EndCode1138-*-1
 	eor  $63
 	pha
 	txa
 	eor  $83
 	tax
 	pla
-EndCode1137:
+EndCode1138:
 
 ; ***** r^L *****
 
 	.byte	$72,$5e,$4c,0
-	.byte	EndCode1138-*-1
+	.byte	EndCode1139-*-1
 	eor  $7363
 	pha
 	txa
 	eor  $7383
 	tax
 	pla
-EndCode1138:
+EndCode1139:
 
 ; ***** r^S *****
 
 	.byte	$72,$5e,$53,0
-	.byte	EndCode1139-*-1
+	.byte	EndCode1140-*-1
 	eor  $63
-EndCode1139:
+EndCode1140:
 
 ; ***** r^C *****
 
 	.byte	$72,$5e,$43,0
-	.byte	EndCode1140-*-1
+	.byte	EndCode1141-*-1
 	eor  $7363
-EndCode1140:
+EndCode1141:
 
 ; ***** r-B *****
 
 	.byte	$72,$2d,$42,0
-	.byte	EndCode1141-*-1
+	.byte	EndCode1142-*-1
 	sec
 	sbc  #$63
 	bcs  *+3
 	dex
-EndCode1141:
+EndCode1142:
 
 ; ***** r-W *****
 
 	.byte	$72,$2d,$57,0
-	.byte	EndCode1142-*-1
+	.byte	EndCode1143-*-1
 	sec
 	sbc  #$63
 	pha
@@ -1278,12 +1285,12 @@ EndCode1141:
 	sbc  #$73
 	tax
 	pla
-EndCode1142:
+EndCode1143:
 
 ; ***** r-I *****
 
 	.byte	$72,$2d,$49,0
-	.byte	EndCode1143-*-1
+	.byte	EndCode1144-*-1
 	sec
 	sbc  $63
 	pha
@@ -1291,12 +1298,12 @@ EndCode1142:
 	sbc  $83
 	tax
 	pla
-EndCode1143:
+EndCode1144:
 
 ; ***** r-L *****
 
 	.byte	$72,$2d,$4c,0
-	.byte	EndCode1144-*-1
+	.byte	EndCode1145-*-1
 	sec
 	sbc  $7363
 	pha
@@ -1304,159 +1311,159 @@ EndCode1143:
 	sbc  $7383
 	tax
 	pla
-EndCode1144:
+EndCode1145:
 
 ; ***** r-S *****
 
 	.byte	$72,$2d,$53,0
-	.byte	EndCode1145-*-1
+	.byte	EndCode1146-*-1
 	sec
 	sbc  $63
 	bcs  *+3
 	dex
-EndCode1145:
+EndCode1146:
 
 ; ***** r-C *****
 
 	.byte	$72,$2d,$43,0
-	.byte	EndCode1146-*-1
+	.byte	EndCode1147-*-1
 	sec
 	sbc  $7363
 	bcs  *+3
 	dex
-EndCode1146:
+EndCode1147:
 
 ; ***** r|B *****
 
 	.byte	$72,$7c,$42,0
-	.byte	EndCode1147-*-1
+	.byte	EndCode1148-*-1
 	ora  #$63
-EndCode1147:
+EndCode1148:
 
 ; ***** r|W *****
 
 	.byte	$72,$7c,$57,0
-	.byte	EndCode1148-*-1
+	.byte	EndCode1149-*-1
 	ora  #$63
 	pha
 	txa
 	ora  #$73
 	tax
 	pla
-EndCode1148:
+EndCode1149:
 
 ; ***** r|I *****
 
 	.byte	$72,$7c,$49,0
-	.byte	EndCode1149-*-1
+	.byte	EndCode1150-*-1
 	ora  $63
 	pha
 	txa
 	ora  $83
 	tax
 	pla
-EndCode1149:
+EndCode1150:
 
 ; ***** r|L *****
 
 	.byte	$72,$7c,$4c,0
-	.byte	EndCode1150-*-1
+	.byte	EndCode1151-*-1
 	ora  $7363
 	pha
 	txa
 	ora  $7383
 	tax
 	pla
-EndCode1150:
+EndCode1151:
 
 ; ***** r|S *****
 
 	.byte	$72,$7c,$53,0
-	.byte	EndCode1151-*-1
+	.byte	EndCode1152-*-1
 	ora  $63
-EndCode1151:
+EndCode1152:
 
 ; ***** r|C *****
 
 	.byte	$72,$7c,$43,0
-	.byte	EndCode1152-*-1
+	.byte	EndCode1153-*-1
 	ora  $7363
-EndCode1152:
+EndCode1153:
 
 ; ***** r&B *****
 
 	.byte	$72,$26,$42,0
-	.byte	EndCode1153-*-1
+	.byte	EndCode1154-*-1
 	and  #$63
 	ldx  #0
-EndCode1153:
+EndCode1154:
 
 ; ***** r&W *****
 
 	.byte	$72,$26,$57,0
-	.byte	EndCode1154-*-1
+	.byte	EndCode1155-*-1
 	and  #$63
 	pha
 	txa
 	and  #$73
 	tax
 	pla
-EndCode1154:
+EndCode1155:
 
 ; ***** r&I *****
 
 	.byte	$72,$26,$49,0
-	.byte	EndCode1155-*-1
+	.byte	EndCode1156-*-1
 	and  $63
 	pha
 	txa
 	and  $83
 	tax
 	pla
-EndCode1155:
+EndCode1156:
 
 ; ***** r&L *****
 
 	.byte	$72,$26,$4c,0
-	.byte	EndCode1156-*-1
+	.byte	EndCode1157-*-1
 	and  $7363
 	pha
 	txa
 	and  $7383
 	tax
 	pla
-EndCode1156:
+EndCode1157:
 
 ; ***** r&S *****
 
 	.byte	$72,$26,$53,0
-	.byte	EndCode1157-*-1
+	.byte	EndCode1158-*-1
 	and  $63
 	ldx  #0
-EndCode1157:
+EndCode1158:
 
 ; ***** r&C *****
 
 	.byte	$72,$26,$43,0
-	.byte	EndCode1158-*-1
+	.byte	EndCode1159-*-1
 	and  $7363
 	ldx  #0
-EndCode1158:
+EndCode1159:
 
 ; ***** r+B *****
 
 	.byte	$72,$2b,$42,0
-	.byte	EndCode1159-*-1
+	.byte	EndCode1160-*-1
 	clc
 	adc  #$63
 	bcc  *+3
 	inx
-EndCode1159:
+EndCode1160:
 
 ; ***** r+W *****
 
 	.byte	$72,$2b,$57,0
-	.byte	EndCode1160-*-1
+	.byte	EndCode1161-*-1
 	clc
 	adc  #$63
 	pha
@@ -1464,12 +1471,12 @@ EndCode1159:
 	adc  #$73
 	tax
 	pla
-EndCode1160:
+EndCode1161:
 
 ; ***** r+I *****
 
 	.byte	$72,$2b,$49,0
-	.byte	EndCode1161-*-1
+	.byte	EndCode1162-*-1
 	clc
 	adc  $63
 	pha
@@ -1477,12 +1484,12 @@ EndCode1160:
 	adc  $83
 	tax
 	pla
-EndCode1161:
+EndCode1162:
 
 ; ***** r+L *****
 
 	.byte	$72,$2b,$4c,0
-	.byte	EndCode1162-*-1
+	.byte	EndCode1163-*-1
 	clc
 	adc  $7363
 	pha
@@ -1490,167 +1497,167 @@ EndCode1161:
 	adc  $7383
 	tax
 	pla
-EndCode1162:
+EndCode1163:
 
 ; ***** r+S *****
 
 	.byte	$72,$2b,$53,0
-	.byte	EndCode1163-*-1
+	.byte	EndCode1164-*-1
 	clc
 	adc  $63
 	bcc  *+3
 	inx
-EndCode1163:
+EndCode1164:
 
 ; ***** r+C *****
 
 	.byte	$72,$2b,$43,0
-	.byte	EndCode1164-*-1
+	.byte	EndCode1165-*-1
 	clc
 	adc  $7363
 	bcc  *+3
 	inx
-EndCode1164:
+EndCode1165:
 
 ; ***** r=? *****
 
 	.byte	$72,$3d,$3f,0
-	.byte	EndCode1165-*-1
+	.byte	EndCode1166-*-1
 	cmp #0
 	bne *+4
 	cpx #0
 	.byte $93
 	beq *
-EndCode1165:
+EndCode1166:
 
 ; ***** r+? *****
 
 	.byte	$72,$2b,$3f,0
-	.byte	EndCode1166-*-1
+	.byte	EndCode1167-*-1
 	cpx #0
 	.byte $93
 	bpl *
-EndCode1166:
+EndCode1167:
 
 ; ***** r-? *****
 
 	.byte	$72,$2d,$3f,0
-	.byte	EndCode1167-*-1
+	.byte	EndCode1168-*-1
 	cpx #0
 	.byte $93
 	bmi *
-EndCode1167:
+EndCode1168:
 
 ; ***** r=a *****
 
 	.byte	$72,$3d,$61,0
-	.byte	EndCode1168-*-1
+	.byte	EndCode1169-*-1
 	ldx  #0
-EndCode1168:
+EndCode1169:
 
 ; ***** r=y *****
 
 	.byte	$72,$3d,$79,0
-	.byte	EndCode1169-*-1
+	.byte	EndCode1170-*-1
 	tya
 	ldx  #0
-EndCode1169:
+EndCode1170:
 
 ; ***** r=B *****
 
 	.byte	$72,$3d,$42,0
-	.byte	EndCode1170-*-1
-	lda  #$63
-	ldx  #$73
-EndCode1170:
-
-; ***** r=W *****
-
-	.byte	$72,$3d,$57,0
 	.byte	EndCode1171-*-1
 	lda  #$63
 	ldx  #$73
 EndCode1171:
 
+; ***** r=W *****
+
+	.byte	$72,$3d,$57,0
+	.byte	EndCode1172-*-1
+	lda  #$63
+	ldx  #$73
+EndCode1172:
+
 ; ***** r=I *****
 
 	.byte	$72,$3d,$49,0
-	.byte	EndCode1172-*-1
+	.byte	EndCode1173-*-1
 	lda  $63
 	ldx  $83
-EndCode1172:
+EndCode1173:
 
 ; ***** r=L *****
 
 	.byte	$72,$3d,$4c,0
-	.byte	EndCode1173-*-1
+	.byte	EndCode1174-*-1
 	lda  $7363
 	ldx  $7383
-EndCode1173:
+EndCode1174:
 
 ; ***** r=S *****
 
 	.byte	$72,$3d,$53,0
-	.byte	EndCode1174-*-1
+	.byte	EndCode1175-*-1
 	lda  $63
 	ldx  #0
-EndCode1174:
+EndCode1175:
 
 ; ***** r=C *****
 
 	.byte	$72,$3d,$43,0
-	.byte	EndCode1175-*-1
+	.byte	EndCode1176-*-1
 	lda  $7363
 	ldx  #0
-EndCode1175:
+EndCode1176:
 
 ; ***** y=a *****
 
 	.byte	$79,$3d,$61,0
-	.byte	EndCode1176-*-1
-	tay
-EndCode1176:
-
-; ***** y=r *****
-
-	.byte	$79,$3d,$72,0
 	.byte	EndCode1177-*-1
 	tay
 EndCode1177:
 
+; ***** y=r *****
+
+	.byte	$79,$3d,$72,0
+	.byte	EndCode1178-*-1
+	tay
+EndCode1178:
+
 ; ***** y=B *****
 
 	.byte	$79,$3d,$42,0
-	.byte	EndCode1178-*-1
+	.byte	EndCode1179-*-1
 	ldy  #$63
-EndCode1178:
+EndCode1179:
 
 ; ***** y=S *****
 
 	.byte	$79,$3d,$53,0
-	.byte	EndCode1179-*-1
+	.byte	EndCode1180-*-1
 	ldy  $63
-EndCode1179:
+EndCode1180:
 
 ; ***** y=C *****
 
 	.byte	$79,$3d,$43,0
-	.byte	EndCode1180-*-1
+	.byte	EndCode1181-*-1
 	ldy  $7363
-EndCode1180:
+EndCode1181:
 
 ; ***** -a *****
 
 	.byte	$2d,$61,0
-	.byte	EndCode1181-*-1
+	.byte	EndCode1182-*-1
 	eor  #$FF
 	inc  a
-EndCode1181:
+EndCode1182:
 
 ; ***** -r *****
 
 	.byte	$2d,$72,0
-	.byte	EndCode1182-*-1
+	.byte	EndCode1183-*-1
 	pha
 	txa
 	eor  #$FF
@@ -1660,13 +1667,6 @@ EndCode1181:
 	inc  a
 	bne  *+3
 	inx
-EndCode1182:
-
-; ***** P* *****
-
-	.byte	$50,$2a,0
-	.byte	EndCode1183-*-1
-	.byte	$a3,$0d
 EndCode1183:
 
 ; ***** ^a *****

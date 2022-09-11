@@ -14,6 +14,8 @@
 #include <string.h>
 #include <ctype.h>
 
+#include <codesub.h>
+
 //
 //		Setup limits - very lazy storage, only really for PC.
 //
@@ -35,6 +37,9 @@ typedef struct _definition {
 	BYTE8 *pCode; 				// Pointer to code.
 } DEFINITION;
 
+#define ERR_MATCH	(1) 		// Can't match code
+#define ERR_ALIGN  	(2) 		// Low byte crosses page boundary.
+
 //
 //		Dictionary methods
 //
@@ -54,3 +59,8 @@ void EVALDump(FILE *f);
 //
 int CODEAppend(int byte);
 void CODEPatch(int addr,int byte);
+//
+//		Generation methods
+//
+void GENInitialise(void);
+int GENGenerateCode(char *code);

@@ -19,7 +19,7 @@
 		[exec:byteVar]
 * 	word*			
 		[exec:wordVar]		
-*	remove.locals
+*	clean.module
 		[exec:dictionarycrunch]		
 * 	repeat
 		[exec:repeat]
@@ -39,7 +39,7 @@
 		[exec:endif]			
 * 	proc* 			
 		[exec:procedure_def]
-P	<proc>*
+P	<proc>(*
 		[exec:call]
 *	endproc			
 		[exec:endproc]

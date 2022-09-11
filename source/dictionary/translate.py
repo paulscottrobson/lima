@@ -160,6 +160,9 @@ h.write("#define CODE_SETDATA (0x{0:02x})\n".format(Match.C_SETDATA))
 h.write("#define CODE_EXEC (0x{0:02x})\n".format(Match.C_EXEC))
 h.write("\n")
 m.dumpExecutes(h)
+h.write("\n")
+tests = [Match.C_ISZERO,Match.C_LOW,Match.C_HIGH,Match.C_LOWPLUS1,Match.C_SETDATA,Match.C_EXEC]
+h.write("#define ISSUBST(c) ({0})\n".format(" || ".join(["(c) == 0x{0:02x}".format(c) for c in tests])))
 h.close()
 
 h = open("generated/dictionary.asm","w")

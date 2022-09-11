@@ -1,1126 +1,1126 @@
 
 ; 64tass Turbo Assembler Macro V1.56.2625 listing file
 ; 64tass -Wall -a -q -b -c --output=generated/dictionary.bin --list=generated/dictionary.lst generated/dictionary.asm
-; Sat Sep 10 16:45:33 2022
+; Sun Sep 11 01:42:12 2022
 
 ;Offset	;Hex		;Monitor	;Source
 
 ;******  Processing input file: generated/dictionary.asm
 
->1000	72 65 6d 6f 76 65 2e 6c			.byte	$72,$65,$6d,$6f,$76,$65,$2e,$6c,$6f,$63,$61,$6c,$73,0
->1008	6f 63 61 6c 73 00
->100e	02					.byte	EndCode1000-*-1
->100f	a3 03					.byte	$a3,$03
-.1011					EndCode1000:
->1011	65 6e 64 70 72 6f 63 00			.byte	$65,$6e,$64,$70,$72,$6f,$63,0
->1019	02					.byte	EndCode1001-*-1
->101a	a3 0e					.byte	$a3,$0e
-.101c					EndCode1001:
->101c	49 5b 79 5d 3d 61 00			.byte	$49,$5b,$79,$5d,$3d,$61,0
->1023	02					.byte	EndCode1002-*-1
-.1024	91 63		sta ($63),y		sta  ($63 & $FF),y
-.1026					EndCode1002:
->1026	49 5b 79 5d 3d 72 00			.byte	$49,$5b,$79,$5d,$3d,$72,0
->102d	09					.byte	EndCode1003-*-1
-.102e	91 63		sta ($63),y		sta  ($63 & $FF),y
-.1030	c8		iny			iny
-.1031	8a		txa			txa
-.1032	91 63		sta ($63),y		sta  ($63 & $FF),y
-.1034	88		dey			dey
-.1035	b1 63		lda ($63),y		lda  ($63 & $FF),y
-.1037					EndCode1003:
->1037	4c 5b 79 5d 3d 61 00			.byte	$4c,$5b,$79,$5d,$3d,$61,0
->103e	02					.byte	EndCode1004-*-1
-.103f	91 63		sta ($63),y		sta  ($7363 & $FF),y
-.1041					EndCode1004:
->1041	4c 5b 79 5d 3d 72 00			.byte	$4c,$5b,$79,$5d,$3d,$72,0
->1048	09					.byte	EndCode1005-*-1
-.1049	91 63		sta ($63),y		sta  ($7363 & $FF),y
-.104b	c8		iny			iny
-.104c	8a		txa			txa
-.104d	91 63		sta ($63),y		sta  ($7363 & $FF),y
-.104f	88		dey			dey
-.1050	b1 63		lda ($63),y		lda  ($7363 & $FF),y
-.1052					EndCode1005:
->1052	61 5e 49 5b 79 5d 00			.byte	$61,$5e,$49,$5b,$79,$5d,0
->1059	02					.byte	EndCode1006-*-1
-.105a	51 63		eor ($63),y		eor  ($63 & $FF),y
-.105c					EndCode1006:
->105c	61 5e 4c 5b 79 5d 00			.byte	$61,$5e,$4c,$5b,$79,$5d,0
->1063	02					.byte	EndCode1007-*-1
-.1064	51 63		eor ($63),y		eor  ($7363 & $FF),y
-.1066					EndCode1007:
->1066	61 2d 49 5b 79 5d 00			.byte	$61,$2d,$49,$5b,$79,$5d,0
->106d	03					.byte	EndCode1008-*-1
-.106e	38		sec			sec
-.106f	f1 63		sbc ($63),y		sbc  ($63& $FF),y
-.1071					EndCode1008:
->1071	61 2d 4c 5b 79 5d 00			.byte	$61,$2d,$4c,$5b,$79,$5d,0
->1078	03					.byte	EndCode1009-*-1
-.1079	38		sec			sec
-.107a	f1 63		sbc ($63),y		sbc  ($7363& $FF),y
-.107c					EndCode1009:
->107c	61 7c 49 5b 79 5d 00			.byte	$61,$7c,$49,$5b,$79,$5d,0
->1083	02					.byte	EndCode1010-*-1
-.1084	11 63		ora ($63),y		ora  ($63& $FF),y
-.1086					EndCode1010:
->1086	61 7c 4c 5b 79 5d 00			.byte	$61,$7c,$4c,$5b,$79,$5d,0
->108d	02					.byte	EndCode1011-*-1
-.108e	11 63		ora ($63),y		ora  ($7363& $FF),y
-.1090					EndCode1011:
->1090	61 26 49 5b 79 5d 00			.byte	$61,$26,$49,$5b,$79,$5d,0
->1097	02					.byte	EndCode1012-*-1
-.1098	31 63		and ($63),y		and  ($63& $FF),y
-.109a					EndCode1012:
->109a	61 26 4c 5b 79 5d 00			.byte	$61,$26,$4c,$5b,$79,$5d,0
->10a1	02					.byte	EndCode1013-*-1
-.10a2	31 63		and ($63),y		and  ($7363& $FF),y
-.10a4					EndCode1013:
->10a4	61 2b 49 5b 79 5d 00			.byte	$61,$2b,$49,$5b,$79,$5d,0
->10ab	03					.byte	EndCode1014-*-1
-.10ac	18		clc			clc
-.10ad	71 63		adc ($63),y		adc  ($63& $FF),y
-.10af					EndCode1014:
->10af	61 2b 4c 5b 79 5d 00			.byte	$61,$2b,$4c,$5b,$79,$5d,0
->10b6	03					.byte	EndCode1015-*-1
-.10b7	18		clc			clc
-.10b8	71 63		adc ($63),y		adc  ($7363& $FF),y
-.10ba					EndCode1015:
->10ba	61 3d 49 5b 79 5d 00			.byte	$61,$3d,$49,$5b,$79,$5d,0
->10c1	02					.byte	EndCode1016-*-1
-.10c2	b1 63		lda ($63),y		lda  ($63 & $FF),y
-.10c4					EndCode1016:
->10c4	61 3d 4c 5b 79 5d 00			.byte	$61,$3d,$4c,$5b,$79,$5d,0
->10cb	02					.byte	EndCode1017-*-1
-.10cc	b1 63		lda ($63),y		lda  ($7363 & $FF),y
-.10ce					EndCode1017:
->10ce	72 5e 49 5b 79 5d 00			.byte	$72,$5e,$49,$5b,$79,$5d,0
->10d5	0a					.byte	EndCode1018-*-1
-.10d6	51 63		eor ($63),y		eor  ($63 & $FF),y
-.10d8	48		pha			pha
-.10d9	8a		txa			txa
-.10da	c8		iny			iny
-.10db	51 63		eor ($63),y		eor  ($63 & $FF),y
-.10dd	88		dey			dey
-.10de	aa		tax			tax
-.10df	68		pla			pla
-.10e0					EndCode1018:
->10e0	72 5e 4c 5b 79 5d 00			.byte	$72,$5e,$4c,$5b,$79,$5d,0
->10e7	0a					.byte	EndCode1019-*-1
-.10e8	51 63		eor ($63),y		eor  ($7363 & $FF),y
-.10ea	48		pha			pha
-.10eb	8a		txa			txa
-.10ec	c8		iny			iny
-.10ed	51 63		eor ($63),y		eor  ($7363 & $FF),y
-.10ef	88		dey			dey
-.10f0	aa		tax			tax
-.10f1	68		pla			pla
-.10f2					EndCode1019:
->10f2	72 2d 49 5b 79 5d 00			.byte	$72,$2d,$49,$5b,$79,$5d,0
->10f9	0b					.byte	EndCode1020-*-1
-.10fa	38		sec			sec
-.10fb	f1 63		sbc ($63),y		sbc  ($63& $FF),y
-.10fd	48		pha			pha
-.10fe	8a		txa			txa
-.10ff	c8		iny			iny
-.1100	f1 63		sbc ($63),y		sbc  ($63& $FF),y
-.1102	88		dey			dey
-.1103	aa		tax			tax
-.1104	68		pla			pla
-.1105					EndCode1020:
->1105	72 2d 4c 5b 79 5d 00			.byte	$72,$2d,$4c,$5b,$79,$5d,0
->110c	0b					.byte	EndCode1021-*-1
-.110d	38		sec			sec
-.110e	f1 63		sbc ($63),y		sbc  ($7363& $FF),y
-.1110	48		pha			pha
-.1111	8a		txa			txa
-.1112	c8		iny			iny
-.1113	f1 63		sbc ($63),y		sbc  ($7363& $FF),y
-.1115	88		dey			dey
-.1116	aa		tax			tax
-.1117	68		pla			pla
-.1118					EndCode1021:
->1118	72 7c 49 5b 79 5d 00			.byte	$72,$7c,$49,$5b,$79,$5d,0
->111f	0a					.byte	EndCode1022-*-1
-.1120	11 63		ora ($63),y		ora  ($63& $FF),y
-.1122	48		pha			pha
-.1123	8a		txa			txa
-.1124	c8		iny			iny
-.1125	11 63		ora ($63),y		ora  ($63& $FF),y
-.1127	88		dey			dey
-.1128	aa		tax			tax
-.1129	68		pla			pla
-.112a					EndCode1022:
->112a	72 7c 4c 5b 79 5d 00			.byte	$72,$7c,$4c,$5b,$79,$5d,0
->1131	0a					.byte	EndCode1023-*-1
-.1132	11 63		ora ($63),y		ora  ($7363& $FF),y
-.1134	48		pha			pha
-.1135	8a		txa			txa
-.1136	c8		iny			iny
-.1137	11 63		ora ($63),y		ora  ($7363& $FF),y
-.1139	88		dey			dey
-.113a	aa		tax			tax
-.113b	68		pla			pla
-.113c					EndCode1023:
->113c	72 26 49 5b 79 5d 00			.byte	$72,$26,$49,$5b,$79,$5d,0
->1143	0a					.byte	EndCode1024-*-1
-.1144	31 63		and ($63),y		and  ($63& $FF),y
-.1146	48		pha			pha
-.1147	8a		txa			txa
-.1148	c8		iny			iny
-.1149	31 63		and ($63),y		and  ($63& $FF),y
-.114b	88		dey			dey
-.114c	aa		tax			tax
-.114d	68		pla			pla
-.114e					EndCode1024:
->114e	72 26 4c 5b 79 5d 00			.byte	$72,$26,$4c,$5b,$79,$5d,0
->1155	0a					.byte	EndCode1025-*-1
-.1156	31 63		and ($63),y		and  ($7363& $FF),y
-.1158	48		pha			pha
-.1159	8a		txa			txa
-.115a	c8		iny			iny
-.115b	31 63		and ($63),y		and  ($7363& $FF),y
-.115d	88		dey			dey
-.115e	aa		tax			tax
-.115f	68		pla			pla
-.1160					EndCode1025:
->1160	72 2b 49 5b 79 5d 00			.byte	$72,$2b,$49,$5b,$79,$5d,0
->1167	0b					.byte	EndCode1026-*-1
-.1168	18		clc			clc
-.1169	71 63		adc ($63),y		adc  ($63& $FF),y
-.116b	48		pha			pha
-.116c	8a		txa			txa
-.116d	c8		iny			iny
-.116e	71 63		adc ($63),y		adc  ($63& $FF),y
-.1170	88		dey			dey
-.1171	aa		tax			tax
-.1172	68		pla			pla
-.1173					EndCode1026:
->1173	72 2b 4c 5b 79 5d 00			.byte	$72,$2b,$4c,$5b,$79,$5d,0
->117a	0b					.byte	EndCode1027-*-1
-.117b	18		clc			clc
-.117c	71 63		adc ($63),y		adc  ($7363& $FF),y
-.117e	48		pha			pha
-.117f	8a		txa			txa
-.1180	c8		iny			iny
-.1181	71 63		adc ($63),y		adc  ($7363& $FF),y
-.1183	88		dey			dey
-.1184	aa		tax			tax
-.1185	68		pla			pla
-.1186					EndCode1027:
->1186	72 61 79 2d 3e 73 00			.byte	$72,$61,$79,$2d,$3e,$73,0
->118d	03					.byte	EndCode1028-*-1
-.118e	48		pha			pha
-.118f	da		phx			phx
-.1190	5a		phy			phy
-.1191					EndCode1028:
->1191	72 65 70 65 61 74 00			.byte	$72,$65,$70,$65,$61,$74,0
->1198	02					.byte	EndCode1029-*-1
->1199	a3 04					.byte	$a3,$04
-.119b					EndCode1029:
->119b	72 2e 73 77 61 70 00			.byte	$72,$2e,$73,$77,$61,$70,0
->11a2	03					.byte	EndCode1030-*-1
-.11a3	48		pha			pha
-.11a4	8a		txa			txa
-.11a5	fa		plx			plx
-.11a6					EndCode1030:
->11a6	72 3d 49 5b 79 5d 00			.byte	$72,$3d,$49,$5b,$79,$5d,0
->11ad	07					.byte	EndCode1031-*-1
-.11ae	c8		iny			iny
-.11af	b1 63		lda ($63),y		lda  ($63 & $FF),y
-.11b1	aa		tax			tax
-.11b2	88		dey			dey
-.11b3	b1 63		lda ($63),y		lda  ($63 & $FF),y
-.11b5					EndCode1031:
->11b5	72 3d 4c 5b 79 5d 00			.byte	$72,$3d,$4c,$5b,$79,$5d,0
->11bc	07					.byte	EndCode1032-*-1
-.11bd	c8		iny			iny
-.11be	b1 63		lda ($63),y		lda  ($7363 & $FF),y
-.11c0	aa		tax			tax
-.11c1	88		dey			dey
-.11c2	b1 63		lda ($63),y		lda  ($7363 & $FF),y
-.11c4					EndCode1032:
->11c4	73 2d 3e 72 61 79 00			.byte	$73,$2d,$3e,$72,$61,$79,0
->11cb	03					.byte	EndCode1033-*-1
-.11cc	7a		ply			ply
-.11cd	fa		plx			plx
-.11ce	68		pla			pla
-.11cf					EndCode1033:
->11cf	61 2e 66 6f 72 00			.byte	$61,$2e,$66,$6f,$72,0
->11d5	02					.byte	EndCode1034-*-1
->11d6	a3 06					.byte	$a3,$06
-.11d8					EndCode1034:
->11d8	61 3e 3d 53 3f 00			.byte	$61,$3e,$3d,$53,$3f,0
->11de	05					.byte	EndCode1035-*-1
-.11df	c5 63		cmp $63			cmp  $63
->11e1	93					.byte $93
-.11e2	b0 fe		bcs $11e2		bcs *
-.11e4					EndCode1035:
->11e4	61 3e 3d 43 3f 00			.byte	$61,$3e,$3d,$43,$3f,0
->11ea	06					.byte	EndCode1036-*-1
-.11eb	cd 63 73	cmp $7363		cmp  $7363
->11ee	93					.byte $93
-.11ef	b0 fe		bcs $11ef		bcs *
-.11f1					EndCode1036:
->11f1	61 3c 3e 53 3f 00			.byte	$61,$3c,$3e,$53,$3f,0
->11f7	05					.byte	EndCode1037-*-1
-.11f8	c5 63		cmp $63			cmp  $63
->11fa	93					.byte $93
-.11fb	d0 fe		bne $11fb		bne *
-.11fd					EndCode1037:
->11fd	61 3c 3e 43 3f 00			.byte	$61,$3c,$3e,$43,$3f,0
->1203	06					.byte	EndCode1038-*-1
-.1204	cd 63 73	cmp $7363		cmp  $7363
->1207	93					.byte $93
-.1208	d0 fe		bne $1208		bne *
-.120a					EndCode1038:
->120a	61 3e 3d 42 3f 00			.byte	$61,$3e,$3d,$42,$3f,0
->1210	05					.byte	EndCode1039-*-1
-.1211	c9 63		cmp #$63		cmp  #$63
->1213	93					.byte $93
-.1214	b0 fe		bcs $1214		bcs *
-.1216					EndCode1039:
->1216	61 3c 3e 42 3f 00			.byte	$61,$3c,$3e,$42,$3f,0
->121c	05					.byte	EndCode1040-*-1
-.121d	c9 63		cmp #$63		cmp  #$63
->121f	93					.byte $93
-.1220	d0 fe		bne $1220		bne *
-.1222					EndCode1040:
->1222	62 79 74 65 2a 00			.byte	$62,$79,$74,$65,$2a,0
->1228	02					.byte	EndCode1041-*-1
->1229	a3 01					.byte	$a3,$01
-.122b					EndCode1041:
->122b	62 72 65 61 6b 00			.byte	$62,$72,$65,$61,$6b,0
->1231	01					.byte	EndCode1042-*-1
->1232	db					.byte  $DB
-.1233					EndCode1042:
->1233	65 6e 64 69 66 00			.byte	$65,$6e,$64,$69,$66,0
->1239	02					.byte	EndCode1043-*-1
->123a	a3 0b					.byte	$a3,$0b
-.123c					EndCode1043:
->123c	70 72 6f 63 2a 00			.byte	$70,$72,$6f,$63,$2a,0
->1242	02					.byte	EndCode1044-*-1
->1243	a3 0c					.byte	$a3,$0c
-.1245					EndCode1044:
->1245	72 2e 66 6f 72 00			.byte	$72,$2e,$66,$6f,$72,0
->124b	02					.byte	EndCode1045-*-1
->124c	a3 07					.byte	$a3,$07
-.124e					EndCode1045:
->124e	72 3e 3d 57 3f 00			.byte	$72,$3e,$3d,$57,$3f,0
->1254	0a					.byte	EndCode1046-*-1
-.1255	c9 63		cmp #$63		cmp  #$63
-.1257	48		pha			pha
-.1258	8a		txa			txa
-.1259	e9 73		sbc #$73		sbc  #$73
-.125b	68		pla			pla
->125c	93					.byte $93
-.125d	b0 fe		bcs $125d		bcs *
-.125f					EndCode1046:
->125f	72 3c 3e 57 3f 00			.byte	$72,$3c,$3e,$57,$3f,0
->1265	09					.byte	EndCode1047-*-1
-.1266	c9 63		cmp #$63		cmp  #$63
-.1268	d0 02		bne $126c		bne  _Skip1
-.126a	e0 73		cpx #$73		cpx  #$73
-.126c					_Skip1:
->126c	93					.byte $93
-.126d	d0 fe		bne $126d		bne *
-.126f					EndCode1047:
->126f	72 3e 3d 49 3f 00			.byte	$72,$3e,$3d,$49,$3f,0
->1275	0a					.byte	EndCode1048-*-1
-.1276	c5 63		cmp $63			cmp  $63
-.1278	48		pha			pha
-.1279	8a		txa			txa
-.127a	e5 83		sbc $83			sbc  $83
-.127c	68		pla			pla
->127d	93					.byte $93
-.127e	b0 fe		bcs $127e		bcs *
-.1280					EndCode1048:
->1280	72 3e 3d 4c 3f 00			.byte	$72,$3e,$3d,$4c,$3f,0
->1286	0c					.byte	EndCode1049-*-1
-.1287	cd 63 73	cmp $7363		cmp  $7363
-.128a	48		pha			pha
-.128b	8a		txa			txa
-.128c	ed 83 73	sbc $7383		sbc  $7383
-.128f	68		pla			pla
->1290	93					.byte $93
-.1291	b0 fe		bcs $1291		bcs *
-.1293					EndCode1049:
->1293	72 3c 3e 49 3f 00			.byte	$72,$3c,$3e,$49,$3f,0
->1299	09					.byte	EndCode1050-*-1
-.129a	c5 63		cmp $63			cmp  $63
-.129c	d0 02		bne $12a0		bne  _Skip1
-.129e	e4 83		cpx $83			cpx  $83
-.12a0					_Skip1:
->12a0	93					.byte $93
-.12a1	d0 fe		bne $12a1		bne *
-.12a3					EndCode1050:
->12a3	72 3c 3e 4c 3f 00			.byte	$72,$3c,$3e,$4c,$3f,0
->12a9	0b					.byte	EndCode1051-*-1
-.12aa	cd 63 73	cmp $7363		cmp  $7363
-.12ad	d0 03		bne $12b2		bne  _Skip1
-.12af	ec 83 73	cpx $7383		cpx  $7383
-.12b2					_Skip1:
->12b2	93					.byte $93
-.12b3	d0 fe		bne $12b3		bne *
-.12b5					EndCode1051:
->12b5	75 6e 74 69 6c 00			.byte	$75,$6e,$74,$69,$6c,0
->12bb	02					.byte	EndCode1052-*-1
->12bc	a3 05					.byte	$a3,$05
-.12be					EndCode1052:
->12be	77 6f 72 64 2a 00			.byte	$77,$6f,$72,$64,$2a,0
->12c4	02					.byte	EndCode1053-*-1
->12c5	a3 02					.byte	$a3,$02
-.12c7					EndCode1053:
->12c7	61 2d 3e 73 00				.byte	$61,$2d,$3e,$73,0
->12cc	01					.byte	EndCode1054-*-1
-.12cd	48		pha			pha
-.12ce					EndCode1054:
->12ce	61 3c 3e 3f 00				.byte	$61,$3c,$3e,$3f,0
->12d3	05					.byte	EndCode1055-*-1
-.12d4	c9 00		cmp #$00		cmp #0
->12d6	93					.byte $93
-.12d7	d0 fe		bne $12d7		bne *
-.12d9					EndCode1055:
->12d9	61 3c 53 3f 00				.byte	$61,$3c,$53,$3f,0
->12de	05					.byte	EndCode1056-*-1
-.12df	c5 63		cmp $63			cmp  $63
->12e1	93					.byte $93
-.12e2	90 fe		bcc $12e2		bcc *
-.12e4					EndCode1056:
->12e4	61 3c 43 3f 00				.byte	$61,$3c,$43,$3f,0
->12e9	06					.byte	EndCode1057-*-1
-.12ea	cd 63 73	cmp $7363		cmp  $7363
->12ed	93					.byte $93
-.12ee	90 fe		bcc $12ee		bcc *
-.12f0					EndCode1057:
->12f0	61 3d 53 3f 00				.byte	$61,$3d,$53,$3f,0
->12f5	05					.byte	EndCode1058-*-1
-.12f6	c5 63		cmp $63			cmp  $63
->12f8	93					.byte $93
-.12f9	f0 fe		beq $12f9		beq *
-.12fb					EndCode1058:
->12fb	61 3d 43 3f 00				.byte	$61,$3d,$43,$3f,0
->1300	06					.byte	EndCode1059-*-1
-.1301	cd 63 73	cmp $7363		cmp  $7363
->1304	93					.byte $93
-.1305	f0 fe		beq $1305		beq *
-.1307					EndCode1059:
->1307	61 3c 42 3f 00				.byte	$61,$3c,$42,$3f,0
->130c	05					.byte	EndCode1060-*-1
-.130d	c9 63		cmp #$63		cmp  #$63
->130f	93					.byte $93
-.1310	90 fe		bcc $1310		bcc *
-.1312					EndCode1060:
->1312	61 3d 42 3f 00				.byte	$61,$3d,$42,$3f,0
->1317	05					.byte	EndCode1061-*-1
-.1318	c9 63		cmp #$63		cmp  #$63
->131a	93					.byte $93
-.131b	f0 fe		beq $131b		beq *
-.131d					EndCode1061:
->131d	65 6c 73 65 00				.byte	$65,$6c,$73,$65,0
->1322	02					.byte	EndCode1062-*-1
->1323	a3 0a					.byte	$a3,$0a
-.1325					EndCode1062:
->1325	6e 65 78 74 00				.byte	$6e,$65,$78,$74,0
->132a	02					.byte	EndCode1063-*-1
->132b	a3 08					.byte	$a3,$08
-.132d					EndCode1063:
->132d	72 2d 3e 73 00				.byte	$72,$2d,$3e,$73,0
->1332	02					.byte	EndCode1064-*-1
-.1333	48		pha			pha
-.1334	da		phx			phx
-.1335					EndCode1064:
->1335	72 3c 3e 3f 00				.byte	$72,$3c,$3e,$3f,0
->133a	09					.byte	EndCode1065-*-1
-.133b	c9 00		cmp #$00		cmp #0
-.133d	d0 02		bne $1341		bne *+4
-.133f	e0 00		cpx #$00		cpx #0
->1341	93					.byte $93
-.1342	d0 fe		bne $1342		bne *
-.1344					EndCode1065:
->1344	72 3c 57 3f 00				.byte	$72,$3c,$57,$3f,0
->1349	0a					.byte	EndCode1066-*-1
-.134a	c9 63		cmp #$63		cmp  #$63
-.134c	48		pha			pha
-.134d	8a		txa			txa
-.134e	e9 73		sbc #$73		sbc  #$73
-.1350	68		pla			pla
->1351	93					.byte $93
-.1352	90 fe		bcc $1352		bcc *
-.1354					EndCode1066:
->1354	72 3d 57 3f 00				.byte	$72,$3d,$57,$3f,0
->1359	09					.byte	EndCode1067-*-1
-.135a	c9 63		cmp #$63		cmp  #$63
-.135c	d0 02		bne $1360		bne  _Skip1
-.135e	e0 73		cpx #$73		cpx  #$73
-.1360					_Skip1:
->1360	93					.byte $93
-.1361	f0 fe		beq $1361		beq *
-.1363					EndCode1067:
->1363	72 3c 49 3f 00				.byte	$72,$3c,$49,$3f,0
->1368	0a					.byte	EndCode1068-*-1
-.1369	c5 63		cmp $63			cmp  $63
-.136b	48		pha			pha
-.136c	8a		txa			txa
-.136d	e5 83		sbc $83			sbc  $83
-.136f	68		pla			pla
->1370	93					.byte $93
-.1371	90 fe		bcc $1371		bcc *
-.1373					EndCode1068:
->1373	72 3c 4c 3f 00				.byte	$72,$3c,$4c,$3f,0
->1378	0c					.byte	EndCode1069-*-1
-.1379	cd 63 73	cmp $7363		cmp  $7363
-.137c	48		pha			pha
-.137d	8a		txa			txa
-.137e	ed 83 73	sbc $7383		sbc  $7383
-.1381	68		pla			pla
->1382	93					.byte $93
-.1383	90 fe		bcc $1383		bcc *
-.1385					EndCode1069:
->1385	72 3d 49 3f 00				.byte	$72,$3d,$49,$3f,0
->138a	09					.byte	EndCode1070-*-1
-.138b	c5 63		cmp $63			cmp  $63
-.138d	d0 02		bne $1391		bne  _Skip1
-.138f	e4 83		cpx $83			cpx  $83
-.1391					_Skip1:
->1391	93					.byte $93
-.1392	f0 fe		beq $1392		beq *
-.1394					EndCode1070:
->1394	72 3d 4c 3f 00				.byte	$72,$3d,$4c,$3f,0
->1399	0b					.byte	EndCode1071-*-1
-.139a	cd 63 73	cmp $7363		cmp  $7363
-.139d	d0 03		bne $13a2		bne  _Skip1
-.139f	ec 83 73	cpx $7383		cpx  $7383
-.13a2					_Skip1:
->13a2	93					.byte $93
-.13a3	f0 fe		beq $13a3		beq *
-.13a5					EndCode1071:
->13a5	73 2d 3e 72 00				.byte	$73,$2d,$3e,$72,0
->13aa	02					.byte	EndCode1072-*-1
-.13ab	fa		plx			plx
-.13ac	68		pla			pla
-.13ad					EndCode1072:
->13ad	73 2d 3e 61 00				.byte	$73,$2d,$3e,$61,0
->13b2	01					.byte	EndCode1073-*-1
-.13b3	68		pla			pla
-.13b4					EndCode1073:
->13b4	73 2d 3e 79 00				.byte	$73,$2d,$3e,$79,0
->13b9	01					.byte	EndCode1074-*-1
-.13ba	7a		ply			ply
-.13bb					EndCode1074:
->13bb	79 2d 3e 73 00				.byte	$79,$2d,$3e,$73,0
->13c0	01					.byte	EndCode1075-*-1
-.13c1	5a		phy			phy
-.13c2					EndCode1075:
->13c2	2b 2b 53 00				.byte	$2b,$2b,$53,0
->13c6	02					.byte	EndCode1076-*-1
-.13c7	e6 63		inc $63			inc  $63
-.13c9					EndCode1076:
->13c9	2b 2b 43 00				.byte	$2b,$2b,$43,0
->13cd	03					.byte	EndCode1077-*-1
-.13ce	ee 63 73	inc $7363		inc  $7363
-.13d1					EndCode1077:
->13d1	2b 2b 49 00				.byte	$2b,$2b,$49,0
->13d5	06					.byte	EndCode1078-*-1
-.13d6	e6 63		inc $63			inc  $63
-.13d8	d0 02		bne $13dc		bne  _NoCarry
-.13da	e6 83		inc $83			inc  $83
-.13dc					_NoCarry:
-.13dc					EndCode1078:
->13dc	2b 2b 4c 00				.byte	$2b,$2b,$4c,0
->13e0	08					.byte	EndCode1079-*-1
-.13e1	ee 63 73	inc $7363		inc  $7363
-.13e4	d0 03		bne $13e9		bne  _NoCarry
-.13e6	ee 83 73	inc $7383		inc  $7383
-.13e9					_NoCarry:
-.13e9					EndCode1079:
->13e9	2b 2b 72 00				.byte	$2b,$2b,$72,0
->13ed	04					.byte	EndCode1080-*-1
-.13ee	1a		inc a			inc  a
-.13ef	d0 01		bne $13f2		bne  *+3
-.13f1	e8		inx			inx
-.13f2					EndCode1080:
->13f2	2b 2b 61 00				.byte	$2b,$2b,$61,0
->13f6	01					.byte	EndCode1081-*-1
-.13f7	1a		inc a			inc  a
-.13f8					EndCode1081:
->13f8	2b 2b 79 00				.byte	$2b,$2b,$79,0
->13fc	01					.byte	EndCode1082-*-1
-.13fd	c8		iny			iny
-.13fe					EndCode1082:
->13fe	2d 2d 53 00				.byte	$2d,$2d,$53,0
->1402	02					.byte	EndCode1083-*-1
-.1403	c6 63		dec $63			dec  $63
-.1405					EndCode1083:
->1405	2d 2d 43 00				.byte	$2d,$2d,$43,0
->1409	03					.byte	EndCode1084-*-1
-.140a	ce 63 73	dec $7363		dec  $7363
-.140d					EndCode1084:
->140d	2d 2d 49 00				.byte	$2d,$2d,$49,0
->1411	0a					.byte	EndCode1085-*-1
-.1412	48		pha			pha
-.1413	a5 63		lda $63			lda  $63
-.1415	d0 02		bne $1419		bne  _NoBorrow
-.1417	c6 83		dec $83			dec  $83
-.1419					_NoBorrow:
-.1419	c6 63		dec $63			dec  $63
-.141b	68		pla			pla
-.141c					EndCode1085:
->141c	2d 2d 4c 00				.byte	$2d,$2d,$4c,0
->1420	0d					.byte	EndCode1086-*-1
-.1421	48		pha			pha
-.1422	ad 63 73	lda $7363		lda  $7363
-.1425	d0 03		bne $142a		bne  _NoBorrow
-.1427	ce 83 73	dec $7383		dec  $7383
-.142a					_NoBorrow:
-.142a	ce 63 73	dec $7363		dec  $7363
-.142d	68		pla			pla
-.142e					EndCode1086:
->142e	2d 2d 72 00				.byte	$2d,$2d,$72,0
->1432	06					.byte	EndCode1087-*-1
-.1433	c9 00		cmp #$00		cmp  #0
-.1435	d0 01		bne $1438		bne  *+3
-.1437	ca		dex			dex
-.1438	3a		dec a			dec  a
-.1439					EndCode1087:
->1439	2d 2d 61 00				.byte	$2d,$2d,$61,0
->143d	01					.byte	EndCode1088-*-1
-.143e	3a		dec a			dec  a
-.143f					EndCode1088:
->143f	2d 2d 79 00				.byte	$2d,$2d,$79,0
->1443	01					.byte	EndCode1089-*-1
-.1444	88		dey			dey
-.1445					EndCode1089:
->1445	3c 3c 53 00				.byte	$3c,$3c,$53,0
->1449	02					.byte	EndCode1090-*-1
-.144a	06 63		asl $63			asl  $63
-.144c					EndCode1090:
->144c	3c 3c 43 00				.byte	$3c,$3c,$43,0
->1450	03					.byte	EndCode1091-*-1
-.1451	0e 63 73	asl $7363		asl  $7363
-.1454					EndCode1091:
->1454	3c 3c 49 00				.byte	$3c,$3c,$49,0
->1458	04					.byte	EndCode1092-*-1
-.1459	06 63		asl $63			asl  $63
-.145b	26 83		rol $83			rol  $83
-.145d					EndCode1092:
->145d	3c 3c 4c 00				.byte	$3c,$3c,$4c,0
->1461	06					.byte	EndCode1093-*-1
-.1462	0e 63 73	asl $7363		asl  $7363
-.1465	2e 83 73	rol $7383		rol  $7383
-.1468					EndCode1093:
->1468	3c 3c 72 00				.byte	$3c,$3c,$72,0
->146c	06					.byte	EndCode1094-*-1
-.146d	0a		asl a			asl  a
-.146e	48		pha			pha
-.146f	8a		txa			txa
-.1470	2a		rol a			rol  a
-.1471	aa		tax			tax
-.1472	68		pla			pla
-.1473					EndCode1094:
->1473	3c 3c 61 00				.byte	$3c,$3c,$61,0
->1477	01					.byte	EndCode1095-*-1
-.1478	0a		asl a			asl  a
-.1479					EndCode1095:
->1479	3e 3e 53 00				.byte	$3e,$3e,$53,0
->147d	02					.byte	EndCode1096-*-1
-.147e	46 63		lsr $63			lsr  $63
-.1480					EndCode1096:
->1480	3e 3e 43 00				.byte	$3e,$3e,$43,0
->1484	03					.byte	EndCode1097-*-1
-.1485	4e 63 73	lsr $7363		lsr  $7363
-.1488					EndCode1097:
->1488	3e 3e 49 00				.byte	$3e,$3e,$49,0
->148c	04					.byte	EndCode1098-*-1
-.148d	46 83		lsr $83			lsr  $83
-.148f	66 63		ror $63			ror  $63
-.1491					EndCode1098:
->1491	3e 3e 4c 00				.byte	$3e,$3e,$4c,0
->1495	06					.byte	EndCode1099-*-1
-.1496	4e 83 73	lsr $7383		lsr  $7383
-.1499	6e 63 73	ror $7363		ror  $7363
-.149c					EndCode1099:
->149c	3e 3e 72 00				.byte	$3e,$3e,$72,0
->14a0	06					.byte	EndCode1100-*-1
-.14a1	48		pha			pha
-.14a2	8a		txa			txa
-.14a3	4a		lsr a			lsr  a
-.14a4	aa		tax			tax
-.14a5	68		pla			pla
-.14a6	6a		ror a			ror  a
-.14a7					EndCode1100:
->14a7	3e 3e 61 00				.byte	$3e,$3e,$61,0
->14ab	01					.byte	EndCode1101-*-1
-.14ac	4a		lsr a			lsr  a
-.14ad					EndCode1101:
->14ad	43 3d 72 00				.byte	$43,$3d,$72,0
->14b1	03					.byte	EndCode1102-*-1
-.14b2	8d 63 73	sta $7363		sta  $7363
-.14b5					EndCode1102:
->14b5	43 3d 61 00				.byte	$43,$3d,$61,0
->14b9	03					.byte	EndCode1103-*-1
-.14ba	8d 63 73	sta $7363		sta  $7363
-.14bd					EndCode1103:
->14bd	43 3d 79 00				.byte	$43,$3d,$79,0
->14c1	03					.byte	EndCode1104-*-1
-.14c2	8c 63 73	sty $7363		sty  $7363
-.14c5					EndCode1104:
->14c5	49 3d 72 00				.byte	$49,$3d,$72,0
->14c9	04					.byte	EndCode1105-*-1
-.14ca	85 63		sta $63			sta  $63
-.14cc	86 83		stx $83			stx  $83
-.14ce					EndCode1105:
->14ce	4c 3d 72 00				.byte	$4c,$3d,$72,0
->14d2	06					.byte	EndCode1106-*-1
-.14d3	8d 63 73	sta $7363		sta  $7363
-.14d6	8e 83 73	stx $7383		stx  $7383
-.14d9					EndCode1106:
->14d9	53 3d 72 00				.byte	$53,$3d,$72,0
->14dd	02					.byte	EndCode1107-*-1
-.14de	85 63		sta $63			sta  $63
-.14e0					EndCode1107:
->14e0	53 3d 61 00				.byte	$53,$3d,$61,0
->14e4	02					.byte	EndCode1108-*-1
-.14e5	85 63		sta $63			sta  $63
-.14e7					EndCode1108:
->14e7	53 3d 79 00				.byte	$53,$3d,$79,0
->14eb	02					.byte	EndCode1109-*-1
-.14ec	84 63		sty $63			sty  $63
-.14ee					EndCode1109:
->14ee	61 5e 42 00				.byte	$61,$5e,$42,0
->14f2	02					.byte	EndCode1110-*-1
-.14f3	49 63		eor #$63		eor  #$63
-.14f5					EndCode1110:
->14f5	61 5e 53 00				.byte	$61,$5e,$53,0
->14f9	02					.byte	EndCode1111-*-1
-.14fa	45 63		eor $63			eor  $63
-.14fc					EndCode1111:
->14fc	61 5e 43 00				.byte	$61,$5e,$43,0
->1500	03					.byte	EndCode1112-*-1
-.1501	4d 63 73	eor $7363		eor  $7363
-.1504					EndCode1112:
->1504	61 2d 42 00				.byte	$61,$2d,$42,0
->1508	03					.byte	EndCode1113-*-1
-.1509	38		sec			sec
-.150a	e9 63		sbc #$63		sbc  #$63
-.150c					EndCode1113:
->150c	61 2d 53 00				.byte	$61,$2d,$53,0
->1510	03					.byte	EndCode1114-*-1
-.1511	38		sec			sec
-.1512	e5 63		sbc $63			sbc  $63
-.1514					EndCode1114:
->1514	61 2d 43 00				.byte	$61,$2d,$43,0
->1518	04					.byte	EndCode1115-*-1
-.1519	38		sec			sec
-.151a	ed 63 73	sbc $7363		sbc  $7363
-.151d					EndCode1115:
->151d	61 7c 42 00				.byte	$61,$7c,$42,0
->1521	02					.byte	EndCode1116-*-1
-.1522	09 63		ora #$63		ora  #$63
-.1524					EndCode1116:
->1524	61 7c 53 00				.byte	$61,$7c,$53,0
->1528	02					.byte	EndCode1117-*-1
-.1529	05 63		ora $63			ora  $63
-.152b					EndCode1117:
->152b	61 7c 43 00				.byte	$61,$7c,$43,0
->152f	03					.byte	EndCode1118-*-1
-.1530	0d 63 73	ora $7363		ora  $7363
-.1533					EndCode1118:
->1533	61 26 42 00				.byte	$61,$26,$42,0
->1537	02					.byte	EndCode1119-*-1
-.1538	29 63		and #$63		and  #$63
-.153a					EndCode1119:
->153a	61 26 53 00				.byte	$61,$26,$53,0
->153e	02					.byte	EndCode1120-*-1
-.153f	25 63		and $63			and  $63
-.1541					EndCode1120:
->1541	61 26 43 00				.byte	$61,$26,$43,0
->1545	03					.byte	EndCode1121-*-1
-.1546	2d 63 73	and $7363		and  $7363
-.1549					EndCode1121:
->1549	61 2b 42 00				.byte	$61,$2b,$42,0
->154d	03					.byte	EndCode1122-*-1
-.154e	18		clc			clc
-.154f	69 63		adc #$63		adc  #$63
-.1551					EndCode1122:
->1551	61 2b 53 00				.byte	$61,$2b,$53,0
->1555	03					.byte	EndCode1123-*-1
-.1556	18		clc			clc
-.1557	65 63		adc $63			adc  $63
-.1559					EndCode1123:
->1559	61 2b 43 00				.byte	$61,$2b,$43,0
->155d	04					.byte	EndCode1124-*-1
-.155e	18		clc			clc
-.155f	6d 63 73	adc $7363		adc  $7363
-.1562					EndCode1124:
->1562	61 3d 3f 00				.byte	$61,$3d,$3f,0
->1566	05					.byte	EndCode1125-*-1
-.1567	c9 00		cmp #$00		cmp #0
->1569	93					.byte $93
-.156a	f0 fe		beq $156a		beq *
-.156c					EndCode1125:
->156c	61 2b 3f 00				.byte	$61,$2b,$3f,0
->1570	05					.byte	EndCode1126-*-1
-.1571	c9 00		cmp #$00		cmp #0
->1573	93					.byte $93
-.1574	10 fe		bpl $1574		bpl *
-.1576					EndCode1126:
->1576	61 2d 3f 00				.byte	$61,$2d,$3f,0
->157a	05					.byte	EndCode1127-*-1
-.157b	c9 00		cmp #$00		cmp #0
->157d	93					.byte $93
-.157e	30 fe		bmi $157e		bmi *
-.1580					EndCode1127:
->1580	61 3d 79 00				.byte	$61,$3d,$79,0
->1584	01					.byte	EndCode1128-*-1
-.1585	98		tya			tya
+>1000	63 6c 65 61 6e 2e 6d 6f			.byte	$63,$6c,$65,$61,$6e,$2e,$6d,$6f,$64,$75,$6c,$65,0
+>1008	64 75 6c 65 00
+>100d	02					.byte	EndCode1000-*-1
+>100e	a3 03					.byte	$a3,$03
+.1010					EndCode1000:
+>1010	65 6e 64 70 72 6f 63 00			.byte	$65,$6e,$64,$70,$72,$6f,$63,0
+>1018	02					.byte	EndCode1001-*-1
+>1019	a3 0e					.byte	$a3,$0e
+.101b					EndCode1001:
+>101b	49 5b 79 5d 3d 61 00			.byte	$49,$5b,$79,$5d,$3d,$61,0
+>1022	02					.byte	EndCode1002-*-1
+.1023	91 63		sta ($63),y		sta  ($63 & $FF),y
+.1025					EndCode1002:
+>1025	49 5b 79 5d 3d 72 00			.byte	$49,$5b,$79,$5d,$3d,$72,0
+>102c	09					.byte	EndCode1003-*-1
+.102d	91 63		sta ($63),y		sta  ($63 & $FF),y
+.102f	c8		iny			iny
+.1030	8a		txa			txa
+.1031	91 63		sta ($63),y		sta  ($63 & $FF),y
+.1033	88		dey			dey
+.1034	b1 63		lda ($63),y		lda  ($63 & $FF),y
+.1036					EndCode1003:
+>1036	4c 5b 79 5d 3d 61 00			.byte	$4c,$5b,$79,$5d,$3d,$61,0
+>103d	02					.byte	EndCode1004-*-1
+.103e	91 63		sta ($63),y		sta  ($7363 & $FF),y
+.1040					EndCode1004:
+>1040	4c 5b 79 5d 3d 72 00			.byte	$4c,$5b,$79,$5d,$3d,$72,0
+>1047	09					.byte	EndCode1005-*-1
+.1048	91 63		sta ($63),y		sta  ($7363 & $FF),y
+.104a	c8		iny			iny
+.104b	8a		txa			txa
+.104c	91 63		sta ($63),y		sta  ($7363 & $FF),y
+.104e	88		dey			dey
+.104f	b1 63		lda ($63),y		lda  ($7363 & $FF),y
+.1051					EndCode1005:
+>1051	61 5e 49 5b 79 5d 00			.byte	$61,$5e,$49,$5b,$79,$5d,0
+>1058	02					.byte	EndCode1006-*-1
+.1059	51 63		eor ($63),y		eor  ($63 & $FF),y
+.105b					EndCode1006:
+>105b	61 5e 4c 5b 79 5d 00			.byte	$61,$5e,$4c,$5b,$79,$5d,0
+>1062	02					.byte	EndCode1007-*-1
+.1063	51 63		eor ($63),y		eor  ($7363 & $FF),y
+.1065					EndCode1007:
+>1065	61 2d 49 5b 79 5d 00			.byte	$61,$2d,$49,$5b,$79,$5d,0
+>106c	03					.byte	EndCode1008-*-1
+.106d	38		sec			sec
+.106e	f1 63		sbc ($63),y		sbc  ($63& $FF),y
+.1070					EndCode1008:
+>1070	61 2d 4c 5b 79 5d 00			.byte	$61,$2d,$4c,$5b,$79,$5d,0
+>1077	03					.byte	EndCode1009-*-1
+.1078	38		sec			sec
+.1079	f1 63		sbc ($63),y		sbc  ($7363& $FF),y
+.107b					EndCode1009:
+>107b	61 7c 49 5b 79 5d 00			.byte	$61,$7c,$49,$5b,$79,$5d,0
+>1082	02					.byte	EndCode1010-*-1
+.1083	11 63		ora ($63),y		ora  ($63& $FF),y
+.1085					EndCode1010:
+>1085	61 7c 4c 5b 79 5d 00			.byte	$61,$7c,$4c,$5b,$79,$5d,0
+>108c	02					.byte	EndCode1011-*-1
+.108d	11 63		ora ($63),y		ora  ($7363& $FF),y
+.108f					EndCode1011:
+>108f	61 26 49 5b 79 5d 00			.byte	$61,$26,$49,$5b,$79,$5d,0
+>1096	02					.byte	EndCode1012-*-1
+.1097	31 63		and ($63),y		and  ($63& $FF),y
+.1099					EndCode1012:
+>1099	61 26 4c 5b 79 5d 00			.byte	$61,$26,$4c,$5b,$79,$5d,0
+>10a0	02					.byte	EndCode1013-*-1
+.10a1	31 63		and ($63),y		and  ($7363& $FF),y
+.10a3					EndCode1013:
+>10a3	61 2b 49 5b 79 5d 00			.byte	$61,$2b,$49,$5b,$79,$5d,0
+>10aa	03					.byte	EndCode1014-*-1
+.10ab	18		clc			clc
+.10ac	71 63		adc ($63),y		adc  ($63& $FF),y
+.10ae					EndCode1014:
+>10ae	61 2b 4c 5b 79 5d 00			.byte	$61,$2b,$4c,$5b,$79,$5d,0
+>10b5	03					.byte	EndCode1015-*-1
+.10b6	18		clc			clc
+.10b7	71 63		adc ($63),y		adc  ($7363& $FF),y
+.10b9					EndCode1015:
+>10b9	61 3d 49 5b 79 5d 00			.byte	$61,$3d,$49,$5b,$79,$5d,0
+>10c0	02					.byte	EndCode1016-*-1
+.10c1	b1 63		lda ($63),y		lda  ($63 & $FF),y
+.10c3					EndCode1016:
+>10c3	61 3d 4c 5b 79 5d 00			.byte	$61,$3d,$4c,$5b,$79,$5d,0
+>10ca	02					.byte	EndCode1017-*-1
+.10cb	b1 63		lda ($63),y		lda  ($7363 & $FF),y
+.10cd					EndCode1017:
+>10cd	72 5e 49 5b 79 5d 00			.byte	$72,$5e,$49,$5b,$79,$5d,0
+>10d4	0a					.byte	EndCode1018-*-1
+.10d5	51 63		eor ($63),y		eor  ($63 & $FF),y
+.10d7	48		pha			pha
+.10d8	8a		txa			txa
+.10d9	c8		iny			iny
+.10da	51 63		eor ($63),y		eor  ($63 & $FF),y
+.10dc	88		dey			dey
+.10dd	aa		tax			tax
+.10de	68		pla			pla
+.10df					EndCode1018:
+>10df	72 5e 4c 5b 79 5d 00			.byte	$72,$5e,$4c,$5b,$79,$5d,0
+>10e6	0a					.byte	EndCode1019-*-1
+.10e7	51 63		eor ($63),y		eor  ($7363 & $FF),y
+.10e9	48		pha			pha
+.10ea	8a		txa			txa
+.10eb	c8		iny			iny
+.10ec	51 63		eor ($63),y		eor  ($7363 & $FF),y
+.10ee	88		dey			dey
+.10ef	aa		tax			tax
+.10f0	68		pla			pla
+.10f1					EndCode1019:
+>10f1	72 2d 49 5b 79 5d 00			.byte	$72,$2d,$49,$5b,$79,$5d,0
+>10f8	0b					.byte	EndCode1020-*-1
+.10f9	38		sec			sec
+.10fa	f1 63		sbc ($63),y		sbc  ($63& $FF),y
+.10fc	48		pha			pha
+.10fd	8a		txa			txa
+.10fe	c8		iny			iny
+.10ff	f1 63		sbc ($63),y		sbc  ($63& $FF),y
+.1101	88		dey			dey
+.1102	aa		tax			tax
+.1103	68		pla			pla
+.1104					EndCode1020:
+>1104	72 2d 4c 5b 79 5d 00			.byte	$72,$2d,$4c,$5b,$79,$5d,0
+>110b	0b					.byte	EndCode1021-*-1
+.110c	38		sec			sec
+.110d	f1 63		sbc ($63),y		sbc  ($7363& $FF),y
+.110f	48		pha			pha
+.1110	8a		txa			txa
+.1111	c8		iny			iny
+.1112	f1 63		sbc ($63),y		sbc  ($7363& $FF),y
+.1114	88		dey			dey
+.1115	aa		tax			tax
+.1116	68		pla			pla
+.1117					EndCode1021:
+>1117	72 7c 49 5b 79 5d 00			.byte	$72,$7c,$49,$5b,$79,$5d,0
+>111e	0a					.byte	EndCode1022-*-1
+.111f	11 63		ora ($63),y		ora  ($63& $FF),y
+.1121	48		pha			pha
+.1122	8a		txa			txa
+.1123	c8		iny			iny
+.1124	11 63		ora ($63),y		ora  ($63& $FF),y
+.1126	88		dey			dey
+.1127	aa		tax			tax
+.1128	68		pla			pla
+.1129					EndCode1022:
+>1129	72 7c 4c 5b 79 5d 00			.byte	$72,$7c,$4c,$5b,$79,$5d,0
+>1130	0a					.byte	EndCode1023-*-1
+.1131	11 63		ora ($63),y		ora  ($7363& $FF),y
+.1133	48		pha			pha
+.1134	8a		txa			txa
+.1135	c8		iny			iny
+.1136	11 63		ora ($63),y		ora  ($7363& $FF),y
+.1138	88		dey			dey
+.1139	aa		tax			tax
+.113a	68		pla			pla
+.113b					EndCode1023:
+>113b	72 26 49 5b 79 5d 00			.byte	$72,$26,$49,$5b,$79,$5d,0
+>1142	0a					.byte	EndCode1024-*-1
+.1143	31 63		and ($63),y		and  ($63& $FF),y
+.1145	48		pha			pha
+.1146	8a		txa			txa
+.1147	c8		iny			iny
+.1148	31 63		and ($63),y		and  ($63& $FF),y
+.114a	88		dey			dey
+.114b	aa		tax			tax
+.114c	68		pla			pla
+.114d					EndCode1024:
+>114d	72 26 4c 5b 79 5d 00			.byte	$72,$26,$4c,$5b,$79,$5d,0
+>1154	0a					.byte	EndCode1025-*-1
+.1155	31 63		and ($63),y		and  ($7363& $FF),y
+.1157	48		pha			pha
+.1158	8a		txa			txa
+.1159	c8		iny			iny
+.115a	31 63		and ($63),y		and  ($7363& $FF),y
+.115c	88		dey			dey
+.115d	aa		tax			tax
+.115e	68		pla			pla
+.115f					EndCode1025:
+>115f	72 2b 49 5b 79 5d 00			.byte	$72,$2b,$49,$5b,$79,$5d,0
+>1166	0b					.byte	EndCode1026-*-1
+.1167	18		clc			clc
+.1168	71 63		adc ($63),y		adc  ($63& $FF),y
+.116a	48		pha			pha
+.116b	8a		txa			txa
+.116c	c8		iny			iny
+.116d	71 63		adc ($63),y		adc  ($63& $FF),y
+.116f	88		dey			dey
+.1170	aa		tax			tax
+.1171	68		pla			pla
+.1172					EndCode1026:
+>1172	72 2b 4c 5b 79 5d 00			.byte	$72,$2b,$4c,$5b,$79,$5d,0
+>1179	0b					.byte	EndCode1027-*-1
+.117a	18		clc			clc
+.117b	71 63		adc ($63),y		adc  ($7363& $FF),y
+.117d	48		pha			pha
+.117e	8a		txa			txa
+.117f	c8		iny			iny
+.1180	71 63		adc ($63),y		adc  ($7363& $FF),y
+.1182	88		dey			dey
+.1183	aa		tax			tax
+.1184	68		pla			pla
+.1185					EndCode1027:
+>1185	72 61 79 2d 3e 73 00			.byte	$72,$61,$79,$2d,$3e,$73,0
+>118c	03					.byte	EndCode1028-*-1
+.118d	48		pha			pha
+.118e	da		phx			phx
+.118f	5a		phy			phy
+.1190					EndCode1028:
+>1190	72 65 70 65 61 74 00			.byte	$72,$65,$70,$65,$61,$74,0
+>1197	02					.byte	EndCode1029-*-1
+>1198	a3 04					.byte	$a3,$04
+.119a					EndCode1029:
+>119a	72 2e 73 77 61 70 00			.byte	$72,$2e,$73,$77,$61,$70,0
+>11a1	03					.byte	EndCode1030-*-1
+.11a2	48		pha			pha
+.11a3	8a		txa			txa
+.11a4	fa		plx			plx
+.11a5					EndCode1030:
+>11a5	72 3d 49 5b 79 5d 00			.byte	$72,$3d,$49,$5b,$79,$5d,0
+>11ac	07					.byte	EndCode1031-*-1
+.11ad	c8		iny			iny
+.11ae	b1 63		lda ($63),y		lda  ($63 & $FF),y
+.11b0	aa		tax			tax
+.11b1	88		dey			dey
+.11b2	b1 63		lda ($63),y		lda  ($63 & $FF),y
+.11b4					EndCode1031:
+>11b4	72 3d 4c 5b 79 5d 00			.byte	$72,$3d,$4c,$5b,$79,$5d,0
+>11bb	07					.byte	EndCode1032-*-1
+.11bc	c8		iny			iny
+.11bd	b1 63		lda ($63),y		lda  ($7363 & $FF),y
+.11bf	aa		tax			tax
+.11c0	88		dey			dey
+.11c1	b1 63		lda ($63),y		lda  ($7363 & $FF),y
+.11c3					EndCode1032:
+>11c3	73 2d 3e 72 61 79 00			.byte	$73,$2d,$3e,$72,$61,$79,0
+>11ca	03					.byte	EndCode1033-*-1
+.11cb	7a		ply			ply
+.11cc	fa		plx			plx
+.11cd	68		pla			pla
+.11ce					EndCode1033:
+>11ce	61 2e 66 6f 72 00			.byte	$61,$2e,$66,$6f,$72,0
+>11d4	02					.byte	EndCode1034-*-1
+>11d5	a3 06					.byte	$a3,$06
+.11d7					EndCode1034:
+>11d7	61 3e 3d 53 3f 00			.byte	$61,$3e,$3d,$53,$3f,0
+>11dd	05					.byte	EndCode1035-*-1
+.11de	c5 63		cmp $63			cmp  $63
+>11e0	93					.byte $93
+.11e1	b0 fe		bcs $11e1		bcs *
+.11e3					EndCode1035:
+>11e3	61 3e 3d 43 3f 00			.byte	$61,$3e,$3d,$43,$3f,0
+>11e9	06					.byte	EndCode1036-*-1
+.11ea	cd 63 73	cmp $7363		cmp  $7363
+>11ed	93					.byte $93
+.11ee	b0 fe		bcs $11ee		bcs *
+.11f0					EndCode1036:
+>11f0	61 3c 3e 53 3f 00			.byte	$61,$3c,$3e,$53,$3f,0
+>11f6	05					.byte	EndCode1037-*-1
+.11f7	c5 63		cmp $63			cmp  $63
+>11f9	93					.byte $93
+.11fa	d0 fe		bne $11fa		bne *
+.11fc					EndCode1037:
+>11fc	61 3c 3e 43 3f 00			.byte	$61,$3c,$3e,$43,$3f,0
+>1202	06					.byte	EndCode1038-*-1
+.1203	cd 63 73	cmp $7363		cmp  $7363
+>1206	93					.byte $93
+.1207	d0 fe		bne $1207		bne *
+.1209					EndCode1038:
+>1209	61 3e 3d 42 3f 00			.byte	$61,$3e,$3d,$42,$3f,0
+>120f	05					.byte	EndCode1039-*-1
+.1210	c9 63		cmp #$63		cmp  #$63
+>1212	93					.byte $93
+.1213	b0 fe		bcs $1213		bcs *
+.1215					EndCode1039:
+>1215	61 3c 3e 42 3f 00			.byte	$61,$3c,$3e,$42,$3f,0
+>121b	05					.byte	EndCode1040-*-1
+.121c	c9 63		cmp #$63		cmp  #$63
+>121e	93					.byte $93
+.121f	d0 fe		bne $121f		bne *
+.1221					EndCode1040:
+>1221	62 79 74 65 2a 00			.byte	$62,$79,$74,$65,$2a,0
+>1227	02					.byte	EndCode1041-*-1
+>1228	a3 01					.byte	$a3,$01
+.122a					EndCode1041:
+>122a	62 72 65 61 6b 00			.byte	$62,$72,$65,$61,$6b,0
+>1230	01					.byte	EndCode1042-*-1
+>1231	db					.byte  $DB
+.1232					EndCode1042:
+>1232	65 6e 64 69 66 00			.byte	$65,$6e,$64,$69,$66,0
+>1238	02					.byte	EndCode1043-*-1
+>1239	a3 0b					.byte	$a3,$0b
+.123b					EndCode1043:
+>123b	70 72 6f 63 2a 00			.byte	$70,$72,$6f,$63,$2a,0
+>1241	02					.byte	EndCode1044-*-1
+>1242	a3 0c					.byte	$a3,$0c
+.1244					EndCode1044:
+>1244	72 2e 66 6f 72 00			.byte	$72,$2e,$66,$6f,$72,0
+>124a	02					.byte	EndCode1045-*-1
+>124b	a3 07					.byte	$a3,$07
+.124d					EndCode1045:
+>124d	72 3e 3d 57 3f 00			.byte	$72,$3e,$3d,$57,$3f,0
+>1253	0a					.byte	EndCode1046-*-1
+.1254	c9 63		cmp #$63		cmp  #$63
+.1256	48		pha			pha
+.1257	8a		txa			txa
+.1258	e9 73		sbc #$73		sbc  #$73
+.125a	68		pla			pla
+>125b	93					.byte $93
+.125c	b0 fe		bcs $125c		bcs *
+.125e					EndCode1046:
+>125e	72 3c 3e 57 3f 00			.byte	$72,$3c,$3e,$57,$3f,0
+>1264	09					.byte	EndCode1047-*-1
+.1265	c9 63		cmp #$63		cmp  #$63
+.1267	d0 02		bne $126b		bne  _Skip1
+.1269	e0 73		cpx #$73		cpx  #$73
+.126b					_Skip1:
+>126b	93					.byte $93
+.126c	d0 fe		bne $126c		bne *
+.126e					EndCode1047:
+>126e	72 3e 3d 49 3f 00			.byte	$72,$3e,$3d,$49,$3f,0
+>1274	0a					.byte	EndCode1048-*-1
+.1275	c5 63		cmp $63			cmp  $63
+.1277	48		pha			pha
+.1278	8a		txa			txa
+.1279	e5 83		sbc $83			sbc  $83
+.127b	68		pla			pla
+>127c	93					.byte $93
+.127d	b0 fe		bcs $127d		bcs *
+.127f					EndCode1048:
+>127f	72 3e 3d 4c 3f 00			.byte	$72,$3e,$3d,$4c,$3f,0
+>1285	0c					.byte	EndCode1049-*-1
+.1286	cd 63 73	cmp $7363		cmp  $7363
+.1289	48		pha			pha
+.128a	8a		txa			txa
+.128b	ed 83 73	sbc $7383		sbc  $7383
+.128e	68		pla			pla
+>128f	93					.byte $93
+.1290	b0 fe		bcs $1290		bcs *
+.1292					EndCode1049:
+>1292	72 3c 3e 49 3f 00			.byte	$72,$3c,$3e,$49,$3f,0
+>1298	09					.byte	EndCode1050-*-1
+.1299	c5 63		cmp $63			cmp  $63
+.129b	d0 02		bne $129f		bne  _Skip1
+.129d	e4 83		cpx $83			cpx  $83
+.129f					_Skip1:
+>129f	93					.byte $93
+.12a0	d0 fe		bne $12a0		bne *
+.12a2					EndCode1050:
+>12a2	72 3c 3e 4c 3f 00			.byte	$72,$3c,$3e,$4c,$3f,0
+>12a8	0b					.byte	EndCode1051-*-1
+.12a9	cd 63 73	cmp $7363		cmp  $7363
+.12ac	d0 03		bne $12b1		bne  _Skip1
+.12ae	ec 83 73	cpx $7383		cpx  $7383
+.12b1					_Skip1:
+>12b1	93					.byte $93
+.12b2	d0 fe		bne $12b2		bne *
+.12b4					EndCode1051:
+>12b4	75 6e 74 69 6c 00			.byte	$75,$6e,$74,$69,$6c,0
+>12ba	02					.byte	EndCode1052-*-1
+>12bb	a3 05					.byte	$a3,$05
+.12bd					EndCode1052:
+>12bd	77 6f 72 64 2a 00			.byte	$77,$6f,$72,$64,$2a,0
+>12c3	02					.byte	EndCode1053-*-1
+>12c4	a3 02					.byte	$a3,$02
+.12c6					EndCode1053:
+>12c6	61 2d 3e 73 00				.byte	$61,$2d,$3e,$73,0
+>12cb	01					.byte	EndCode1054-*-1
+.12cc	48		pha			pha
+.12cd					EndCode1054:
+>12cd	61 3c 3e 3f 00				.byte	$61,$3c,$3e,$3f,0
+>12d2	05					.byte	EndCode1055-*-1
+.12d3	c9 00		cmp #$00		cmp #0
+>12d5	93					.byte $93
+.12d6	d0 fe		bne $12d6		bne *
+.12d8					EndCode1055:
+>12d8	61 3c 53 3f 00				.byte	$61,$3c,$53,$3f,0
+>12dd	05					.byte	EndCode1056-*-1
+.12de	c5 63		cmp $63			cmp  $63
+>12e0	93					.byte $93
+.12e1	90 fe		bcc $12e1		bcc *
+.12e3					EndCode1056:
+>12e3	61 3c 43 3f 00				.byte	$61,$3c,$43,$3f,0
+>12e8	06					.byte	EndCode1057-*-1
+.12e9	cd 63 73	cmp $7363		cmp  $7363
+>12ec	93					.byte $93
+.12ed	90 fe		bcc $12ed		bcc *
+.12ef					EndCode1057:
+>12ef	61 3d 53 3f 00				.byte	$61,$3d,$53,$3f,0
+>12f4	05					.byte	EndCode1058-*-1
+.12f5	c5 63		cmp $63			cmp  $63
+>12f7	93					.byte $93
+.12f8	f0 fe		beq $12f8		beq *
+.12fa					EndCode1058:
+>12fa	61 3d 43 3f 00				.byte	$61,$3d,$43,$3f,0
+>12ff	06					.byte	EndCode1059-*-1
+.1300	cd 63 73	cmp $7363		cmp  $7363
+>1303	93					.byte $93
+.1304	f0 fe		beq $1304		beq *
+.1306					EndCode1059:
+>1306	61 3c 42 3f 00				.byte	$61,$3c,$42,$3f,0
+>130b	05					.byte	EndCode1060-*-1
+.130c	c9 63		cmp #$63		cmp  #$63
+>130e	93					.byte $93
+.130f	90 fe		bcc $130f		bcc *
+.1311					EndCode1060:
+>1311	61 3d 42 3f 00				.byte	$61,$3d,$42,$3f,0
+>1316	05					.byte	EndCode1061-*-1
+.1317	c9 63		cmp #$63		cmp  #$63
+>1319	93					.byte $93
+.131a	f0 fe		beq $131a		beq *
+.131c					EndCode1061:
+>131c	65 6c 73 65 00				.byte	$65,$6c,$73,$65,0
+>1321	02					.byte	EndCode1062-*-1
+>1322	a3 0a					.byte	$a3,$0a
+.1324					EndCode1062:
+>1324	6e 65 78 74 00				.byte	$6e,$65,$78,$74,0
+>1329	02					.byte	EndCode1063-*-1
+>132a	a3 08					.byte	$a3,$08
+.132c					EndCode1063:
+>132c	72 2d 3e 73 00				.byte	$72,$2d,$3e,$73,0
+>1331	02					.byte	EndCode1064-*-1
+.1332	48		pha			pha
+.1333	da		phx			phx
+.1334					EndCode1064:
+>1334	72 3c 3e 3f 00				.byte	$72,$3c,$3e,$3f,0
+>1339	09					.byte	EndCode1065-*-1
+.133a	c9 00		cmp #$00		cmp #0
+.133c	d0 02		bne $1340		bne *+4
+.133e	e0 00		cpx #$00		cpx #0
+>1340	93					.byte $93
+.1341	d0 fe		bne $1341		bne *
+.1343					EndCode1065:
+>1343	72 3c 57 3f 00				.byte	$72,$3c,$57,$3f,0
+>1348	0a					.byte	EndCode1066-*-1
+.1349	c9 63		cmp #$63		cmp  #$63
+.134b	48		pha			pha
+.134c	8a		txa			txa
+.134d	e9 73		sbc #$73		sbc  #$73
+.134f	68		pla			pla
+>1350	93					.byte $93
+.1351	90 fe		bcc $1351		bcc *
+.1353					EndCode1066:
+>1353	72 3d 57 3f 00				.byte	$72,$3d,$57,$3f,0
+>1358	09					.byte	EndCode1067-*-1
+.1359	c9 63		cmp #$63		cmp  #$63
+.135b	d0 02		bne $135f		bne  _Skip1
+.135d	e0 73		cpx #$73		cpx  #$73
+.135f					_Skip1:
+>135f	93					.byte $93
+.1360	f0 fe		beq $1360		beq *
+.1362					EndCode1067:
+>1362	72 3c 49 3f 00				.byte	$72,$3c,$49,$3f,0
+>1367	0a					.byte	EndCode1068-*-1
+.1368	c5 63		cmp $63			cmp  $63
+.136a	48		pha			pha
+.136b	8a		txa			txa
+.136c	e5 83		sbc $83			sbc  $83
+.136e	68		pla			pla
+>136f	93					.byte $93
+.1370	90 fe		bcc $1370		bcc *
+.1372					EndCode1068:
+>1372	72 3c 4c 3f 00				.byte	$72,$3c,$4c,$3f,0
+>1377	0c					.byte	EndCode1069-*-1
+.1378	cd 63 73	cmp $7363		cmp  $7363
+.137b	48		pha			pha
+.137c	8a		txa			txa
+.137d	ed 83 73	sbc $7383		sbc  $7383
+.1380	68		pla			pla
+>1381	93					.byte $93
+.1382	90 fe		bcc $1382		bcc *
+.1384					EndCode1069:
+>1384	72 3d 49 3f 00				.byte	$72,$3d,$49,$3f,0
+>1389	09					.byte	EndCode1070-*-1
+.138a	c5 63		cmp $63			cmp  $63
+.138c	d0 02		bne $1390		bne  _Skip1
+.138e	e4 83		cpx $83			cpx  $83
+.1390					_Skip1:
+>1390	93					.byte $93
+.1391	f0 fe		beq $1391		beq *
+.1393					EndCode1070:
+>1393	72 3d 4c 3f 00				.byte	$72,$3d,$4c,$3f,0
+>1398	0b					.byte	EndCode1071-*-1
+.1399	cd 63 73	cmp $7363		cmp  $7363
+.139c	d0 03		bne $13a1		bne  _Skip1
+.139e	ec 83 73	cpx $7383		cpx  $7383
+.13a1					_Skip1:
+>13a1	93					.byte $93
+.13a2	f0 fe		beq $13a2		beq *
+.13a4					EndCode1071:
+>13a4	73 2d 3e 72 00				.byte	$73,$2d,$3e,$72,0
+>13a9	02					.byte	EndCode1072-*-1
+.13aa	fa		plx			plx
+.13ab	68		pla			pla
+.13ac					EndCode1072:
+>13ac	73 2d 3e 61 00				.byte	$73,$2d,$3e,$61,0
+>13b1	01					.byte	EndCode1073-*-1
+.13b2	68		pla			pla
+.13b3					EndCode1073:
+>13b3	73 2d 3e 79 00				.byte	$73,$2d,$3e,$79,0
+>13b8	01					.byte	EndCode1074-*-1
+.13b9	7a		ply			ply
+.13ba					EndCode1074:
+>13ba	79 2d 3e 73 00				.byte	$79,$2d,$3e,$73,0
+>13bf	01					.byte	EndCode1075-*-1
+.13c0	5a		phy			phy
+.13c1					EndCode1075:
+>13c1	2b 2b 53 00				.byte	$2b,$2b,$53,0
+>13c5	02					.byte	EndCode1076-*-1
+.13c6	e6 63		inc $63			inc  $63
+.13c8					EndCode1076:
+>13c8	2b 2b 43 00				.byte	$2b,$2b,$43,0
+>13cc	03					.byte	EndCode1077-*-1
+.13cd	ee 63 73	inc $7363		inc  $7363
+.13d0					EndCode1077:
+>13d0	2b 2b 49 00				.byte	$2b,$2b,$49,0
+>13d4	06					.byte	EndCode1078-*-1
+.13d5	e6 63		inc $63			inc  $63
+.13d7	d0 02		bne $13db		bne  _NoCarry
+.13d9	e6 83		inc $83			inc  $83
+.13db					_NoCarry:
+.13db					EndCode1078:
+>13db	2b 2b 4c 00				.byte	$2b,$2b,$4c,0
+>13df	08					.byte	EndCode1079-*-1
+.13e0	ee 63 73	inc $7363		inc  $7363
+.13e3	d0 03		bne $13e8		bne  _NoCarry
+.13e5	ee 83 73	inc $7383		inc  $7383
+.13e8					_NoCarry:
+.13e8					EndCode1079:
+>13e8	2b 2b 72 00				.byte	$2b,$2b,$72,0
+>13ec	04					.byte	EndCode1080-*-1
+.13ed	1a		inc a			inc  a
+.13ee	d0 01		bne $13f1		bne  *+3
+.13f0	e8		inx			inx
+.13f1					EndCode1080:
+>13f1	2b 2b 61 00				.byte	$2b,$2b,$61,0
+>13f5	01					.byte	EndCode1081-*-1
+.13f6	1a		inc a			inc  a
+.13f7					EndCode1081:
+>13f7	2b 2b 79 00				.byte	$2b,$2b,$79,0
+>13fb	01					.byte	EndCode1082-*-1
+.13fc	c8		iny			iny
+.13fd					EndCode1082:
+>13fd	2d 2d 53 00				.byte	$2d,$2d,$53,0
+>1401	02					.byte	EndCode1083-*-1
+.1402	c6 63		dec $63			dec  $63
+.1404					EndCode1083:
+>1404	2d 2d 43 00				.byte	$2d,$2d,$43,0
+>1408	03					.byte	EndCode1084-*-1
+.1409	ce 63 73	dec $7363		dec  $7363
+.140c					EndCode1084:
+>140c	2d 2d 49 00				.byte	$2d,$2d,$49,0
+>1410	0a					.byte	EndCode1085-*-1
+.1411	48		pha			pha
+.1412	a5 63		lda $63			lda  $63
+.1414	d0 02		bne $1418		bne  _NoBorrow
+.1416	c6 83		dec $83			dec  $83
+.1418					_NoBorrow:
+.1418	c6 63		dec $63			dec  $63
+.141a	68		pla			pla
+.141b					EndCode1085:
+>141b	2d 2d 4c 00				.byte	$2d,$2d,$4c,0
+>141f	0d					.byte	EndCode1086-*-1
+.1420	48		pha			pha
+.1421	ad 63 73	lda $7363		lda  $7363
+.1424	d0 03		bne $1429		bne  _NoBorrow
+.1426	ce 83 73	dec $7383		dec  $7383
+.1429					_NoBorrow:
+.1429	ce 63 73	dec $7363		dec  $7363
+.142c	68		pla			pla
+.142d					EndCode1086:
+>142d	2d 2d 72 00				.byte	$2d,$2d,$72,0
+>1431	06					.byte	EndCode1087-*-1
+.1432	c9 00		cmp #$00		cmp  #0
+.1434	d0 01		bne $1437		bne  *+3
+.1436	ca		dex			dex
+.1437	3a		dec a			dec  a
+.1438					EndCode1087:
+>1438	2d 2d 61 00				.byte	$2d,$2d,$61,0
+>143c	01					.byte	EndCode1088-*-1
+.143d	3a		dec a			dec  a
+.143e					EndCode1088:
+>143e	2d 2d 79 00				.byte	$2d,$2d,$79,0
+>1442	01					.byte	EndCode1089-*-1
+.1443	88		dey			dey
+.1444					EndCode1089:
+>1444	3c 3c 53 00				.byte	$3c,$3c,$53,0
+>1448	02					.byte	EndCode1090-*-1
+.1449	06 63		asl $63			asl  $63
+.144b					EndCode1090:
+>144b	3c 3c 43 00				.byte	$3c,$3c,$43,0
+>144f	03					.byte	EndCode1091-*-1
+.1450	0e 63 73	asl $7363		asl  $7363
+.1453					EndCode1091:
+>1453	3c 3c 49 00				.byte	$3c,$3c,$49,0
+>1457	04					.byte	EndCode1092-*-1
+.1458	06 63		asl $63			asl  $63
+.145a	26 83		rol $83			rol  $83
+.145c					EndCode1092:
+>145c	3c 3c 4c 00				.byte	$3c,$3c,$4c,0
+>1460	06					.byte	EndCode1093-*-1
+.1461	0e 63 73	asl $7363		asl  $7363
+.1464	2e 83 73	rol $7383		rol  $7383
+.1467					EndCode1093:
+>1467	3c 3c 72 00				.byte	$3c,$3c,$72,0
+>146b	06					.byte	EndCode1094-*-1
+.146c	0a		asl a			asl  a
+.146d	48		pha			pha
+.146e	8a		txa			txa
+.146f	2a		rol a			rol  a
+.1470	aa		tax			tax
+.1471	68		pla			pla
+.1472					EndCode1094:
+>1472	3c 3c 61 00				.byte	$3c,$3c,$61,0
+>1476	01					.byte	EndCode1095-*-1
+.1477	0a		asl a			asl  a
+.1478					EndCode1095:
+>1478	3e 3e 53 00				.byte	$3e,$3e,$53,0
+>147c	02					.byte	EndCode1096-*-1
+.147d	46 63		lsr $63			lsr  $63
+.147f					EndCode1096:
+>147f	3e 3e 43 00				.byte	$3e,$3e,$43,0
+>1483	03					.byte	EndCode1097-*-1
+.1484	4e 63 73	lsr $7363		lsr  $7363
+.1487					EndCode1097:
+>1487	3e 3e 49 00				.byte	$3e,$3e,$49,0
+>148b	04					.byte	EndCode1098-*-1
+.148c	46 83		lsr $83			lsr  $83
+.148e	66 63		ror $63			ror  $63
+.1490					EndCode1098:
+>1490	3e 3e 4c 00				.byte	$3e,$3e,$4c,0
+>1494	06					.byte	EndCode1099-*-1
+.1495	4e 83 73	lsr $7383		lsr  $7383
+.1498	6e 63 73	ror $7363		ror  $7363
+.149b					EndCode1099:
+>149b	3e 3e 72 00				.byte	$3e,$3e,$72,0
+>149f	06					.byte	EndCode1100-*-1
+.14a0	48		pha			pha
+.14a1	8a		txa			txa
+.14a2	4a		lsr a			lsr  a
+.14a3	aa		tax			tax
+.14a4	68		pla			pla
+.14a5	6a		ror a			ror  a
+.14a6					EndCode1100:
+>14a6	3e 3e 61 00				.byte	$3e,$3e,$61,0
+>14aa	01					.byte	EndCode1101-*-1
+.14ab	4a		lsr a			lsr  a
+.14ac					EndCode1101:
+>14ac	43 3d 72 00				.byte	$43,$3d,$72,0
+>14b0	03					.byte	EndCode1102-*-1
+.14b1	8d 63 73	sta $7363		sta  $7363
+.14b4					EndCode1102:
+>14b4	43 3d 61 00				.byte	$43,$3d,$61,0
+>14b8	03					.byte	EndCode1103-*-1
+.14b9	8d 63 73	sta $7363		sta  $7363
+.14bc					EndCode1103:
+>14bc	43 3d 79 00				.byte	$43,$3d,$79,0
+>14c0	03					.byte	EndCode1104-*-1
+.14c1	8c 63 73	sty $7363		sty  $7363
+.14c4					EndCode1104:
+>14c4	49 3d 72 00				.byte	$49,$3d,$72,0
+>14c8	04					.byte	EndCode1105-*-1
+.14c9	85 63		sta $63			sta  $63
+.14cb	86 83		stx $83			stx  $83
+.14cd					EndCode1105:
+>14cd	4c 3d 72 00				.byte	$4c,$3d,$72,0
+>14d1	06					.byte	EndCode1106-*-1
+.14d2	8d 63 73	sta $7363		sta  $7363
+.14d5	8e 83 73	stx $7383		stx  $7383
+.14d8					EndCode1106:
+>14d8	50 28 2a 00				.byte	$50,$28,$2a,0
+>14dc	02					.byte	EndCode1107-*-1
+>14dd	a3 0d					.byte	$a3,$0d
+.14df					EndCode1107:
+>14df	53 3d 72 00				.byte	$53,$3d,$72,0
+>14e3	02					.byte	EndCode1108-*-1
+.14e4	85 63		sta $63			sta  $63
+.14e6					EndCode1108:
+>14e6	53 3d 61 00				.byte	$53,$3d,$61,0
+>14ea	02					.byte	EndCode1109-*-1
+.14eb	85 63		sta $63			sta  $63
+.14ed					EndCode1109:
+>14ed	53 3d 79 00				.byte	$53,$3d,$79,0
+>14f1	02					.byte	EndCode1110-*-1
+.14f2	84 63		sty $63			sty  $63
+.14f4					EndCode1110:
+>14f4	61 5e 42 00				.byte	$61,$5e,$42,0
+>14f8	02					.byte	EndCode1111-*-1
+.14f9	49 63		eor #$63		eor  #$63
+.14fb					EndCode1111:
+>14fb	61 5e 53 00				.byte	$61,$5e,$53,0
+>14ff	02					.byte	EndCode1112-*-1
+.1500	45 63		eor $63			eor  $63
+.1502					EndCode1112:
+>1502	61 5e 43 00				.byte	$61,$5e,$43,0
+>1506	03					.byte	EndCode1113-*-1
+.1507	4d 63 73	eor $7363		eor  $7363
+.150a					EndCode1113:
+>150a	61 2d 42 00				.byte	$61,$2d,$42,0
+>150e	03					.byte	EndCode1114-*-1
+.150f	38		sec			sec
+.1510	e9 63		sbc #$63		sbc  #$63
+.1512					EndCode1114:
+>1512	61 2d 53 00				.byte	$61,$2d,$53,0
+>1516	03					.byte	EndCode1115-*-1
+.1517	38		sec			sec
+.1518	e5 63		sbc $63			sbc  $63
+.151a					EndCode1115:
+>151a	61 2d 43 00				.byte	$61,$2d,$43,0
+>151e	04					.byte	EndCode1116-*-1
+.151f	38		sec			sec
+.1520	ed 63 73	sbc $7363		sbc  $7363
+.1523					EndCode1116:
+>1523	61 7c 42 00				.byte	$61,$7c,$42,0
+>1527	02					.byte	EndCode1117-*-1
+.1528	09 63		ora #$63		ora  #$63
+.152a					EndCode1117:
+>152a	61 7c 53 00				.byte	$61,$7c,$53,0
+>152e	02					.byte	EndCode1118-*-1
+.152f	05 63		ora $63			ora  $63
+.1531					EndCode1118:
+>1531	61 7c 43 00				.byte	$61,$7c,$43,0
+>1535	03					.byte	EndCode1119-*-1
+.1536	0d 63 73	ora $7363		ora  $7363
+.1539					EndCode1119:
+>1539	61 26 42 00				.byte	$61,$26,$42,0
+>153d	02					.byte	EndCode1120-*-1
+.153e	29 63		and #$63		and  #$63
+.1540					EndCode1120:
+>1540	61 26 53 00				.byte	$61,$26,$53,0
+>1544	02					.byte	EndCode1121-*-1
+.1545	25 63		and $63			and  $63
+.1547					EndCode1121:
+>1547	61 26 43 00				.byte	$61,$26,$43,0
+>154b	03					.byte	EndCode1122-*-1
+.154c	2d 63 73	and $7363		and  $7363
+.154f					EndCode1122:
+>154f	61 2b 42 00				.byte	$61,$2b,$42,0
+>1553	03					.byte	EndCode1123-*-1
+.1554	18		clc			clc
+.1555	69 63		adc #$63		adc  #$63
+.1557					EndCode1123:
+>1557	61 2b 53 00				.byte	$61,$2b,$53,0
+>155b	03					.byte	EndCode1124-*-1
+.155c	18		clc			clc
+.155d	65 63		adc $63			adc  $63
+.155f					EndCode1124:
+>155f	61 2b 43 00				.byte	$61,$2b,$43,0
+>1563	04					.byte	EndCode1125-*-1
+.1564	18		clc			clc
+.1565	6d 63 73	adc $7363		adc  $7363
+.1568					EndCode1125:
+>1568	61 3d 3f 00				.byte	$61,$3d,$3f,0
+>156c	05					.byte	EndCode1126-*-1
+.156d	c9 00		cmp #$00		cmp #0
+>156f	93					.byte $93
+.1570	f0 fe		beq $1570		beq *
+.1572					EndCode1126:
+>1572	61 2b 3f 00				.byte	$61,$2b,$3f,0
+>1576	05					.byte	EndCode1127-*-1
+.1577	c9 00		cmp #$00		cmp #0
+>1579	93					.byte $93
+.157a	10 fe		bpl $157a		bpl *
+.157c					EndCode1127:
+>157c	61 2d 3f 00				.byte	$61,$2d,$3f,0
+>1580	05					.byte	EndCode1128-*-1
+.1581	c9 00		cmp #$00		cmp #0
+>1583	93					.byte $93
+.1584	30 fe		bmi $1584		bmi *
 .1586					EndCode1128:
->1586	61 3d 72 00				.byte	$61,$3d,$72,0
->158a	00					.byte	EndCode1129-*-1
-.158b					EndCode1129:
->158b	61 3d 42 00				.byte	$61,$3d,$42,0
->158f	02					.byte	EndCode1130-*-1
-.1590	a9 63		lda #$63		lda  #$63
-.1592					EndCode1130:
->1592	61 3d 53 00				.byte	$61,$3d,$53,0
->1596	02					.byte	EndCode1131-*-1
-.1597	a5 63		lda $63			lda  $63
-.1599					EndCode1131:
->1599	61 3d 43 00				.byte	$61,$3d,$43,0
->159d	03					.byte	EndCode1132-*-1
-.159e	ad 63 73	lda $7363		lda  $7363
-.15a1					EndCode1132:
->15a1	63 73 3f 00				.byte	$63,$73,$3f,0
->15a5	03					.byte	EndCode1133-*-1
->15a6	93					.byte $93
-.15a7	b0 fe		bcs $15a7		bcs  *
-.15a9					EndCode1133:
->15a9	63 63 3f 00				.byte	$63,$63,$3f,0
->15ad	03					.byte	EndCode1134-*-1
->15ae	93					.byte $93
-.15af	90 fe		bcc $15af		bcc  *
-.15b1					EndCode1134:
->15b1	72 5e 42 00				.byte	$72,$5e,$42,0
->15b5	02					.byte	EndCode1135-*-1
-.15b6	49 63		eor #$63		eor  #$63
-.15b8					EndCode1135:
->15b8	72 5e 57 00				.byte	$72,$5e,$57,0
->15bc	08					.byte	EndCode1136-*-1
-.15bd	49 63		eor #$63		eor  #$63
-.15bf	48		pha			pha
-.15c0	8a		txa			txa
-.15c1	49 73		eor #$73		eor  #$73
-.15c3	aa		tax			tax
-.15c4	68		pla			pla
-.15c5					EndCode1136:
->15c5	72 5e 49 00				.byte	$72,$5e,$49,0
->15c9	08					.byte	EndCode1137-*-1
-.15ca	45 63		eor $63			eor  $63
-.15cc	48		pha			pha
-.15cd	8a		txa			txa
-.15ce	45 83		eor $83			eor  $83
-.15d0	aa		tax			tax
-.15d1	68		pla			pla
-.15d2					EndCode1137:
->15d2	72 5e 4c 00				.byte	$72,$5e,$4c,0
->15d6	0a					.byte	EndCode1138-*-1
-.15d7	4d 63 73	eor $7363		eor  $7363
-.15da	48		pha			pha
-.15db	8a		txa			txa
-.15dc	4d 83 73	eor $7383		eor  $7383
-.15df	aa		tax			tax
-.15e0	68		pla			pla
-.15e1					EndCode1138:
->15e1	72 5e 53 00				.byte	$72,$5e,$53,0
->15e5	02					.byte	EndCode1139-*-1
-.15e6	45 63		eor $63			eor  $63
-.15e8					EndCode1139:
->15e8	72 5e 43 00				.byte	$72,$5e,$43,0
->15ec	03					.byte	EndCode1140-*-1
-.15ed	4d 63 73	eor $7363		eor  $7363
-.15f0					EndCode1140:
->15f0	72 2d 42 00				.byte	$72,$2d,$42,0
->15f4	06					.byte	EndCode1141-*-1
-.15f5	38		sec			sec
-.15f6	e9 63		sbc #$63		sbc  #$63
-.15f8	b0 01		bcs $15fb		bcs  *+3
-.15fa	ca		dex			dex
-.15fb					EndCode1141:
->15fb	72 2d 57 00				.byte	$72,$2d,$57,0
->15ff	09					.byte	EndCode1142-*-1
-.1600	38		sec			sec
-.1601	e9 63		sbc #$63		sbc  #$63
-.1603	48		pha			pha
-.1604	8a		txa			txa
-.1605	e9 73		sbc #$73		sbc  #$73
-.1607	aa		tax			tax
-.1608	68		pla			pla
-.1609					EndCode1142:
->1609	72 2d 49 00				.byte	$72,$2d,$49,0
->160d	09					.byte	EndCode1143-*-1
-.160e	38		sec			sec
-.160f	e5 63		sbc $63			sbc  $63
-.1611	48		pha			pha
-.1612	8a		txa			txa
-.1613	e5 83		sbc $83			sbc  $83
-.1615	aa		tax			tax
-.1616	68		pla			pla
-.1617					EndCode1143:
->1617	72 2d 4c 00				.byte	$72,$2d,$4c,0
->161b	0b					.byte	EndCode1144-*-1
-.161c	38		sec			sec
-.161d	ed 63 73	sbc $7363		sbc  $7363
-.1620	48		pha			pha
-.1621	8a		txa			txa
-.1622	ed 83 73	sbc $7383		sbc  $7383
-.1625	aa		tax			tax
-.1626	68		pla			pla
-.1627					EndCode1144:
->1627	72 2d 53 00				.byte	$72,$2d,$53,0
->162b	06					.byte	EndCode1145-*-1
-.162c	38		sec			sec
-.162d	e5 63		sbc $63			sbc  $63
-.162f	b0 01		bcs $1632		bcs  *+3
-.1631	ca		dex			dex
-.1632					EndCode1145:
->1632	72 2d 43 00				.byte	$72,$2d,$43,0
->1636	07					.byte	EndCode1146-*-1
-.1637	38		sec			sec
-.1638	ed 63 73	sbc $7363		sbc  $7363
-.163b	b0 01		bcs $163e		bcs  *+3
-.163d	ca		dex			dex
-.163e					EndCode1146:
->163e	72 7c 42 00				.byte	$72,$7c,$42,0
->1642	02					.byte	EndCode1147-*-1
-.1643	09 63		ora #$63		ora  #$63
-.1645					EndCode1147:
->1645	72 7c 57 00				.byte	$72,$7c,$57,0
->1649	08					.byte	EndCode1148-*-1
-.164a	09 63		ora #$63		ora  #$63
-.164c	48		pha			pha
-.164d	8a		txa			txa
-.164e	09 73		ora #$73		ora  #$73
-.1650	aa		tax			tax
-.1651	68		pla			pla
-.1652					EndCode1148:
->1652	72 7c 49 00				.byte	$72,$7c,$49,0
->1656	08					.byte	EndCode1149-*-1
-.1657	05 63		ora $63			ora  $63
-.1659	48		pha			pha
-.165a	8a		txa			txa
-.165b	05 83		ora $83			ora  $83
-.165d	aa		tax			tax
-.165e	68		pla			pla
-.165f					EndCode1149:
->165f	72 7c 4c 00				.byte	$72,$7c,$4c,0
->1663	0a					.byte	EndCode1150-*-1
-.1664	0d 63 73	ora $7363		ora  $7363
-.1667	48		pha			pha
-.1668	8a		txa			txa
-.1669	0d 83 73	ora $7383		ora  $7383
-.166c	aa		tax			tax
-.166d	68		pla			pla
-.166e					EndCode1150:
->166e	72 7c 53 00				.byte	$72,$7c,$53,0
->1672	02					.byte	EndCode1151-*-1
-.1673	05 63		ora $63			ora  $63
-.1675					EndCode1151:
->1675	72 7c 43 00				.byte	$72,$7c,$43,0
->1679	03					.byte	EndCode1152-*-1
-.167a	0d 63 73	ora $7363		ora  $7363
-.167d					EndCode1152:
->167d	72 26 42 00				.byte	$72,$26,$42,0
->1681	04					.byte	EndCode1153-*-1
-.1682	29 63		and #$63		and  #$63
-.1684	a2 00		ldx #$00		ldx  #0
-.1686					EndCode1153:
->1686	72 26 57 00				.byte	$72,$26,$57,0
->168a	08					.byte	EndCode1154-*-1
-.168b	29 63		and #$63		and  #$63
-.168d	48		pha			pha
-.168e	8a		txa			txa
-.168f	29 73		and #$73		and  #$73
-.1691	aa		tax			tax
-.1692	68		pla			pla
-.1693					EndCode1154:
->1693	72 26 49 00				.byte	$72,$26,$49,0
->1697	08					.byte	EndCode1155-*-1
-.1698	25 63		and $63			and  $63
-.169a	48		pha			pha
-.169b	8a		txa			txa
-.169c	25 83		and $83			and  $83
-.169e	aa		tax			tax
-.169f	68		pla			pla
-.16a0					EndCode1155:
->16a0	72 26 4c 00				.byte	$72,$26,$4c,0
->16a4	0a					.byte	EndCode1156-*-1
-.16a5	2d 63 73	and $7363		and  $7363
-.16a8	48		pha			pha
-.16a9	8a		txa			txa
-.16aa	2d 83 73	and $7383		and  $7383
-.16ad	aa		tax			tax
-.16ae	68		pla			pla
-.16af					EndCode1156:
->16af	72 26 53 00				.byte	$72,$26,$53,0
->16b3	04					.byte	EndCode1157-*-1
-.16b4	25 63		and $63			and  $63
-.16b6	a2 00		ldx #$00		ldx  #0
-.16b8					EndCode1157:
->16b8	72 26 43 00				.byte	$72,$26,$43,0
->16bc	05					.byte	EndCode1158-*-1
-.16bd	2d 63 73	and $7363		and  $7363
-.16c0	a2 00		ldx #$00		ldx  #0
-.16c2					EndCode1158:
->16c2	72 2b 42 00				.byte	$72,$2b,$42,0
->16c6	06					.byte	EndCode1159-*-1
-.16c7	18		clc			clc
-.16c8	69 63		adc #$63		adc  #$63
-.16ca	90 01		bcc $16cd		bcc  *+3
-.16cc	e8		inx			inx
-.16cd					EndCode1159:
->16cd	72 2b 57 00				.byte	$72,$2b,$57,0
->16d1	09					.byte	EndCode1160-*-1
-.16d2	18		clc			clc
-.16d3	69 63		adc #$63		adc  #$63
-.16d5	48		pha			pha
-.16d6	8a		txa			txa
-.16d7	69 73		adc #$73		adc  #$73
-.16d9	aa		tax			tax
-.16da	68		pla			pla
-.16db					EndCode1160:
->16db	72 2b 49 00				.byte	$72,$2b,$49,0
->16df	09					.byte	EndCode1161-*-1
-.16e0	18		clc			clc
-.16e1	65 63		adc $63			adc  $63
-.16e3	48		pha			pha
-.16e4	8a		txa			txa
-.16e5	65 83		adc $83			adc  $83
-.16e7	aa		tax			tax
-.16e8	68		pla			pla
-.16e9					EndCode1161:
->16e9	72 2b 4c 00				.byte	$72,$2b,$4c,0
->16ed	0b					.byte	EndCode1162-*-1
-.16ee	18		clc			clc
-.16ef	6d 63 73	adc $7363		adc  $7363
-.16f2	48		pha			pha
-.16f3	8a		txa			txa
-.16f4	6d 83 73	adc $7383		adc  $7383
-.16f7	aa		tax			tax
-.16f8	68		pla			pla
-.16f9					EndCode1162:
->16f9	72 2b 53 00				.byte	$72,$2b,$53,0
->16fd	06					.byte	EndCode1163-*-1
-.16fe	18		clc			clc
-.16ff	65 63		adc $63			adc  $63
-.1701	90 01		bcc $1704		bcc  *+3
-.1703	e8		inx			inx
-.1704					EndCode1163:
->1704	72 2b 43 00				.byte	$72,$2b,$43,0
->1708	07					.byte	EndCode1164-*-1
-.1709	18		clc			clc
-.170a	6d 63 73	adc $7363		adc  $7363
-.170d	90 01		bcc $1710		bcc  *+3
-.170f	e8		inx			inx
-.1710					EndCode1164:
->1710	72 3d 3f 00				.byte	$72,$3d,$3f,0
->1714	09					.byte	EndCode1165-*-1
-.1715	c9 00		cmp #$00		cmp #0
-.1717	d0 02		bne $171b		bne *+4
-.1719	e0 00		cpx #$00		cpx #0
->171b	93					.byte $93
-.171c	f0 fe		beq $171c		beq *
-.171e					EndCode1165:
->171e	72 2b 3f 00				.byte	$72,$2b,$3f,0
->1722	05					.byte	EndCode1166-*-1
-.1723	e0 00		cpx #$00		cpx #0
->1725	93					.byte $93
-.1726	10 fe		bpl $1726		bpl *
-.1728					EndCode1166:
->1728	72 2d 3f 00				.byte	$72,$2d,$3f,0
->172c	05					.byte	EndCode1167-*-1
-.172d	e0 00		cpx #$00		cpx #0
->172f	93					.byte $93
-.1730	30 fe		bmi $1730		bmi *
-.1732					EndCode1167:
->1732	72 3d 61 00				.byte	$72,$3d,$61,0
->1736	02					.byte	EndCode1168-*-1
-.1737	a2 00		ldx #$00		ldx  #0
-.1739					EndCode1168:
->1739	72 3d 79 00				.byte	$72,$3d,$79,0
->173d	03					.byte	EndCode1169-*-1
-.173e	98		tya			tya
-.173f	a2 00		ldx #$00		ldx  #0
-.1741					EndCode1169:
->1741	72 3d 42 00				.byte	$72,$3d,$42,0
->1745	04					.byte	EndCode1170-*-1
-.1746	a9 63		lda #$63		lda  #$63
-.1748	a2 73		ldx #$73		ldx  #$73
-.174a					EndCode1170:
->174a	72 3d 57 00				.byte	$72,$3d,$57,0
->174e	04					.byte	EndCode1171-*-1
-.174f	a9 63		lda #$63		lda  #$63
-.1751	a2 73		ldx #$73		ldx  #$73
-.1753					EndCode1171:
->1753	72 3d 49 00				.byte	$72,$3d,$49,0
->1757	04					.byte	EndCode1172-*-1
-.1758	a5 63		lda $63			lda  $63
-.175a	a6 83		ldx $83			ldx  $83
-.175c					EndCode1172:
->175c	72 3d 4c 00				.byte	$72,$3d,$4c,0
->1760	06					.byte	EndCode1173-*-1
-.1761	ad 63 73	lda $7363		lda  $7363
-.1764	ae 83 73	ldx $7383		ldx  $7383
-.1767					EndCode1173:
->1767	72 3d 53 00				.byte	$72,$3d,$53,0
->176b	04					.byte	EndCode1174-*-1
-.176c	a5 63		lda $63			lda  $63
-.176e	a2 00		ldx #$00		ldx  #0
-.1770					EndCode1174:
->1770	72 3d 43 00				.byte	$72,$3d,$43,0
->1774	05					.byte	EndCode1175-*-1
-.1775	ad 63 73	lda $7363		lda  $7363
-.1778	a2 00		ldx #$00		ldx  #0
-.177a					EndCode1175:
->177a	79 3d 61 00				.byte	$79,$3d,$61,0
->177e	01					.byte	EndCode1176-*-1
-.177f	a8		tay			tay
+>1586	61 3d 79 00				.byte	$61,$3d,$79,0
+>158a	01					.byte	EndCode1129-*-1
+.158b	98		tya			tya
+.158c					EndCode1129:
+>158c	61 3d 72 00				.byte	$61,$3d,$72,0
+>1590	00					.byte	EndCode1130-*-1
+.1591					EndCode1130:
+>1591	61 3d 42 00				.byte	$61,$3d,$42,0
+>1595	02					.byte	EndCode1131-*-1
+.1596	a9 63		lda #$63		lda  #$63
+.1598					EndCode1131:
+>1598	61 3d 53 00				.byte	$61,$3d,$53,0
+>159c	02					.byte	EndCode1132-*-1
+.159d	a5 63		lda $63			lda  $63
+.159f					EndCode1132:
+>159f	61 3d 43 00				.byte	$61,$3d,$43,0
+>15a3	03					.byte	EndCode1133-*-1
+.15a4	ad 63 73	lda $7363		lda  $7363
+.15a7					EndCode1133:
+>15a7	63 73 3f 00				.byte	$63,$73,$3f,0
+>15ab	03					.byte	EndCode1134-*-1
+>15ac	93					.byte $93
+.15ad	b0 fe		bcs $15ad		bcs  *
+.15af					EndCode1134:
+>15af	63 63 3f 00				.byte	$63,$63,$3f,0
+>15b3	03					.byte	EndCode1135-*-1
+>15b4	93					.byte $93
+.15b5	90 fe		bcc $15b5		bcc  *
+.15b7					EndCode1135:
+>15b7	72 5e 42 00				.byte	$72,$5e,$42,0
+>15bb	02					.byte	EndCode1136-*-1
+.15bc	49 63		eor #$63		eor  #$63
+.15be					EndCode1136:
+>15be	72 5e 57 00				.byte	$72,$5e,$57,0
+>15c2	08					.byte	EndCode1137-*-1
+.15c3	49 63		eor #$63		eor  #$63
+.15c5	48		pha			pha
+.15c6	8a		txa			txa
+.15c7	49 73		eor #$73		eor  #$73
+.15c9	aa		tax			tax
+.15ca	68		pla			pla
+.15cb					EndCode1137:
+>15cb	72 5e 49 00				.byte	$72,$5e,$49,0
+>15cf	08					.byte	EndCode1138-*-1
+.15d0	45 63		eor $63			eor  $63
+.15d2	48		pha			pha
+.15d3	8a		txa			txa
+.15d4	45 83		eor $83			eor  $83
+.15d6	aa		tax			tax
+.15d7	68		pla			pla
+.15d8					EndCode1138:
+>15d8	72 5e 4c 00				.byte	$72,$5e,$4c,0
+>15dc	0a					.byte	EndCode1139-*-1
+.15dd	4d 63 73	eor $7363		eor  $7363
+.15e0	48		pha			pha
+.15e1	8a		txa			txa
+.15e2	4d 83 73	eor $7383		eor  $7383
+.15e5	aa		tax			tax
+.15e6	68		pla			pla
+.15e7					EndCode1139:
+>15e7	72 5e 53 00				.byte	$72,$5e,$53,0
+>15eb	02					.byte	EndCode1140-*-1
+.15ec	45 63		eor $63			eor  $63
+.15ee					EndCode1140:
+>15ee	72 5e 43 00				.byte	$72,$5e,$43,0
+>15f2	03					.byte	EndCode1141-*-1
+.15f3	4d 63 73	eor $7363		eor  $7363
+.15f6					EndCode1141:
+>15f6	72 2d 42 00				.byte	$72,$2d,$42,0
+>15fa	06					.byte	EndCode1142-*-1
+.15fb	38		sec			sec
+.15fc	e9 63		sbc #$63		sbc  #$63
+.15fe	b0 01		bcs $1601		bcs  *+3
+.1600	ca		dex			dex
+.1601					EndCode1142:
+>1601	72 2d 57 00				.byte	$72,$2d,$57,0
+>1605	09					.byte	EndCode1143-*-1
+.1606	38		sec			sec
+.1607	e9 63		sbc #$63		sbc  #$63
+.1609	48		pha			pha
+.160a	8a		txa			txa
+.160b	e9 73		sbc #$73		sbc  #$73
+.160d	aa		tax			tax
+.160e	68		pla			pla
+.160f					EndCode1143:
+>160f	72 2d 49 00				.byte	$72,$2d,$49,0
+>1613	09					.byte	EndCode1144-*-1
+.1614	38		sec			sec
+.1615	e5 63		sbc $63			sbc  $63
+.1617	48		pha			pha
+.1618	8a		txa			txa
+.1619	e5 83		sbc $83			sbc  $83
+.161b	aa		tax			tax
+.161c	68		pla			pla
+.161d					EndCode1144:
+>161d	72 2d 4c 00				.byte	$72,$2d,$4c,0
+>1621	0b					.byte	EndCode1145-*-1
+.1622	38		sec			sec
+.1623	ed 63 73	sbc $7363		sbc  $7363
+.1626	48		pha			pha
+.1627	8a		txa			txa
+.1628	ed 83 73	sbc $7383		sbc  $7383
+.162b	aa		tax			tax
+.162c	68		pla			pla
+.162d					EndCode1145:
+>162d	72 2d 53 00				.byte	$72,$2d,$53,0
+>1631	06					.byte	EndCode1146-*-1
+.1632	38		sec			sec
+.1633	e5 63		sbc $63			sbc  $63
+.1635	b0 01		bcs $1638		bcs  *+3
+.1637	ca		dex			dex
+.1638					EndCode1146:
+>1638	72 2d 43 00				.byte	$72,$2d,$43,0
+>163c	07					.byte	EndCode1147-*-1
+.163d	38		sec			sec
+.163e	ed 63 73	sbc $7363		sbc  $7363
+.1641	b0 01		bcs $1644		bcs  *+3
+.1643	ca		dex			dex
+.1644					EndCode1147:
+>1644	72 7c 42 00				.byte	$72,$7c,$42,0
+>1648	02					.byte	EndCode1148-*-1
+.1649	09 63		ora #$63		ora  #$63
+.164b					EndCode1148:
+>164b	72 7c 57 00				.byte	$72,$7c,$57,0
+>164f	08					.byte	EndCode1149-*-1
+.1650	09 63		ora #$63		ora  #$63
+.1652	48		pha			pha
+.1653	8a		txa			txa
+.1654	09 73		ora #$73		ora  #$73
+.1656	aa		tax			tax
+.1657	68		pla			pla
+.1658					EndCode1149:
+>1658	72 7c 49 00				.byte	$72,$7c,$49,0
+>165c	08					.byte	EndCode1150-*-1
+.165d	05 63		ora $63			ora  $63
+.165f	48		pha			pha
+.1660	8a		txa			txa
+.1661	05 83		ora $83			ora  $83
+.1663	aa		tax			tax
+.1664	68		pla			pla
+.1665					EndCode1150:
+>1665	72 7c 4c 00				.byte	$72,$7c,$4c,0
+>1669	0a					.byte	EndCode1151-*-1
+.166a	0d 63 73	ora $7363		ora  $7363
+.166d	48		pha			pha
+.166e	8a		txa			txa
+.166f	0d 83 73	ora $7383		ora  $7383
+.1672	aa		tax			tax
+.1673	68		pla			pla
+.1674					EndCode1151:
+>1674	72 7c 53 00				.byte	$72,$7c,$53,0
+>1678	02					.byte	EndCode1152-*-1
+.1679	05 63		ora $63			ora  $63
+.167b					EndCode1152:
+>167b	72 7c 43 00				.byte	$72,$7c,$43,0
+>167f	03					.byte	EndCode1153-*-1
+.1680	0d 63 73	ora $7363		ora  $7363
+.1683					EndCode1153:
+>1683	72 26 42 00				.byte	$72,$26,$42,0
+>1687	04					.byte	EndCode1154-*-1
+.1688	29 63		and #$63		and  #$63
+.168a	a2 00		ldx #$00		ldx  #0
+.168c					EndCode1154:
+>168c	72 26 57 00				.byte	$72,$26,$57,0
+>1690	08					.byte	EndCode1155-*-1
+.1691	29 63		and #$63		and  #$63
+.1693	48		pha			pha
+.1694	8a		txa			txa
+.1695	29 73		and #$73		and  #$73
+.1697	aa		tax			tax
+.1698	68		pla			pla
+.1699					EndCode1155:
+>1699	72 26 49 00				.byte	$72,$26,$49,0
+>169d	08					.byte	EndCode1156-*-1
+.169e	25 63		and $63			and  $63
+.16a0	48		pha			pha
+.16a1	8a		txa			txa
+.16a2	25 83		and $83			and  $83
+.16a4	aa		tax			tax
+.16a5	68		pla			pla
+.16a6					EndCode1156:
+>16a6	72 26 4c 00				.byte	$72,$26,$4c,0
+>16aa	0a					.byte	EndCode1157-*-1
+.16ab	2d 63 73	and $7363		and  $7363
+.16ae	48		pha			pha
+.16af	8a		txa			txa
+.16b0	2d 83 73	and $7383		and  $7383
+.16b3	aa		tax			tax
+.16b4	68		pla			pla
+.16b5					EndCode1157:
+>16b5	72 26 53 00				.byte	$72,$26,$53,0
+>16b9	04					.byte	EndCode1158-*-1
+.16ba	25 63		and $63			and  $63
+.16bc	a2 00		ldx #$00		ldx  #0
+.16be					EndCode1158:
+>16be	72 26 43 00				.byte	$72,$26,$43,0
+>16c2	05					.byte	EndCode1159-*-1
+.16c3	2d 63 73	and $7363		and  $7363
+.16c6	a2 00		ldx #$00		ldx  #0
+.16c8					EndCode1159:
+>16c8	72 2b 42 00				.byte	$72,$2b,$42,0
+>16cc	06					.byte	EndCode1160-*-1
+.16cd	18		clc			clc
+.16ce	69 63		adc #$63		adc  #$63
+.16d0	90 01		bcc $16d3		bcc  *+3
+.16d2	e8		inx			inx
+.16d3					EndCode1160:
+>16d3	72 2b 57 00				.byte	$72,$2b,$57,0
+>16d7	09					.byte	EndCode1161-*-1
+.16d8	18		clc			clc
+.16d9	69 63		adc #$63		adc  #$63
+.16db	48		pha			pha
+.16dc	8a		txa			txa
+.16dd	69 73		adc #$73		adc  #$73
+.16df	aa		tax			tax
+.16e0	68		pla			pla
+.16e1					EndCode1161:
+>16e1	72 2b 49 00				.byte	$72,$2b,$49,0
+>16e5	09					.byte	EndCode1162-*-1
+.16e6	18		clc			clc
+.16e7	65 63		adc $63			adc  $63
+.16e9	48		pha			pha
+.16ea	8a		txa			txa
+.16eb	65 83		adc $83			adc  $83
+.16ed	aa		tax			tax
+.16ee	68		pla			pla
+.16ef					EndCode1162:
+>16ef	72 2b 4c 00				.byte	$72,$2b,$4c,0
+>16f3	0b					.byte	EndCode1163-*-1
+.16f4	18		clc			clc
+.16f5	6d 63 73	adc $7363		adc  $7363
+.16f8	48		pha			pha
+.16f9	8a		txa			txa
+.16fa	6d 83 73	adc $7383		adc  $7383
+.16fd	aa		tax			tax
+.16fe	68		pla			pla
+.16ff					EndCode1163:
+>16ff	72 2b 53 00				.byte	$72,$2b,$53,0
+>1703	06					.byte	EndCode1164-*-1
+.1704	18		clc			clc
+.1705	65 63		adc $63			adc  $63
+.1707	90 01		bcc $170a		bcc  *+3
+.1709	e8		inx			inx
+.170a					EndCode1164:
+>170a	72 2b 43 00				.byte	$72,$2b,$43,0
+>170e	07					.byte	EndCode1165-*-1
+.170f	18		clc			clc
+.1710	6d 63 73	adc $7363		adc  $7363
+.1713	90 01		bcc $1716		bcc  *+3
+.1715	e8		inx			inx
+.1716					EndCode1165:
+>1716	72 3d 3f 00				.byte	$72,$3d,$3f,0
+>171a	09					.byte	EndCode1166-*-1
+.171b	c9 00		cmp #$00		cmp #0
+.171d	d0 02		bne $1721		bne *+4
+.171f	e0 00		cpx #$00		cpx #0
+>1721	93					.byte $93
+.1722	f0 fe		beq $1722		beq *
+.1724					EndCode1166:
+>1724	72 2b 3f 00				.byte	$72,$2b,$3f,0
+>1728	05					.byte	EndCode1167-*-1
+.1729	e0 00		cpx #$00		cpx #0
+>172b	93					.byte $93
+.172c	10 fe		bpl $172c		bpl *
+.172e					EndCode1167:
+>172e	72 2d 3f 00				.byte	$72,$2d,$3f,0
+>1732	05					.byte	EndCode1168-*-1
+.1733	e0 00		cpx #$00		cpx #0
+>1735	93					.byte $93
+.1736	30 fe		bmi $1736		bmi *
+.1738					EndCode1168:
+>1738	72 3d 61 00				.byte	$72,$3d,$61,0
+>173c	02					.byte	EndCode1169-*-1
+.173d	a2 00		ldx #$00		ldx  #0
+.173f					EndCode1169:
+>173f	72 3d 79 00				.byte	$72,$3d,$79,0
+>1743	03					.byte	EndCode1170-*-1
+.1744	98		tya			tya
+.1745	a2 00		ldx #$00		ldx  #0
+.1747					EndCode1170:
+>1747	72 3d 42 00				.byte	$72,$3d,$42,0
+>174b	04					.byte	EndCode1171-*-1
+.174c	a9 63		lda #$63		lda  #$63
+.174e	a2 73		ldx #$73		ldx  #$73
+.1750					EndCode1171:
+>1750	72 3d 57 00				.byte	$72,$3d,$57,0
+>1754	04					.byte	EndCode1172-*-1
+.1755	a9 63		lda #$63		lda  #$63
+.1757	a2 73		ldx #$73		ldx  #$73
+.1759					EndCode1172:
+>1759	72 3d 49 00				.byte	$72,$3d,$49,0
+>175d	04					.byte	EndCode1173-*-1
+.175e	a5 63		lda $63			lda  $63
+.1760	a6 83		ldx $83			ldx  $83
+.1762					EndCode1173:
+>1762	72 3d 4c 00				.byte	$72,$3d,$4c,0
+>1766	06					.byte	EndCode1174-*-1
+.1767	ad 63 73	lda $7363		lda  $7363
+.176a	ae 83 73	ldx $7383		ldx  $7383
+.176d					EndCode1174:
+>176d	72 3d 53 00				.byte	$72,$3d,$53,0
+>1771	04					.byte	EndCode1175-*-1
+.1772	a5 63		lda $63			lda  $63
+.1774	a2 00		ldx #$00		ldx  #0
+.1776					EndCode1175:
+>1776	72 3d 43 00				.byte	$72,$3d,$43,0
+>177a	05					.byte	EndCode1176-*-1
+.177b	ad 63 73	lda $7363		lda  $7363
+.177e	a2 00		ldx #$00		ldx  #0
 .1780					EndCode1176:
->1780	79 3d 72 00				.byte	$79,$3d,$72,0
+>1780	79 3d 61 00				.byte	$79,$3d,$61,0
 >1784	01					.byte	EndCode1177-*-1
 .1785	a8		tay			tay
 .1786					EndCode1177:
->1786	79 3d 42 00				.byte	$79,$3d,$42,0
->178a	02					.byte	EndCode1178-*-1
-.178b	a0 63		ldy #$63		ldy  #$63
-.178d					EndCode1178:
->178d	79 3d 53 00				.byte	$79,$3d,$53,0
->1791	02					.byte	EndCode1179-*-1
-.1792	a4 63		ldy $63			ldy  $63
-.1794					EndCode1179:
->1794	79 3d 43 00				.byte	$79,$3d,$43,0
->1798	03					.byte	EndCode1180-*-1
-.1799	ac 63 73	ldy $7363		ldy  $7363
-.179c					EndCode1180:
->179c	2d 61 00				.byte	$2d,$61,0
->179f	03					.byte	EndCode1181-*-1
-.17a0	49 ff		eor #$ff		eor  #$FF
-.17a2	1a		inc a			inc  a
-.17a3					EndCode1181:
->17a3	2d 72 00				.byte	$2d,$72,0
->17a6	0c					.byte	EndCode1182-*-1
-.17a7	48		pha			pha
-.17a8	8a		txa			txa
-.17a9	49 ff		eor #$ff		eor  #$FF
-.17ab	aa		tax			tax
-.17ac	68		pla			pla
-.17ad	49 ff		eor #$ff		eor  #$FF
-.17af	1a		inc a			inc  a
-.17b0	d0 01		bne $17b3		bne  *+3
-.17b2	e8		inx			inx
-.17b3					EndCode1182:
->17b3	50 2a 00				.byte	$50,$2a,0
->17b6	02					.byte	EndCode1183-*-1
->17b7	a3 0d					.byte	$a3,$0d
+>1786	79 3d 72 00				.byte	$79,$3d,$72,0
+>178a	01					.byte	EndCode1178-*-1
+.178b	a8		tay			tay
+.178c					EndCode1178:
+>178c	79 3d 42 00				.byte	$79,$3d,$42,0
+>1790	02					.byte	EndCode1179-*-1
+.1791	a0 63		ldy #$63		ldy  #$63
+.1793					EndCode1179:
+>1793	79 3d 53 00				.byte	$79,$3d,$53,0
+>1797	02					.byte	EndCode1180-*-1
+.1798	a4 63		ldy $63			ldy  $63
+.179a					EndCode1180:
+>179a	79 3d 43 00				.byte	$79,$3d,$43,0
+>179e	03					.byte	EndCode1181-*-1
+.179f	ac 63 73	ldy $7363		ldy  $7363
+.17a2					EndCode1181:
+>17a2	2d 61 00				.byte	$2d,$61,0
+>17a5	03					.byte	EndCode1182-*-1
+.17a6	49 ff		eor #$ff		eor  #$FF
+.17a8	1a		inc a			inc  a
+.17a9					EndCode1182:
+>17a9	2d 72 00				.byte	$2d,$72,0
+>17ac	0c					.byte	EndCode1183-*-1
+.17ad	48		pha			pha
+.17ae	8a		txa			txa
+.17af	49 ff		eor #$ff		eor  #$FF
+.17b1	aa		tax			tax
+.17b2	68		pla			pla
+.17b3	49 ff		eor #$ff		eor  #$FF
+.17b5	1a		inc a			inc  a
+.17b6	d0 01		bne $17b9		bne  *+3
+.17b8	e8		inx			inx
 .17b9					EndCode1183:
 >17b9	5e 61 00				.byte	$5e,$61,0
 >17bc	02					.byte	EndCode1184-*-1
