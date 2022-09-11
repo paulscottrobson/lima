@@ -11,6 +11,9 @@ CC = g++
 
 all: 
 
+lima$(APPSTEM) : lima.o dictionary.o evaluate.o generate.o 
+	$(CC) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
+
 testeval : eval_so$(APPSTEM)
 	./eval_so$(APPSTEM)
 	$(CDEL) eval_so$(APPSTEM)

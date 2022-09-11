@@ -51,6 +51,9 @@ typedef struct _definition {
 #define ERR_GAP (12) 			// Too big a branch.
 #define ERR_ZPAGE (13)			// Out of zero page memory
 
+#define DEFAULT_ZPAGE (0x20) 	// Default addresses for code generation
+#define DEFAULT_ABS   (0x600)
+#define DEFAULT_CODE  (0x8000)
 //
 //		Dictionary methods
 //

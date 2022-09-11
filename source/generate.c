@@ -44,8 +44,8 @@ void GENInitialise(void) {
 	inProcedure = 0; 																	// Not in procedure
 	gsp = 0;genStack[gsp] = 0x12345678; 												// Clear stack and put impossible value on it
 	macroDataHigh = macroDataLow = 0; 													// Zero data
-	nextVarLocation = 0x600;															// Put variables here.
-	nextZeroLocation = 0x20;
+	nextVarLocation = DEFAULT_ABS;														// Put variables here.
+	nextZeroLocation = DEFAULT_ZPAGE;
 }
 
 // *******************************************************************************************************************************
