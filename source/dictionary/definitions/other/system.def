@@ -19,29 +19,39 @@
 		[exec:byteVar]
 * 	word*			
 		[exec:wordVar]		
+* 	zbyte* 			
+		[exec:zeroByteVar]
+* 	zword*			
+		[exec:zeroWordVar]		
+
 *	clean.module
 		[exec:dictionarycrunch]		
+
 * 	repeat
 		[exec:repeat]
 * 	until 			
 		[exec:until]
+
 *	a.for
 		[exec:afor]
 *	r.for
 		[exec:rfor]
 *	next
 		[exec:next]
+
 *	if
 		[exec:if]			
 *	else
 		[exec:else]			
 * 	endif
 		[exec:endif]			
+
 * 	proc* 			
 		[exec:procedure_def]
 P	<proc>(*
 		[exec:call]
 *	endproc			
 		[exec:endproc]
+		
 *	break
 		.byte 	$DB

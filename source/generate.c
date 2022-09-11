@@ -17,6 +17,8 @@ static int _GENRepeatUntil(int code,char *param,char *cmd);
 static int _GENForNextLoop(int code,char *param,char *cmd);
 static int _GENConditional(int code,char *param,char *cmd);
 static int _GENProcedure(int code,char *param,char *cmd);
+static int _GENCompileBranch(int reverse);
+static int _GENPatchBranch(int branchAddress,int targetAddress);
 
 static int macroDataLow,macroDataHigh; 													// Data extracted from CODE_SETDATA
 
@@ -24,7 +26,14 @@ static int inProcedure; 																// True when in PROC .. ENDPROC
 
 static int genStack[128];																// Stack for structures etc.
 static int gsp;
-static int nextVarLocation;																// Address of next variable location.
+
+static int nextVarLocation;																// Address of next variable locations
+static int nextZeroLocation;
+
+
+#define PUSH(n) 		genStack[++gsp] = (n)
+#define POP() 			genStack[gsp--]
+#define POPCHECK(m,e)	if (POP() != (m)) return (e)
 
 // *******************************************************************************************************************************
 //
@@ -37,6 +46,7 @@ void GENInitialise(void) {
 	gsp = 0;genStack[gsp] = 0x12345678; 												// Clear stack and put impossible value on it
 	macroDataHigh = macroDataLow = 0; 													// Zero data
 	nextVarLocation = 0x600;															// Put variables here.
+	nextZeroLocation = 0x20;
 }
 
 // *******************************************************************************************************************************
@@ -95,11 +105,14 @@ int GENGenerateCode(char *code) {
 // *******************************************************************************************************************************
 
 static int _GENExecute(int code,char *param,char *cmd) {
+	printf(">> %d %s %s\n",code,param,cmd);
 	while (*param == ' ') param++;
 	int e = 0;
 	switch (code) {
 		case EXEC_BYTEVAR:
 		case EXEC_WORDVAR:
+		case EXEC_ZEROBYTEVAR:
+		case EXEC_ZEROWORDVAR:
 			e = _GENDefineVariable(code,param,cmd);
 			break;
 		case EXEC_REPEAT:
@@ -132,12 +145,12 @@ static int _GENExecute(int code,char *param,char *cmd) {
 
 // *******************************************************************************************************************************
 //
-//										  	  Handle
+//										  	  Handle Variable Definitions
 //
 // *******************************************************************************************************************************
 
 static int _GENDefineVariable(int code,char *param,char *cmd) {
-	int isByte = (code == EXEC_BYTEVAR);
+	int isByte = (code == EXEC_BYTEVAR || code == EXEC_ZEROBYTEVAR);
 	int e = 0;
 	char *pComma = strchr(param,','); 													// Look for ,
 	if (pComma != NULL) { 																// If found, split at comma
@@ -149,12 +162,19 @@ static int _GENDefineVariable(int code,char *param,char *cmd) {
 
 	char *pAt = strchr(param,'@');														// Look for @ e.g. specifying address.
 	int varAddr;
-	char varType = (isByte ? 'C' : 'L'); 												// Variable is short or long word.
+	char varType = (isByte ? 'C' : 'L'); 												// Variable is absolute byte and word
+	if (code == EXEC_ZEROBYTEVAR) varType = 'S'; 										// Zero page byte and words.
+	if (code == EXEC_ZEROWORDVAR) varType = 'I';
 
 	if (pAt == NULL) { 																	// Not specified.
-		if (!isByte && (nextVarLocation & 0xFF) == 0xFF) nextVarLocation++;				// Avoid words crossing the boundary.
-		varAddr = nextVarLocation; 														// New address
-		nextVarLocation = nextVarLocation + (isByte ? 1 : 2); 							// Adjust variable pointer
+		int *pvAddr = (code == EXEC_ZEROBYTEVAR || code == EXEC_ZEROWORDVAR) ? 			// Where do we get it from.
+														&nextZeroLocation : &nextVarLocation;
+		if (!isByte && (*pvAddr & 0xFF) == 0xFF) {										// Avoid words crossing the boundary.
+			if (code == EXEC_ZEROBYTEVAR) return ERR_ZPAGE;								// Out of zero page memory.
+			(*pvAddr)++;				
+		}
+		varAddr = (*pvAddr); 															// New address
+		(*pvAddr) += (isByte ? 1 : 2); 													// Adjust variable pointer
 	} else {
 		*pAt++ = '\0';																	// Split into name address (demo@$108 syntax)
 		e = EVALEvaluate(pAt,&varAddr); 												// Var goes where ?
@@ -166,40 +186,67 @@ static int _GENDefineVariable(int code,char *param,char *cmd) {
 
 // *******************************************************************************************************************************
 //
-//										  	  Handle
+//										  	  Handle Repeat/Until
 //
 // *******************************************************************************************************************************
 
 static int _GENRepeatUntil(int code,char *param,char *cmd) {
-	printf("%d %s %s\n",code,param,cmd);
+	int target;
+	switch(code) {
+		case EXEC_REPEAT:																// Repeat pushes marker and address
+			PUSH(CODEAppend(-1));
+			PUSH(EXEC_REPEAT);
+			break;
+		case EXEC_UNTIL:
+			POPCHECK(EXEC_REPEAT,ERR_REPEAT);											// Check nesting
+			target = _GENCompileBranch(-1); 											// Code to branch here.
+			if (_GENPatchBranch(target,POP())) return ERR_GAP;							// And patch it
+			break;
+	}
 	return 0;
 }
 
 // *******************************************************************************************************************************
 //
-//										  	  Handle
+//										  	  Create & Patch branches
+//
+// *******************************************************************************************************************************
+
+static int _GENCompileBranch(int reverse) {
+	int branchAddress = CODEAppend(macroDataLow ^ (reverse ? 0x20 : 0x00));				// Output branch, inverting if required
+	CODEAppend(0); 																		// Dummy branch distance.
+	return branchAddress;
+}
+
+static int _GENPatchBranch(int branchAddress,int targetAddress) {
+	int offset = targetAddress - (branchAddress+2);										// Offset
+	if (offset < -128 || offset > 127) return -1;										// Out of range.
+	CODEPatch(branchAddress+1,offset & 0xFF);											// Patch the branch
+	return 0;
+}
+// *******************************************************************************************************************************
+//
+//										  	  Handle [AR]For Next
 //
 // *******************************************************************************************************************************
 
 static int _GENForNextLoop(int code,char *param,char *cmd) {
-	printf("%d %s %s\n",code,param,cmd);
 	return 0;
 }
 
 // *******************************************************************************************************************************
 //
-//										  	  Handle
+//										  	  Handle IF ELSE ENDIF
 //
 // *******************************************************************************************************************************
 
 static int _GENConditional(int code,char *param,char *cmd) {
-	printf("%d %s %s\n",code,param,cmd);
 	return 0;
 }
 
 // *******************************************************************************************************************************
 //
-//										  	  Handle
+//										  	  Handle Procedure and Calls
 //
 // *******************************************************************************************************************************
 
@@ -270,7 +317,7 @@ int CODEAppend(int byte) {
 }
 
 void CODEPatch(int addr,int byte) {
-	printf("\t%04x : %02x %c [PATCH]\n",address,byte,(char)byte);
+	printf("\t%04x : %02x %c [PATCH]\n",addr,byte,(char)byte);
 }
 
 void CODECall(int addr) {
@@ -287,11 +334,12 @@ static char *code[] = {
 	"A=Y","A=42","R=542","R=$2A",
 	"A=zbv.c","R=zwv.l","A=abv.c","R=awv.l",
 	"A=4?","R=awv.l?",
-	"myproc(3,2)",
 	"++awv.l","A&7",
-	"byte a,xx@$2A,yy","word w1,w2","R=xx","R=yy","R=w2",
+	"byte ax,xx@$2A,yy","word w1,w2","R=xx","R=yy","R=w2",
+	"zbyte zb","zword zw","R=zw","A=zb",
 	"proc test.1()","word c","R+c","R=c","endproc",
 	"test.1()","test.1(5)","test.1(1023,xx)",
+	"repeat","--A","A=?","until",
 	NULL
 };
 

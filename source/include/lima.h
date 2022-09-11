@@ -45,6 +45,11 @@ typedef struct _definition {
 #define ERR_SYNTAX (6) 			// Syntax error
 #define ERR_NOPROC (7) 			// No procedure ?
 #define ERR_STRUCT (8) 			// Unclosed structure
+#define ERR_REPEAT (9) 			// No Repeat
+#define ERR_IF (10)				// No If
+#define ERR_FOR (11) 			// No For
+#define ERR_GAP (12) 			// Too big a branch.
+#define ERR_ZPAGE (13)			// Out of zero page memory
 
 //
 //		Dictionary methods

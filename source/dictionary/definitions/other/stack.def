@@ -29,12 +29,12 @@
 *	S->Y
 		ply
 
-*	RAY->S
+*	CPU->S
 		pha
 		phx
 		phy
 
-* 	S->RAY
+* 	S->CPU
 		ply
 		plx
 		pla
