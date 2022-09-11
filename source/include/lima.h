@@ -54,6 +54,7 @@ typedef struct _definition {
 #define DEFAULT_ZPAGE (0x20) 	// Default addresses for code generation
 #define DEFAULT_ABS   (0x600)
 #define DEFAULT_CODE  (0x8000)
+#define MAXPROGSIZE (0x10000) 	// Max program size.
 //
 //		Dictionary methods
 //

@@ -55,8 +55,8 @@ void GENInitialise(void) {
 // *******************************************************************************************************************************
 
 void GENSetVariableUsage(int zpBase,int absBase) {
-	nextZeroLocation = zpBase;
-	nextVarLocation = absBase;
+	if (zpBase >= 0) nextZeroLocation = zpBase;
+	if (absBase >= 0) nextVarLocation = absBase;
 }
 
 // *******************************************************************************************************************************

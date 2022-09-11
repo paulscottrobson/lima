@@ -9,7 +9,7 @@ CC = g++
 
 .PHONY: all 
 
-all: 
+all: lima
 
 lima$(APPSTEM) : lima.o dictionary.o evaluate.o generate.o 
 	$(CC) $(CXXFLAGS) $^ $(LDFLAGS) -o $@

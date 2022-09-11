@@ -1,2 +1,8 @@
 Processing files.
+	- Appending .lima if not found
+	- Searching if not found
+	- Error Messages
+	- Writing binaries
+	- Dealing with MAIN.
 
+String constants ?
