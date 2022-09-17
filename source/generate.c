@@ -115,7 +115,7 @@ int GENGenerateCode(char *code) {
 // *******************************************************************************************************************************
 
 static int _GENExecute(int code,char *param,char *cmd) {
-	printf(">> %d %s %s\n",code,param,cmd);
+	//printf(">> %d %s %s\n",code,param,cmd);
 	while (*param == ' ') param++;
 	int e = 0;
 	switch (code) {
@@ -336,6 +336,7 @@ static int _GENProcedure(int code,char *param,char *cmd) {
 			if (inProcedure == 0) return ERR_PROC; 										// Not in procedure
 			if (gsp != 0) return ERR_STRUCT;											// Unclosed structure
 			inProcedure = 0;															// Not any more.
+			EVALRemoveLocals();															// Forget any locals
 			CODEReturn();																// Compile return code.
 			break;
 	}

@@ -70,15 +70,17 @@ void EVALCleanModule(void) {
 //
 // *******************************************************************************************************************************
 
-static unsigned char _EVALFind(char *x,int *result) {
+static unsigned char _EVALFind(char *x,int *result,int searchLocals) {
 	char firstChar = tolower(x[0]);															// Speeds up search a bit
 	for (int i = 0; i < MAXIDENTIFIERS;i++) { 												// Check all slots
 		if (Identifiers[i].cType != 0 && Identifiers[i].szName[0] == firstChar) { 			// If in use and first char matches
-			if (strcmp(Identifiers[i].szName,x) == 0) { 									// Check the rest.
-				if (result != NULL) *result = Identifiers[i].iValue; 						// Matches, set value ?
-				return Identifiers[i].cType;												// Return type
+			if ((searchLocals != 0) == (Identifiers[i].isLocal != 0)) { 					// Local or global scope search
+				if (strcmp(Identifiers[i].szName,x) == 0) { 								// Check the name
+					if (result != NULL) *result = Identifiers[i].iValue; 					// Matches, set value ?
+					return Identifiers[i].cType;											// Return type
+				}
 			}
-		}
+		}		
 	}
 	return 0;																				// Failed.
 }
@@ -93,9 +95,8 @@ int EVALAddIdentifier(char *szName,char cType,int value,int isLocal) {
 	char buffer[MAXIDENTLENGTH+32];
 	ASSERT(strlen(szName) <= MAXIDENTLENGTH);
 	ASSERT(value >= 0 && value <= 0xFFFF);
-	if (_EVALFind(szName,NULL)) { 															// Duplication.
-		return ERR_DUPLICATE;
-	}
+	if (_EVALFind(szName,NULL,0) && isLocal == 0) return ERR_DUPLICATE; 					// DUplication (Global)
+	if (_EVALFind(szName,NULL,-1)) return ERR_DUPLICATE; 									// Duplication (Local)
 	int i;
 	for (i = 0;i < MAXIDENTIFIERS && Identifiers[i].cType != 0;i++) { } 					// Find unused
 	if (i == MAXIDENTIFIERS) ERROR("Too many identifiers");
@@ -174,7 +175,8 @@ unsigned char EVALEvaluate(char *x,int *result) {
 	if (x[0] == '$') {																		// Hexadecimal
 		return _EVALDecodeInteger(x+1,16,result);
 	}
-	return _EVALFind(x,result); 															// Look up identifier
+	int n = _EVALFind(x,result,-1);if (n) return n; 										// Look up in locals
+	return _EVALFind(x,result,0); 															// Look up identifier in globals
 }
 
 // *******************************************************************************************************************************

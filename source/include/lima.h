@@ -50,6 +50,13 @@ typedef struct _definition {
 #define ERR_FOR (11) 			// No For
 #define ERR_GAP (12) 			// Too big a branch.
 #define ERR_ZPAGE (13)			// Out of zero page memory
+#define ERR_FILE (14) 			// File not found.
+
+#define ERR_MSG   { NULL,"Can't match code","Word alignment","Duplicate identifier", \
+					"Bad Identifier","Nested Procedure","Syntax Error","No procedure", \
+					"Unclosed","No Repeat","No If","No For", \
+					"Branch space","Out of Zero Page","File not found" \
+				  }
 
 #define DEFAULT_ZPAGE (0x20) 	// Default addresses for code generation
 #define DEFAULT_ABS   (0x600)

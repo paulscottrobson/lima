@@ -1,3 +1,4 @@
-ww                               $0020 [S]
+ww                               $0080 [S]
 vv                               $0600 [L]
-a.start                          $8000 [P]
+a.start                          $8010 [P]
+main                             $802c [P]
