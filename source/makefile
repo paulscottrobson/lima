@@ -6,13 +6,14 @@ endif
 
 INCLUDES = -I include
 CC = g++
+CXXFLAGS = 
 
 .PHONY: all 
 
 all: lima
 
 run : lima 
-	./lima$(APPSTEM) -l -c8010 -z80 -v600 demo.lima
+	./lima$(APPSTEM) -l -c8010 -z80 -v600 demo2.lima
 
 lima$(APPSTEM) : lima.o dictionary.o evaluate.o generate.o 
 	$(CC) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
@@ -23,6 +24,10 @@ testeval : eval_so$(APPSTEM)
 
 testdict: dict_so$(APPSTEM)
 	./dict_so$(APPSTEM) "S->R" "proc hello()" "R=522" "A=52" "A<4?" "A=4?" "R=311?" "R=544" "R=S32" "R=I322" "C32=R" "L532=R" "zbyte xx" "endproc" "L532=?"
+	$(CDEL) dict_so$(APPSTEM) 
+
+testdict2: dict_so$(APPSTEM)
+	./dict_so$(APPSTEM) "R=L532"
 	$(CDEL) dict_so$(APPSTEM) 
 
 testgen : gen_so$(APPSTEM)

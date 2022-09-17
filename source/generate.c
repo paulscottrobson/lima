@@ -115,7 +115,7 @@ int GENGenerateCode(char *code) {
 // *******************************************************************************************************************************
 
 static int _GENExecute(int code,char *param,char *cmd) {
-	//printf(">> %d %s %s\n",code,param,cmd);
+	//printf(">> %d|%s|%s\n",code,param,cmd);
 	while (*param == ' ') param++;
 	int e = 0;
 	switch (code) {
@@ -162,6 +162,8 @@ static int _GENExecute(int code,char *param,char *cmd) {
 static int _GENDefineVariable(int code,char *param,char *cmd) {
 	int isByte = (code == EXEC_BYTEVAR || code == EXEC_ZEROBYTEVAR);
 	int e = 0;
+	param = cmd;while (*param > ' ') param++;
+	while (*param == ' ') param++;
 	char *pComma = strchr(param,','); 													// Look for ,
 	if (pComma != NULL) { 																// If found, split at comma
 		*pComma = '\0';
@@ -303,6 +305,8 @@ static int _GENProcedure(int code,char *param,char *cmd) {
 		case EXEC_PROCEDURE_DEF:														// Defining a procedure.
 			if (inProcedure) return ERR_PROC;
 			a = CODEAppend(-1);															// Get address.
+			param = cmd+4;
+			while (*param == ' ') param++;
 			p = param+strlen(param)-2;
 			if (strlen(param) < 3 || p[0] != '(' || p[1] != ')') return ERR_SYNTAX; 	// Badly formed.
 			*p = '\0';																	// Remove ()
@@ -311,21 +315,22 @@ static int _GENProcedure(int code,char *param,char *cmd) {
 			break;
 
 		case EXEC_CALL:
-			cmd += strlen(param); 														// Skip over the name of the procedure.
-			t = EVALEvaluate(param,&a);													// Where do we call
+			p = strchr(cmd,'(');*p++ = '\0';											// Get the procedure name
+			printf("[%s] %c\n",cmd,*cmd);
+			t = EVALEvaluate(cmd,&a);													// Where do we call
 			if (t != 'P') return ERR_NOPROC;
-			if (*cmd++ != '(' || cmd[strlen(cmd)-1] != ')') return ERR_SYNTAX; 			// Check parameters.
-			while (*cmd != ')') { 														// While more parameters.
+			if (p[strlen(p)-1] != ')') return ERR_SYNTAX; 								// Check closing bracket
+			while (*p != ')') { 														// While more parameters.
 				pCount++; 																// How many so far ?
 				if (pCount == 3) return ERR_SYNTAX; 									// Too many !
 				p2 = paramBuffer;
 				*p2++ = (pCount == 1) ? 'R' : 'Y'; 										// 1st goes in R, 2nd in Y
 				*p2++ = '=';
-				while (*cmd != ',' && *cmd != ')') { 									// Copy parameter
-					*p2++ = *cmd++;
+				while (*p != ',' && *p != ')') { 										// Copy parameter
+					*p2++ = *p++;
 				}
 				*p2 = '\0';																// Make ASCIIZ
-				if (*cmd == ',') cmd++;													// Skip comma
+				if (*p == ',') p++;														// Skip comma
 				e = GENGenerateCode(paramBuffer);										// Generate code to load R/Y				
 				if (e) return e;
 			}

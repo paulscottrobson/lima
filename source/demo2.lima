@@ -1,0 +1,17 @@
+	zbyte ww
+	word vv
+
+	proc a.start()
+		word vv
+		
+		repeat
+			--vv
+		R=vv
+		R=?
+		until
+	endproc
+
+	proc main()
+		R&vv
+		a.start(4)
+	endproc

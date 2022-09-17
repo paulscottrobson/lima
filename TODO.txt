@@ -1,5 +1,3 @@
-n=? match ?
-
 Processing files.
 	- Appending .lima if not found
 	- Searching if not found

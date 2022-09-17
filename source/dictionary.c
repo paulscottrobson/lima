@@ -58,39 +58,39 @@ void DICTInitialise(void) {
 //
 // *******************************************************************************************************************************
 
+static char *_DICTExtractParameter(char *src,char *buffer,char requiredType,char endSequence);
+
+static char szParamBuffer[64]; 															// Parameter buffer
+
 static int _DICTMatch(char *source,DEFINITION *def,char **parameter) {
-	static char szParamBuffer[MAXIDENTLENGTH+1]; 										// Buffer for the parameter.
-	int paramPos = 0;
+	szParamBuffer[0] = '\0'; 															// Initially return an empty buffer
+	*parameter = szParamBuffer;
+	unsigned char *match = def->szName; 												// Compare p against source.
+	while (*source != '\0' && *match != '\0' && *match != '*') { 						// While end of one string, or match is *
+		if (isupper(*match)) { 															// Found a parameter.
+			char paramType = *match++; 													// Type required
+			source = _DICTExtractParameter(source,szParamBuffer,paramType,*match); 		// Extract a parameter
+			if (source == NULL) return 0; 												// Failed.
+		} else {
+			if (tolower(*source) != tolower(*match)) return 0; 							// Match failed.
+			source++;match++;
+		}
+	}
+	if (*source == '\0' && *match == '\0') return -1; 									// Matched both strings completely
+	if (*match != '*') return 0; 														// Matched the partial ?
+	return -1;
+}
+
+static char *_DICTExtractParameter(char *src,char *buffer,char requiredType,char endSequence) {
+	char *p = buffer;
 	int v;
-	*parameter = szParamBuffer; 														// Return the parameter buffer, with initial NULL
-	szParamBuffer[0] = '\0';
-	unsigned char *p = def->szName; 													// Compare p against source.
-	while (*p != '\0' && *p != '*') { 													// While still matching against the type and not wildcard	
-		if (isupper(*p)) { 																// Wild card ?
-			char type = *p++; 															// Get the type.
-			paramPos = 0; 																// Reset parameter fetch
-			while (*source != *p) { 													// Until found match with next character
-				ASSERT(paramPos < MAXIDENTLENGTH);
-				if (*source == '\0') return 0; 											// End of line, fail, doesn't match.
-				szParamBuffer[paramPos++] = tolower(*source); 							// Otherwise keep copying into the buffer.	
-				source++;
-			}
-			szParamBuffer[paramPos] = '\0';
-			return (EVALEvaluate(szParamBuffer,&v) == type); 							// Evaluate, Types match, okay, else fail.
-		} else { 																		// Any other character
-			if (*p != tolower(*source)) return 0; 										// Reject if different.
-			p++;source++; 																// Advance for next
-		}
+	while (*src != '\0' && *src != endSequence) { 										// While not got the parameter
+		*p++ = *src++;
 	}
-	if (*p == '*') { 																	// Wildcard, grab the rest of the line.
-		paramPos = 0; 																	// For things like proc and byte
-		while (*source != '\0') { 														// Consume all the source.
-			ASSERT(paramPos < MAXIDENTLENGTH);
-			szParamBuffer[paramPos++] = *source++;
-		}
-		szParamBuffer[paramPos] = '\0'; 												// Make string ASCIIZ.
-	}
-	return (*source == '\0'); 															// True if grabbed everything.
+	*p = '\0'; 																			// Make ASCIIZ
+	if (*src != endSequence) return NULL; 												// Not found the end marker.
+	char paramType = EVALEvaluate(buffer,&v); 							 				// Evaluate the parameter
+	return (paramType == requiredType) ? src:NULL;
 }
 
 // *******************************************************************************************************************************
