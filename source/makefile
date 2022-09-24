@@ -8,6 +8,8 @@ INCLUDES = -I include
 CC = g++
 CXXFLAGS = -Wno-write-strings
 
+SOURCES = lima.o dictionary.o evaluate.o generate.o 
+
 .PHONY: all 
 
 all: lima
@@ -15,8 +17,11 @@ all: lima
 run : lima 
 	./lima$(APPSTEM) -l -c8000 -z80 -v600 demo2.lima
 
-lima$(APPSTEM) : lima.o dictionary.o evaluate.o generate.o 
-	$(CC) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
+lima$(APPSTEM) : dictionary $(SOURCES)
+	$(CC) $(CXXFLAGS) $(SOURCES) $(LDFLAGS) -o $@
+
+dictionary:
+		make -C dictionary
 
 testeval : eval_so$(APPSTEM)
 	./eval_so$(APPSTEM)

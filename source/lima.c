@@ -152,6 +152,8 @@ static int _LIMProcessCommand(char *cmd) {
 		FILE *f = fopen(szCurrentFile,"r");											// Open file
 		if (f == NULL) return ERR_FILE; 											// Succeeded ?
 		while (fgets(szBuffer,sizeof(szBuffer),f) != NULL && e == 0) {				// Scan through file.
+			char *pc = strchr(szBuffer,'#'); 										// Remove comments
+			if (pc != NULL) *pc = '\0';
 			char *p = szBuffer;
 			nCurrentLine += 1;
 			while (*p != '\0' && e == 0) { 											// Scan through line.

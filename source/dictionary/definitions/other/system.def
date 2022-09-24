@@ -55,3 +55,10 @@ P	<proc>(*
 		
 *	break
 		.byte 	$DB
+
+* 	interruptoff
+		sei
+
+
+*   interrupt.on
+		cli				
