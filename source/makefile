@@ -6,14 +6,14 @@ endif
 
 INCLUDES = -I include
 CC = g++
-CXXFLAGS = 
+CXXFLAGS = -Wno-write-strings
 
 .PHONY: all 
 
 all: lima
 
 run : lima 
-	./lima$(APPSTEM) -l -c8010 -z80 -v600 demo2.lima
+	./lima$(APPSTEM) -l -c8000 -z80 -v600 demo2.lima
 
 lima$(APPSTEM) : lima.o dictionary.o evaluate.o generate.o 
 	$(CC) $(CXXFLAGS) $^ $(LDFLAGS) -o $@

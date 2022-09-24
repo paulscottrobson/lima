@@ -84,6 +84,8 @@ int CODEAppend(int byte);
 void CODEPatch(int addr,int byte);
 void CODECall(int addr);
 void CODEReturn(void);
+void CODEPatchStartup(int target);
+void CODEWrite(FILE *f);
 //
 //		Generation methods
 //

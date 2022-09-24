@@ -30,9 +30,22 @@ static unsigned char program[MAXPROGSIZE]; 												// Code (offset from code
 
 int CODEAppend(int byte) {
 	if (byte < 0) return codePointer;
+	if (codePointer == codeBaseAddress) {
+		codePointer = codeBaseAddress+3;
+	}
 	program[codePointer-codeBaseAddress] = byte;
 	if (listControl != 0) fprintf(fListFile,"\t%04x : %02x %c\n",codePointer,byte,(byte > ' ' && byte < 0x80) ? (char)byte : '.');
 	return codePointer++;
+}
+
+// *******************************************************************************************************************************
+//
+//								Output binary
+//
+// *******************************************************************************************************************************
+
+void CODEWrite(FILE *f) {
+	fwrite(program,1,codePointer-codeBaseAddress,f);
 }
 
 // *******************************************************************************************************************************
@@ -46,6 +59,17 @@ void CODEPatch(int addr,int byte) {
 	program[addr-codeBaseAddress] = byte;
 }
 
+// *******************************************************************************************************************************
+//
+//													Boot Patch
+//
+// *******************************************************************************************************************************
+
+void CODEPatchStartup(int target) {
+	program[0] = 0x4C;
+	program[1] = target & 0xFF;
+	program[2] = target >> 8;
+}
 // *******************************************************************************************************************************
 //
 //							    Code to call a subroutine, may have paging
@@ -175,6 +199,10 @@ int main(int argc,char *argv[]) {
 		e = _LIMProcessCommand(argv[i]);
 		if (e != 0) fprintf(stderr,"%s (%s:%d)\n",pszErrors[e],szCurrentFile,nCurrentLine);
 	}
+
+	FILE *f = fopen("l.out","wb");
+	CODEWrite(f);
+	fclose(f);
 
 	if (listControl != 0) { 															// Label dump & close listing file.
 		FILE *f = fopen("__labels.lst","w");

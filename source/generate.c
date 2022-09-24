@@ -312,11 +312,14 @@ static int _GENProcedure(int code,char *param,char *cmd) {
 			*p = '\0';																	// Remove ()
 			EVALAddIdentifier(param,'P',a,0); 											// Add procedure.
 			inProcedure = -1;															// Now in procedure.
+			if (strcmp(param,"main") == 0) { 											// Fix up main.
+				CODEPatchStartup(a);
+			}
 			break;
 
 		case EXEC_CALL:
 			p = strchr(cmd,'(');*p++ = '\0';											// Get the procedure name
-			printf("[%s] %c\n",cmd,*cmd);
+			//printf("[%s] %c\n",cmd,*cmd);
 			t = EVALEvaluate(cmd,&a);													// Where do we call
 			if (t != 'P') return ERR_NOPROC;
 			if (p[strlen(p)-1] != ')') return ERR_SYNTAX; 								// Check closing bracket
