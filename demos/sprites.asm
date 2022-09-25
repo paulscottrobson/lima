@@ -56,7 +56,7 @@ bmclear:
 		sta 	spriteAddress+0
 
 		stz 	spriteAddress+1				; makes graphic data address the monitor code, something to see :)
-		lda 	#$80 			 			; will come out as a speckly square because there's code at $008000
+		lda 	#$80 			 			; will come out as a speckly rectangle because there's code at $008000
 		sta 	spriteAddress+2 			; this code :)
 		stz 	spriteAddress+3
 
