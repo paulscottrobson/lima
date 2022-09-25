@@ -85,7 +85,7 @@ static char *_DICTExtractParameter(char *src,char *buffer,char requiredType,char
 	char *p = buffer;
 	int v;
 	while (*src != '\0' && *src != endSequence) { 										// While not got the parameter
-		*p++ = *src++;
+		*p++ = tolower(*src);src++;
 	}
 	*p = '\0'; 																			// Make ASCIIZ
 	if (*src != endSequence) return NULL; 												// Not found the end marker.

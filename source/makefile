@@ -19,7 +19,8 @@ run : lima
 
 lima$(APPSTEM) : dictionary $(SOURCES)
 	$(CC) $(CXXFLAGS) $(SOURCES) $(LDFLAGS) -o $@
-
+	$(CCOPY) lima$(APPSTEM) ..$(S)bin
+	
 dictionary:
 		make -C dictionary
 

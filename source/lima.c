@@ -29,10 +29,10 @@ static unsigned char program[MAXPROGSIZE]; 												// Code (offset from code
 // *******************************************************************************************************************************
 
 int CODEAppend(int byte) {
-	if (byte < 0) return codePointer;
 	if (codePointer == codeBaseAddress) {
 		codePointer = codeBaseAddress+3;
 	}
+	if (byte < 0) return codePointer;
 	program[codePointer-codeBaseAddress] = byte;
 	if (listControl != 0) fprintf(fListFile,"\t%04x : %02x %c\n",codePointer,byte,(byte > ' ' && byte < 0x80) ? (char)byte : '.');
 	return codePointer++;

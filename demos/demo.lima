@@ -1,0 +1,38 @@
+byte MMUControl@0
+byte IOControl@1
+byte Vicky.Master.Control@$D000
+byte Bitmap0Control@$D100
+
+proc io.select()
+	IOControl=A
+endproc
+
+zword poke.address
+byte fill.data
+
+proc poke()
+	poke.address=R
+	A=Y:Y=0:poke.address[Y]=A
+endproc
+
+proc set.fill()
+	poke.address=R:fill.data=Y
+endproc
+
+proc do.fill()
+	Y=0
+	r.for
+		A=fill.data:poke.address[Y]=A:++poke.address
+	next
+endproc
+
+proc main()
+	io.select(0)
+	A=15:Vicky.Master.Control=A
+	A=1:Bitmap0Control=A
+
+	set.fill($2000,3):do.fill(8192)
+	set.fill($4000,$18):do.fill(8192)
+	set.fill($6000,$E0):do.fill(8192)
+	halt
+endproc
