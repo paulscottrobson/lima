@@ -83,7 +83,7 @@ endproc
 
 proc sprite.hide()
 	.poke.address=R:Y=0
-	A=.poke.address[Y]:A&$FE:.poke.address[Y]=A
+	A=.poke.address[Y]:A=0:.poke.address[Y]=A
 endproc
 
 proc sprite.move() 
@@ -97,9 +97,9 @@ endproc
 
 proc main()
 	io.select(0)
-	A=$2F:Vicky.Master.Control=A
+	A=$3F:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
-	A=1:Bitmap0High=A
+	A=0:Bitmap0High=A
 	clear.bitmap($01)
 	clear.sprites()
 
@@ -110,12 +110,12 @@ proc main()
 
 	io.select(0)
 
-	sprite.use(2)
+	sprite.use(4)
 	sprite.show()
 
-	poke($D911,0)
-	poke($D912,0)
-	poke($D913,3)
+	poke($D921,0)
+	poke($D922,$80)
+	poke($D923,0)
 
 	repeat
 	R=320:r.for
