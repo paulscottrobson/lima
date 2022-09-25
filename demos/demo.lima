@@ -8,16 +8,16 @@ proc io.select()
 	IOControl=A
 endproc
 
-zword poke.address
-byte fill.data
+zword .poke.address
+byte .fill.data
 
 proc poke()
-	poke.address=R
-	A=Y:Y=0:poke.address[Y]=A
+	.poke.address=R
+	A=Y:Y=0:.poke.address[Y]=A
 endproc
 
 proc set.fill()
-	poke.address=R:fill.data=Y
+	.poke.address=R:.fill.data=Y
 endproc
 
 proc map()
@@ -33,8 +33,26 @@ endproc
 proc do.fill()
 	Y=0
 	r.for
-		A=fill.data:poke.address[Y]=A:++poke.address
+		A=.fill.data:.poke.address[Y]=A:++.poke.address
 	next
+endproc
+
+proc clear.bitmap()
+	.fill.data=A
+	A=9:a.for
+		A+8
+		y=a:map(1)
+		R=$2000:.poke.address=R
+		32:a.for
+			A=.fill.data:Y=0
+			repeat
+				.poke.address[Y]=A
+				++Y:Y=?
+			until
+			R=.poke.address:R+256:.poke.address=R
+		next
+	next
+	map(1,9)
 endproc
 
 proc main()
@@ -42,12 +60,6 @@ proc main()
 	A=15:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
 	A=1:Bitmap0High=A
-
-	A=9:a.for
-		A+8
-		y=a:map(1)
-		set.fill($2000,$F0):do.fill(8192)
-	next
-	map(1,9)
+	clear.bitmap($E0)
 	halt
 endproc
