@@ -25,7 +25,7 @@ proc map()
 	CPU->S
 	A=$80:MMUControl=A
 	S->CPU
-	poke()
+	R+8:poke()
 	A=$00:MMUControl=A
 	interrupt.on
 endproc
@@ -43,23 +43,11 @@ proc main()
 	A=1:Bitmap0Control=A
 	A=1:Bitmap0High=A
 
-	map(9,8)
-	set.fill($2000,3):do.fill(8192)
-	map(10,9)
-	set.fill($4000,$18):do.fill(8192)
-	map(11,10)
-	set.fill($6000,$E0):do.fill(8192)
-	map(11,11)
-	set.fill($6000,$E3):do.fill(8192)
-	map(11,12)
-	set.fill($6000,$E6):do.fill(8192)
-	map(11,13)
-	set.fill($6000,$E9):do.fill(8192)
-	map(11,14)
-	set.fill($6000,$EC):do.fill(8192)
-	map(11,15)
-	set.fill($6000,$00):do.fill(8192)
-	map(11,16)
-	set.fill($6000,$1F):do.fill(8192)
+	A=9:a.for
+		A+8
+		y=a:map(1)
+		set.fill($2000,$F0):do.fill(8192)
+	next
+	map(1,9)
 	halt
 endproc
