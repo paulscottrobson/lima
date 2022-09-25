@@ -104,17 +104,24 @@ proc main()
 	clear.sprites()
 
 	map.into(16)
-	set.fill($2000,$E0)
+	set.fill(R,$E1)
 	do.fill(1024)
 	map.default()
 
 	io.select(0)
 
-	sprite.use(1)
+	sprite.use(2)
 	sprite.show()
-	poke($D909,0)
-	poke($D90A,0)
-	poke($D90B,3)
-	sprite.move(64,64)
+
+	poke($D911,0)
+	poke($D912,0)
+	poke($D913,3)
+
+	repeat
+	R=320:r.for
+		sprite.move(R,64)
+		R=2000:R.FOR:NEXT
+	next
+	A=0:A<>?:until
 	halt
 endproc
