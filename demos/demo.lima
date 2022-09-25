@@ -2,6 +2,7 @@ byte MMUControl@0
 byte IOControl@1
 byte Vicky.Master.Control@$D000
 byte Bitmap0Control@$D100
+byte Bitmap0High@$D103
 
 proc io.select()
 	IOControl=A
@@ -19,6 +20,16 @@ proc set.fill()
 	poke.address=R:fill.data=Y
 endproc
 
+proc map()
+	interrupt.off
+	CPU->S
+	A=$80:MMUControl=A
+	S->CPU
+	poke()
+	A=$00:MMUControl=A
+	interrupt.on
+endproc
+
 proc do.fill()
 	Y=0
 	r.for
@@ -30,9 +41,25 @@ proc main()
 	io.select(0)
 	A=15:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
+	A=1:Bitmap0High=A
 
+	map(9,8)
 	set.fill($2000,3):do.fill(8192)
+	map(10,9)
 	set.fill($4000,$18):do.fill(8192)
+	map(11,10)
 	set.fill($6000,$E0):do.fill(8192)
+	map(11,11)
+	set.fill($6000,$E3):do.fill(8192)
+	map(11,12)
+	set.fill($6000,$E6):do.fill(8192)
+	map(11,13)
+	set.fill($6000,$E9):do.fill(8192)
+	map(11,14)
+	set.fill($6000,$EC):do.fill(8192)
+	map(11,15)
+	set.fill($6000,$00):do.fill(8192)
+	map(11,16)
+	set.fill($6000,$1F):do.fill(8192)
 	halt
 endproc

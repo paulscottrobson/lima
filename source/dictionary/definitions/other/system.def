@@ -59,7 +59,7 @@ P	<proc>(*
 * 	halt
 		bra 	*
 		
-* 	interruptoff
+* 	interrupt.off
 		sei
 
 *   interrupt.on

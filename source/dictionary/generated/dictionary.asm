@@ -3,18 +3,18 @@
 ;
 	* = $1000
 
+; ***** interrupt.off *****
+
+	.byte	$69,$6e,$74,$65,$72,$72,$75,$70,$74,$2e,$6f,$66,$66,0
+	.byte	EndCode1000-*-1
+	sei
+EndCode1000:
+
 ; ***** clean.module *****
 
 	.byte	$63,$6c,$65,$61,$6e,$2e,$6d,$6f,$64,$75,$6c,$65,0
-	.byte	EndCode1000-*-1
-	.byte	$a3,$05
-EndCode1000:
-
-; ***** interruptoff *****
-
-	.byte	$69,$6e,$74,$65,$72,$72,$75,$70,$74,$6f,$66,$66,0
 	.byte	EndCode1001-*-1
-	sei
+	.byte	$a3,$05
 EndCode1001:
 
 ; ***** interrupt.on *****
