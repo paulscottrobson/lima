@@ -69,39 +69,52 @@ proc clear.sprites()
 	do.fill($200)
 endproc
 
+word .current.sprite
+
+proc sprite.use()
+	<<R:<<R:<<R:R+$D900
+	.current.sprite=R
+endproc
+
+proc sprite.show()
+	R=.current.sprite:.poke.address=R:Y=0
+	A=.poke.address[Y]:A=1:.poke.address[Y]=A
+endproc
+
+proc sprite.hide()
+	.poke.address=R:Y=0
+	A=.poke.address[Y]:A&$FE:.poke.address[Y]=A
+endproc
+
+proc sprite.move() 
+	Y->S:R->S 
+	R=.current.sprite:R+4:.poke.address=R
+	S->R:Y=0:.poke.address[Y]=R
+	++Y:++Y
+	S->A:R=A:.poke.address[Y]=R
+endproc
+
+
 proc main()
 	io.select(0)
 	A=$2F:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
 	A=1:Bitmap0High=A
-	clear.bitmap($00)
+	clear.bitmap($01)
 	clear.sprites()
 
-
-	set.fill($1000,$F0)
+	map.into(16)
+	set.fill($2000,$E0)
 	do.fill(1024)
+	map.default()
 
 	io.select(0)
-	poke($D900,1)
-	poke($D901,0)
-	poke($D902,$10)
-	poke($D903,0)
-	poke($D904,128)
-	poke($D905,0)
-	poke($D906,64)
-	poke($D907,0)
 
-	poke($D910,0)
-
-	poke($D908,1)
+	sprite.use(1)
+	sprite.show()
 	poke($D909,0)
-	poke($D90A,$10)
-	poke($D90B,0)
-	poke($D90C,128)
-	poke($D90D,0)
-	poke($D90E,128)
-	poke($D90F,0)
-	
-
+	poke($D90A,0)
+	poke($D90B,3)
+	sprite.move(64,64)
 	halt
 endproc
