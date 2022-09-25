@@ -20,6 +20,13 @@ proc set.fill()
 	.poke.address=R:.fill.data=Y
 endproc
 
+proc do.fill()
+	Y=0
+	r.for
+		A=.fill.data:.poke.address[Y]=A:++.poke.address
+	next
+endproc
+
 proc map()
 	interrupt.off
 	CPU->S
@@ -30,19 +37,20 @@ proc map()
 	interrupt.on
 endproc
 
-proc do.fill()
-	Y=0
-	r.for
-		A=.fill.data:.poke.address[Y]=A:++.poke.address
-	next
+proc map.into()
+	a+8:y=a:map(1)
+	R=$2000
 endproc
+
+proc map.default()
+	map(1,9)
+endproc
+
 
 proc clear.bitmap()
 	.fill.data=A
 	A=9:a.for
-		A+8
-		y=a:map(1)
-		R=$2000:.poke.address=R
+		map.into():.poke.address=R
 		32:a.for
 			A=.fill.data:Y=0
 			repeat
@@ -52,14 +60,48 @@ proc clear.bitmap()
 			R=.poke.address:R+256:.poke.address=R
 		next
 	next
-	map(1,9)
+	map.default()
+endproc
+
+proc clear.sprites()
+	io.select(0)
+	set.fill($D900,$00)
+	do.fill($200)
 endproc
 
 proc main()
 	io.select(0)
-	A=15:Vicky.Master.Control=A
+	A=$2F:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
 	A=1:Bitmap0High=A
-	clear.bitmap($E0)
+	clear.bitmap($00)
+	clear.sprites()
+
+
+	set.fill($1000,$F0)
+	do.fill(1024)
+
+	io.select(0)
+	poke($D900,1)
+	poke($D901,0)
+	poke($D902,$10)
+	poke($D903,0)
+	poke($D904,128)
+	poke($D905,0)
+	poke($D906,64)
+	poke($D907,0)
+
+	poke($D910,0)
+
+	poke($D908,1)
+	poke($D909,0)
+	poke($D90A,$10)
+	poke($D90B,0)
+	poke($D90C,128)
+	poke($D90D,0)
+	poke($D90E,128)
+	poke($D90F,0)
+	
+
 	halt
 endproc
