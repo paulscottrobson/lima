@@ -64,3 +64,6 @@ P	<proc>(*
 
 *   interrupt.on
 		cli				
+
+* 	inline*
+		[exec:inline]		

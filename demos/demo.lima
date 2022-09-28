@@ -1,8 +1,7 @@
 byte MMUControl@0
 byte IOControl@1
 byte Vicky.Master.Control@$D000
-byte Bitmap0Control@$D100
-byte Bitmap0High@$D103
+byte Bitmap0Control@$D100,Bitmap0High@$D103
 
 proc io.select()
 	IOControl=A
@@ -45,7 +44,6 @@ endproc
 proc map.default()
 	map(1,9)
 endproc
-
 
 proc clear.bitmap()
 	.fill.data=A

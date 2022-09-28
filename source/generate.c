@@ -155,23 +155,58 @@ static int _GENExecute(int code,char *param,char *cmd) {
 
 // *******************************************************************************************************************************
 //
+//										 Split into comma seperated components
+//
+// *******************************************************************************************************************************
+
+static char *words[128];
+
+static char **GENSplitComma(char *text) {
+	int eCount = 0;
+	while (*text == ' ') text++;														// Skip initial spaces
+	while (*text != '\0') { 															// Until more.
+		words[eCount++] = text; 														// Record the word
+		char *pComma = strchr(text,',');
+		if (pComma == NULL) { 															// Last
+			text = text+strlen(text);
+		} else { 																		// More
+			text = pComma+1;*pComma = '\0';
+		}
+		while (*text == ' ') text++;													// Skip initial spaces
+	}
+	words[eCount] = NULL;																// End of list.
+	return words;
+}
+
+// *******************************************************************************************************************************
+//
 //										  	  Handle Variable Definitions
 //
 // *******************************************************************************************************************************
 
-static int _GENDefineVariable(int code,char *param,char *cmd) {
-	int isByte = (code == EXEC_BYTEVAR || code == EXEC_ZEROBYTEVAR);
-	int e = 0;
-	param = cmd;while (*param > ' ') param++;
-	while (*param == ' ') param++;
-	char *pComma = strchr(param,','); 													// Look for ,
-	if (pComma != NULL) { 																// If found, split at comma
-		*pComma = '\0';
-		e = _GENDefineVariable(code,param,cmd); 										// Do first variable
-		if (e != 0) return e;
-		return _GENDefineVariable(code,pComma+1,cmd); 									// Do all the others recursively.
-	}
+static int _GENDefineOneVariable(int code,char *param);
 
+static int _GENDefineVariable(int code,char *param,char *cmd) {
+	while (*cmd > ' ') cmd++;	 														// Skip over the keyword
+	char **words = GENSplitComma(cmd); 													// Split words by command.
+	int n = 0;
+	while (words[n] != NULL) {
+		printf("[%s]\n",words[n]);
+		int e = _GENDefineOneVariable(code,words[n]);
+		if (e != 0) return e;
+		n++;
+	}
+	return 0;
+}
+
+// *******************************************************************************************************************************
+//
+//										  	  Define one variable
+//
+// *******************************************************************************************************************************
+
+static int _GENDefineOneVariable(int code,char *param) {
+	int isByte = (code == EXEC_BYTEVAR || code == EXEC_ZEROBYTEVAR);
 	char *pAt = strchr(param,'@');														// Look for @ e.g. specifying address.
 	int varAddr;
 	char varType = (isByte ? 'C' : 'L'); 												// Variable is absolute byte and word
@@ -179,19 +214,19 @@ static int _GENDefineVariable(int code,char *param,char *cmd) {
 	if (code == EXEC_ZEROWORDVAR) varType = 'I';
 
 	if (pAt == NULL) { 																	// Not specified.
-		int *pvAddr = (code == EXEC_ZEROBYTEVAR || code == EXEC_ZEROWORDVAR) ? 			// Where do we get it from.
-														&nextZeroLocation : &nextVarLocation;
-		if (!isByte && (*pvAddr & 0xFF) == 0xFF) {										// Avoid words crossing the boundary.
-			if (code == EXEC_ZEROBYTEVAR) return ERR_ZPAGE;								// Out of zero page memory.
-			(*pvAddr)++;				
-		}
-		varAddr = (*pvAddr); 															// New address
+	 	int *pvAddr = (code == EXEC_ZEROBYTEVAR || code == EXEC_ZEROWORDVAR) ? 			// Where do we get it from.
+	 													&nextZeroLocation : &nextVarLocation;
+	 	if (!isByte && (*pvAddr & 0xFF) == 0xFF) {										// Avoid words crossing the boundary.
+	 		if (code == EXEC_ZEROBYTEVAR) return ERR_ZPAGE;								// Out of zero page memory.
+	 		(*pvAddr)++;				
+	 	}
+	 	varAddr = (*pvAddr); 															// New address
 		(*pvAddr) += (isByte ? 1 : 2); 													// Adjust variable pointer
 	} else {
-		*pAt++ = '\0';																	// Split into name address (demo@$108 syntax)
-		e = EVALEvaluate(pAt,&varAddr); 												// Var goes where ?
-		if (e == 0) return ERR_IDENTIFIER;
-		if (varAddr < 0x100) varType = (isByte ? 'S':'I');								// Can declare page zero variables.
+	 	*pAt++ = '\0';																	// Split into name address (demo@$108 syntax)
+	 	int e = EVALEvaluate(pAt,&varAddr); 											// Var goes where ?
+	 	if (e == 0) return ERR_IDENTIFIER;
+	 	if (varAddr < 0x100) varType = (isByte ? 'S':'I');								// Can declare page zero variables.
 	}
 	return EVALAddIdentifier(param,varType,varAddr,inProcedure);						// Create the new identifier.
 }
@@ -400,6 +435,8 @@ void CODECall(int addr) {
 void CODEReturn(void) {
 	CODEAppend(0x60);
 }
+
+void CODEPatchStartup(int addr) {}
 //
 //		Process the command lines.
 //
@@ -408,6 +445,7 @@ static char *code[] = {
 	"A=zbv.c","R=zwv.l","A=abv.c","R=awv.l",
 	"A=4?","R=awv.l?",
 	"++awv.l","A&7",
+	"byte w,x",
 	"byte ax,xx@$2A,yy","word w1,w2","R=xx","R=yy","R=w2",
 	"zbyte zb","zword zw","R=zw","A=zb",
 	"proc test.1()","word c","R+c","R=c","endproc",
@@ -415,6 +453,7 @@ static char *code[] = {
 	"repeat","--A","A=4?","until",
 	"A=2?","if","A=5","else","++A","endif",
 	"R=5","r.FOR","NEXT",
+	"byte aaa42@$D100,bbb42@$D101","byte tst1,tst2",
 	NULL
 };
 
@@ -432,8 +471,10 @@ int main(int argc,char *argv[]) {
 
 	int n = 0;
 	while (code[n] != 0) {
-		printf("--- %s ---\n",code[n]);
-		int e = GENGenerateCode(code[n]);
+		char buffer[128];
+		strcpy(buffer,code[n]);
+		printf("--- %s ---\n",buffer);
+		int e = GENGenerateCode(buffer);
 		if (e != 0) printf("** ERROR %d **\n",e);
 		printf("\n");
 		n++;

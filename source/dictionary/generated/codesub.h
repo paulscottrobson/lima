@@ -24,5 +24,6 @@
 #define EXEC_PROCEDURE_DEF (14)
 #define EXEC_CALL (15)
 #define EXEC_ENDPROC (16)
+#define EXEC_INLINE (17)
 
 #define ISSUBST(c) ((c) == 0x53 || (c) == 0x63 || (c) == 0x73 || (c) == 0x83 || (c) == 0x93 || (c) == 0xa3)
