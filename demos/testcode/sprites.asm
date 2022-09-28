@@ -50,21 +50,37 @@ bmclear:
 ;		
 ; **************************************************************************************************************
 
-		spriteAddress = $D908
+		spriteAddress = $D900
 
+		ldx 	#0
+
+spriteloop:
 		lda 	#1 							; enable, 32x32 pixels, top level
-		sta 	spriteAddress+0
+		sta 	spriteAddress+0,x
 
-		stz 	spriteAddress+1				; makes graphic data address the monitor code, something to see :)
+		stz 	spriteAddress+1,x			; makes graphic data address the monitor code, something to see :)
 		lda 	#$80 			 			; will come out as a speckly rectangle because there's code at $008000
-		sta 	spriteAddress+2 			; this code :)
-		stz 	spriteAddress+3
+		sta 	spriteAddress+2,x 			; this code :)
+		stz 	spriteAddress+3,x
 
-		lda 	#$A0 						; roughly X centred
-		sta 	spriteAddress+4
-		stz 	spriteAddress+5
+		txa				 					; roughly X centred
+		asl 	a
+		asl 	a
+		adc 	#32
 
-		lda 	#$40 						; in the dark red area.
-		sta 	spriteAddress+6
-		stz 	spriteAddress+7
+		sta 	spriteAddress+4,x
+		stz 	spriteAddress+5,x
+
+		txa 
+		lsr 	a
+		adc 	#$40
+		sta 	spriteAddress+6,x
+		stz 	spriteAddress+7,x
+
+		txa
+		clc
+		adc 	#8
+		tax
+		cpx 	#10*8
+		bne 	spriteloop
 halt:	bra 	halt

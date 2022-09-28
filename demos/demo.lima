@@ -12,8 +12,8 @@ zword .poke.address
 byte .fill.data
 
 proc poke()
-	.poke.address=R
-	A=Y:Y=0:.poke.address[Y]=A
+		.poke.address=R
+		A=Y:Y=0:.poke.address[Y]=A
 endproc
 
 proc set.fill()
@@ -99,12 +99,12 @@ proc main()
 	io.select(0)
 	A=$3F:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
-	A=0:Bitmap0High=A
+	A=1:Bitmap0High=A
 	clear.bitmap($01)
 	clear.sprites()
 
 	map.into(16)
-	set.fill(R,$E1)
+	set.fill(R,$E0)
 	do.fill(1024)
 	map.default()
 
@@ -114,8 +114,8 @@ proc main()
 	io.select(0)
 	poke($D910,1)
 	poke($D911,0)
-	poke($D912,$80)
-	poke($D913,0)
+	poke($D912,0)
+	poke($D913,3)
 	poke($D914,$FF)
 	poke($D915,0)
 	poke($D916,$60)
@@ -123,8 +123,8 @@ proc main()
 
 	poke($D900,1)
 	poke($D901,0)
-	poke($D902,$80)
-	poke($D903,0)
+	poke($D902,0)
+	poke($D903,3)
 	poke($D904,$20)
 	poke($D905,0)
 	poke($D906,$60)
