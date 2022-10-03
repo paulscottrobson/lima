@@ -19,6 +19,8 @@ static int _GENConditional(int code,char *param,char *cmd);
 static int _GENProcedure(int code,char *param,char *cmd);
 static int _GENCompileBranch(int opcode,int reverse);
 static int _GENPatchBranch(int branchAddress,int targetAddress);
+static int _GENDefineOneVariable(int code,char *param);
+static int _GENDefineInline(int code,char *param,char *cmd);
 
 static int macroDataLow,macroDataHigh; 													// Data extracted from CODE_SETDATA
 
@@ -147,6 +149,9 @@ static int _GENExecute(int code,char *param,char *cmd) {
 		case EXEC_DICTIONARYCRUNCH:
 			EVALCleanModule();
 			break;
+		case EXEC_INLINE:
+			_GENDefineInline(code,param,cmd);
+			break;
 		default:
 			ERROR("Bad Execute Code");
 	}
@@ -184,16 +189,33 @@ static char **GENSplitComma(char *text) {
 //
 // *******************************************************************************************************************************
 
-static int _GENDefineOneVariable(int code,char *param);
-
 static int _GENDefineVariable(int code,char *param,char *cmd) {
 	while (*cmd > ' ') cmd++;	 														// Skip over the keyword
 	char **words = GENSplitComma(cmd); 													// Split words by command.
 	int n = 0;
 	while (words[n] != NULL) {
-		printf("[%s]\n",words[n]);
+//		printf("[%s]\n",words[n]);
 		int e = _GENDefineOneVariable(code,words[n]);
 		if (e != 0) return e;
+		n++;
+	}
+	return 0;
+}
+
+// *******************************************************************************************************************************
+//
+//										  	  Create an inline
+//
+// *******************************************************************************************************************************
+
+static int _GENDefineInline(int code,char *param,char *cmd) {
+	char **parts = GENSplitComma(cmd+6);
+	int v,e,n = 0;
+	while (parts[n] != NULL) {
+		e = EVALEvaluate(parts[n],&v);
+		if (e == 0) return ERR_IDENTIFIER;
+		CODEAppend(v & 0xFF);
+		if ((v >> 8) != 0) CODEAppend(v>>8);
 		n++;
 	}
 	return 0;

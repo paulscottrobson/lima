@@ -3,5 +3,5 @@ Processing files.
 	- Searching if not found
 	- Writing binaries
 
-
 String constants ?
+Address of variables @x in expressions.
