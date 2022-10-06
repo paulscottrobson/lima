@@ -150,7 +150,7 @@ static int _GENExecute(int code,char *param,char *cmd) {
 			EVALCleanModule();
 			break;
 		case EXEC_INLINE:
-			_GENDefineInline(code,param,cmd);
+			e = _GENDefineInline(code,param,cmd);
 			break;
 		default:
 			ERROR("Bad Execute Code");
@@ -210,7 +210,7 @@ static int _GENDefineVariable(int code,char *param,char *cmd) {
 
 static int _GENDefineInline(int code,char *param,char *cmd) {
 	char **parts = GENSplitComma(cmd+6);
-	int v,e,n = 0;
+	int v,e = 0,n = 0;
 	while (parts[n] != NULL) {
 		e = EVALEvaluate(parts[n],&v);
 		if (e == 0) return ERR_IDENTIFIER;

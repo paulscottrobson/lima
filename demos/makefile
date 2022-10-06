@@ -56,6 +56,6 @@ basic:
 	python ..$(S)bin$(S)fnxmgr.zip --port $(PORT) --binary ..$(S)bin$(S)basic02.bin --address 8000
 
 ago:	
-	64tass -q -c sprites.asm -o l.out
+	64tass -q -c testcode/sprites.asm -o l.out
 	python ..$(S)bin$(S)fnxmgr.zip --port $(PORT) --binary ..$(S)bin$(S)monitor.rom --address F000
 	python ..$(S)bin$(S)fnxmgr.zip --port $(PORT) --binary l.out --address 8000

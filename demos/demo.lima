@@ -7,7 +7,7 @@ proc io.select()
 	IOControl=A
 endproc
 
-zword .poke.address
+zword .poke.address@$4C
 byte .fill.data
 
 proc poke()
@@ -27,13 +27,13 @@ proc do.fill()
 endproc
 
 proc map()
-	interrupt.off
+#	interrupt.off
 	CPU->S
 	A=$80:MMUControl=A
 	S->CPU
 	R+8:poke()
 	A=$00:MMUControl=A
-	interrupt.on
+#	interrupt.on
 endproc
 
 proc map.into()
@@ -108,7 +108,7 @@ proc main()
 	A=$3F:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
 	A=1:Bitmap0High=A
-	clear.bitmap($3)
+	clear.bitmap($C0)
 	clear.sprites()
 
 	map.into(16)
