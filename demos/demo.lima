@@ -108,11 +108,11 @@ proc main()
 	A=$3F:Vicky.Master.Control=A
 	A=1:Bitmap0Control=A
 	A=1:Bitmap0High=A
-	clear.bitmap($C0)
+	clear.bitmap($40)
 	clear.sprites()
 
 	map.into(16)
-	set.fill(R,$E8)
+	set.fill(R,$03)
 	do.fill(1024)
 	map.default()
 
